@@ -6,7 +6,7 @@
   <link href="/dayuya.github.io/atom.xml" rel="self"/>
   
   <link href="https://fe405327114.github.io/dayuya.github.io/"/>
-  <updated>2018-11-29T14:35:54.953Z</updated>
+  <updated>2018-12-03T11:59:08.495Z</updated>
   <id>https://fe405327114.github.io/dayuya.github.io/</id>
   
   <author>
@@ -17,25 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>this is my</title>
+    <title>git</title>
     <link href="https://fe405327114.github.io/dayuya.github.io/2018/11/29/myblog/"/>
     <id>https://fe405327114.github.io/dayuya.github.io/2018/11/29/myblog/</id>
     <published>2018-11-29T06:54:56.000Z</published>
-    <updated>2018-11-29T14:35:54.953Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://fe405327114.github.io/dayuya.github.io/2018/11/29/hello-world/"/>
-    <id>https://fe405327114.github.io/dayuya.github.io/2018/11/29/hello-world/</id>
-    <published>2018-11-29T05:51:00.175Z</published>
-    <updated>2018-11-29T15:19:12.144Z</updated>
+    <updated>2018-12-03T11:59:08.495Z</updated>
     
     <summary type="html">
     
@@ -43,7 +29,10 @@
       
         
         
-          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a
+          &lt;p&gt;1.git  pull 或者 git clone 从远程分支拉取项目。&lt;/p&gt;
+&lt;p&gt;2.git checkout -b 新分支,在新分支里开发代码&lt;/p&gt;
+&lt;p&gt;3.git checkout master，开发完成后，回到主分支&lt;/p&gt;
+&lt;p&gt;4.git pull
         
       
     
