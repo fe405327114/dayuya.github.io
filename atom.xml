@@ -6,7 +6,7 @@
   <link href="/dayuya.github.io/atom.xml" rel="self"/>
   
   <link href="https://fe405327114.github.io/dayuya.github.io/"/>
-  <updated>2018-12-03T12:14:37.159Z</updated>
+  <updated>2018-12-03T12:26:49.429Z</updated>
   <id>https://fe405327114.github.io/dayuya.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>02.k8s</title>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2018/12/03/02-k8s/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2018/12/03/02-k8s/</id>
+    <published>2018-12-03T12:26:03.000Z</published>
+    <updated>2018-12-03T12:26:49.429Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;一、kubernetes-理论部分&quot;&gt;&lt;a href=&quot;#一、kubernetes-理论部分&quot; class=&quot;headerlink&quot; title=&quot;一、kubernetes  理论部分&quot;&gt;&lt;/a&gt;一、kubernetes 
+        
+      
+    
+    </summary>
+    
+    
+      <category term="k8s" scheme="https://fe405327114.github.io/dayuya.github.io/tags/k8s/"/>
+    
+  </entry>
   
   <entry>
     <title>01.git</title>
