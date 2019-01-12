@@ -6,7 +6,7 @@
   <link href="/dayuya.github.io/atom.xml" rel="self"/>
   
   <link href="https://fe405327114.github.io/dayuya.github.io/"/>
-  <updated>2019-01-12T09:04:18.330Z</updated>
+  <updated>2019-01-12T09:56:38.634Z</updated>
   <id>https://fe405327114.github.io/dayuya.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
-    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/12/05-flag.Value/"/>
-    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/12/05-flag.Value/</id>
-    <published>2019-01-12T08:30:26.679Z</published>
-    <updated>2019-01-12T09:04:18.330Z</updated>
+    <title>05-go_flag.Value</title>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/12/05-go_flag.Value/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/12/05-go_flag.Value/</id>
+    <published>2019-01-12T09:50:10.000Z</published>
+    <updated>2019-01-12T09:56:38.634Z</updated>
     
     <summary type="html">
     
@@ -36,14 +36,16 @@
     </summary>
     
     
+      <category term="flag" scheme="https://fe405327114.github.io/dayuya.github.io/tags/flag/"/>
+    
   </entry>
   
   <entry>
-    <title></title>
+    <title>04-go_interface</title>
     <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/12/04-go_interface/"/>
     <id>https://fe405327114.github.io/dayuya.github.io/2019/01/12/04-go_interface/</id>
-    <published>2019-01-12T07:39:29.593Z</published>
-    <updated>2019-01-12T08:30:06.492Z</updated>
+    <published>2019-01-12T09:49:36.000Z</published>
+    <updated>2019-01-12T09:56:43.462Z</updated>
     
     <summary type="html">
     
@@ -58,14 +60,16 @@
     </summary>
     
     
+      <category term="interface" scheme="https://fe405327114.github.io/dayuya.github.io/tags/interface/"/>
+    
   </entry>
   
   <entry>
-    <title></title>
+    <title>03-go_error</title>
     <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/12/03-go_error/"/>
     <id>https://fe405327114.github.io/dayuya.github.io/2019/01/12/03-go_error/</id>
-    <published>2019-01-12T07:10:27.915Z</published>
-    <updated>2019-01-12T09:08:17.218Z</updated>
+    <published>2019-01-12T09:48:42.000Z</published>
+    <updated>2019-01-12T09:56:48.125Z</updated>
     
     <summary type="html">
     
@@ -80,6 +84,8 @@
     
     </summary>
     
+    
+      <category term="error" scheme="https://fe405327114.github.io/dayuya.github.io/tags/error/"/>
     
   </entry>
   
