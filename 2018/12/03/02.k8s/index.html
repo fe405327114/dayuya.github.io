@@ -1,0 +1,144 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Zhang Jiangfeng"><title>02.k8s · dayuya's blog</title><meta name="description" content="一、kubernetes  理论部分缺点：
+1.对网络依赖大，对国内不友好
+2.命令量大
+3.配置文件读写严格
+4.配置文件复杂
+自动化部署，扩缩容，管理容器化的应用，目的明确–服务编排
+
+
+pod是k8s里最小运行单元，pod中可以有任意多个容器和存储
+
+pod本身出现故障也不会影响服务的端口存在"><meta name="keywords" content=""><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/dayuya.github.io/css/bootstrap.min.css"><link rel="stylesheet" href="/dayuya.github.io/css/font-awesome.min.css"><link rel="stylesheet" href="/dayuya.github.io/css/style.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div id="stage" class="container"><div class="row"><div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible"><div class="vertical-text site-title"><h3 tabindex="-1" class="site-title-small"><a href="/dayuya.github.io/" class="a-title">Tech blog</a></h3><h1 tabindex="-1" class="site-title-large"><a href="/dayuya.github.io/" class="a-title">大鱼呀</a></h1><!--h6(onclick="triggerSiteNav()") Trigger--></div><br class="visible-lg visible-md visible-sm"><div id="site-nav" class="site-title-links"><ul><li><a href="/dayuya.github.io/">Home</a></li><li><a href="/dayuya.github.io/archives">Archive</a></li><li><a href="/dayuya.github.io/tags">Tags</a></li><li class="soc"><a href="https://fe405327114.github.io/dayuya.github.io/atom.xml" target="_blank" rel="noopener noreferrer"><i class="fa fa-rss">&nbsp;</i></a></li></ul><div class="visible-lg visible-md visible-sm site-nav-footer"><br class="site-nav-footer-br"><footer><p>&copy;&nbsp;2019&nbsp;<a target="_blank" href="https://fe405327114.github.io/dayuya.github.io" rel="noopener noreferrer">Zhang Jiangfeng</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div><div id="main-container" class="col-sm-9 col-xs-12 main-container invisible"><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post-container"><p class="post-title"><a>02.k8s</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2018-12-03</span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a href="/dayuya.github.io/tags/k8s/" title="k8s" class="a-tag">k8s</a><span>&nbsp;</span></span></p><p class="post-abstract"></p><h3 id="一、kubernetes-理论部分"><a href="#一、kubernetes-理论部分" class="headerlink" title="一、kubernetes  理论部分"></a>一、kubernetes  理论部分</h3><p>缺点：</p>
+<p>1.对网络依赖大，对国内不友好</p>
+<p>2.命令量大</p>
+<p>3.配置文件读写严格</p>
+<p>4.配置文件复杂</p>
+<p>自动化部署，扩缩容，管理容器化的应用，目的明确–服务编排</p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1541764058861.png" alt="1541764058861"></p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1541764104939.png" alt="1541764104939"></p>
+<h5 id="pod是k8s里最小运行单元，pod中可以有任意多个容器和存储"><a href="#pod是k8s里最小运行单元，pod中可以有任意多个容器和存储" class="headerlink" title="pod是k8s里最小运行单元，pod中可以有任意多个容器和存储"></a>pod是k8s里最小运行单元，pod中可以有任意多个容器和存储</h5><p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1541764231932.png" alt="1541764231932"></p>
+<ul>
+<li><p>pod本身出现故障也不会影响服务的端口存在</p>
+</li>
+<li><p>Deployment可以部署pod和服务</p>
+</li>
+<li><p>服务和pod之间通过KV结构实现低耦合度：</p>
+</li>
+</ul>
+<p>pod1  服务1：A</p>
+<p>pod2  服务1：B</p>
+<p>更新扩容的过程中服务的ip不变，只更新pod</p>
+<ul>
+<li><h5 id="ControllerManager"><a href="#ControllerManager" class="headerlink" title="ControllerManager"></a>ControllerManager</h5></li>
+</ul>
+<p>维护集群状态（故障检测，扩缩容，滚动更新）</p>
+<ul>
+<li><h5 id="Scheduler"><a href="#Scheduler" class="headerlink" title="Scheduler"></a>Scheduler</h5></li>
+</ul>
+<p>根据调度策略调度pod</p>
+<ul>
+<li><h5 id="ETCD"><a href="#ETCD" class="headerlink" title="ETCD"></a>ETCD</h5></li>
+</ul>
+<p>存储持久化的数据</p>
+<ul>
+<li><h5 id="Kubelet"><a href="#Kubelet" class="headerlink" title="Kubelet"></a>Kubelet</h5></li>
+</ul>
+<p>维护当前节点容器生命周期，volume，网络管理，还负责与master通信</p>
+<ul>
+<li><h5 id="kube-proxy"><a href="#kube-proxy" class="headerlink" title="kube-proxy"></a>kube-proxy</h5></li>
+</ul>
+<p>提供内部的服务发现和负载均衡</p>
+<ul>
+<li><h5 id="kube-dns"><a href="#kube-dns" class="headerlink" title="kube-dns"></a>kube-dns</h5></li>
+</ul>
+<p>负责集群的dns服务</p>
+<ul>
+<li><h5 id="dashboard"><a href="#dashboard" class="headerlink" title="dashboard"></a>dashboard</h5></li>
+</ul>
+<p>集群数据展示</p>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1541765357466.png" alt="1541765357466"></p>
+<h4 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h4><ul>
+<li><p>分摊到多个操作单元上进行执行</p>
+</li>
+<li><p>它提供了一种廉价有效透明的方法扩展<a href="https://baike.baidu.com/item/%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87/7667828" target="_blank" rel="noopener">网络设备</a>和<a href="https://baike.baidu.com/item/%E6%9C%8D%E5%8A%A1%E5%99%A8/100571" target="_blank" rel="noopener">服务器</a>的带宽、增加<a href="https://baike.baidu.com/item/%E5%90%9E%E5%90%90%E9%87%8F/157092" target="_blank" rel="noopener">吞吐量</a>、加强网络数据处理能力、提高网络的灵活性和可用性。</p>
+</li>
+</ul>
+<h4 id="k8s设计理念"><a href="#k8s设计理念" class="headerlink" title="k8s设计理念"></a>k8s设计理念</h4><ul>
+<li>API设计原则</li>
+</ul>
+<p>a.所有api都是声明式的</p>
+<p>b.以操作意图为基础设计（管理操作容器）</p>
+<ul>
+<li>控制机设计原则</li>
+</ul>
+<p>a.容错处理</p>
+<p>b.模块自我修复能力，基本功能不依赖于高级功能</p>
+<h4 id="k8s网络"><a href="#k8s网络" class="headerlink" title="k8s网络"></a>k8s网络</h4><ul>
+<li><p>CNI  容器网络接口</p>
+</li>
+<li><p>pod网络   每个pod互联互通</p>
+</li>
+</ul>
+<h4 id="服务预编排-preselect"><a href="#服务预编排-preselect" class="headerlink" title="服务预编排 preselect"></a>服务预编排 preselect</h4><ul>
+<li><p>挂载冲突</p>
+</li>
+<li><p>节点内存压力</p>
+</li>
+<li><p>节点选择器</p>
+</li>
+<li><p>资源要求</p>
+</li>
+<li><p>亲和性</p>
+</li>
+</ul>
+<h4 id="服务优选规则-optimize-select"><a href="#服务优选规则-optimize-select" class="headerlink" title="服务优选规则  optimize-select"></a>服务优选规则  optimize-select</h4><ul>
+<li><p>对于同一个服务或者pod，优先选择不同的节点，分散不同区域的不同主机</p>
+</li>
+<li><p>新pod所占节点空闲容量</p>
+</li>
+<li><p>调度综合亲和性机制</p>
+</li>
+</ul>
+<h4 id="pod通讯"><a href="#pod通讯" class="headerlink" title="pod通讯"></a>pod通讯</h4><ul>
+<li><p>pod间通讯  localhost+端口</p>
+</li>
+<li><p>同一node的pod间 网桥（docaker0）  （根据pod的ip）</p>
+</li>
+<li><p>不同node不同pod    pod的ip不冲突，和node的ip关联起来</p>
+</li>
+</ul>
+<h4 id="k8s服务发现"><a href="#k8s服务发现" class="headerlink" title="k8s服务发现"></a>k8s服务发现</h4><ul>
+<li><p>Kube-proxy(ClusterIP) 为pod提供虚拟ip</p>
+</li>
+<li><p>Kube-proxy(NodePort)  将服务暴露在端口上</p>
+</li>
+<li><p>Kube-DNS  集群内部pod通过名字访问</p>
+</li>
+</ul>
+<h3 id="二、kubernetes-实操部分"><a href="#二、kubernetes-实操部分" class="headerlink" title="二、kubernetes  实操部分"></a>二、kubernetes  实操部分</h3><p><a href="https://github.com/fe405327114/kubernetes-starter.git" target="_blank" rel="noopener">https://github.com/fe405327114/kubernetes-starter.git</a></p>
+<h4 id="1，基础集群部署"><a href="#1，基础集群部署" class="headerlink" title="1，基础集群部署"></a>1，基础集群部署</h4><h4 id="2，完整集群部署-认证和授权"><a href="#2，完整集群部署-认证和授权" class="headerlink" title="2，完整集群部署  认证和授权"></a>2，完整集群部署  认证和授权</h4><p>集群内部通讯使用http，集群外部访问使用https，既安全，又不会太复杂</p>
+<ul>
+<li><p>客户端证书认证    客户端 服务端双向认证证书</p>
+</li>
+<li><p>引导token   多节点</p>
+</li>
+<li><p>Sevice Account Tokens  在pod内部访问api-server</p>
+</li>
+</ul>
+<h5 id="授权"><a href="#授权" class="headerlink" title="授权"></a>授权</h5><ul>
+<li>角色访问控制  RBAC</li>
+</ul>
+<h5 id="CICD"><a href="#CICD" class="headerlink" title="CICD"></a>CICD</h5><ul>
+<li><p>持续集成  （工作全部完成后再集成无法预估耗时与异常错误）</p>
+</li>
+<li><p>持续部署   合格改动自动投入生产</p>
+</li>
+</ul>
+<h5 id="DecOps"><a href="#DecOps" class="headerlink" title="DecOps"></a>DecOps</h5><ul>
+<li><p>基于CICD</p>
+</li>
+<li><p>优化开发运维测试流程，使得程序上线更加可以频繁可靠</p>
+</li>
+</ul>
+<p><img src="C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\1541771480793.png" alt="1541771480793"></p>
+<p></p></div><div class="share"><span>Share</span>&nbsp;<span class="soc"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></span><span class="soc"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></span><span class="soc"><a href="http://twitter.com/home?status=https://fe405327114.github.io/dayuya.github.io/2018/12/03/02.k8s/%20dayuya's blog%2002.k8s" class="fa fa-twitter"></a></span></div><div class="pagination"><p class="clearfix"><span class="pre pagbuttons"><a role="navigation" href="/dayuya.github.io/2019/01/12/03.go_error/" title="03.go_error"><i class="fa fa-angle-double-left"></i>&nbsp;Previous post: 03.go_error</a></span><span>&nbsp;</span><span class="next pagbuttons"><a role="navigation" href="/dayuya.github.io/2018/11/29/01.git/" title="01.git">Next post: 01.git&nbsp;<i class="fa fa-angle-double-right"></i></a></span></p></div></div></div></div><div class="visible-xs site-bottom-footer"><footer><p>&copy;&nbsp;2019&nbsp;<a target="_blank" href="https://fe405327114.github.io/dayuya.github.io" rel="noopener noreferrer">Zhang Jiangfeng</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div></div><script src="/dayuya.github.io/js/jquery-3.1.0.min.js"></script><script src="/dayuya.github.io/js/bootstrap.min.js"></script><script src="/dayuya.github.io/js/jquery-migrate-1.2.1.min.js"></script><script src="/dayuya.github.io/js/jquery.appear.js"></script><script src="/dayuya.github.io/js/google-analytics.js"></script><script src="/dayuya.github.io/js/typography.js"></script></body></html>
