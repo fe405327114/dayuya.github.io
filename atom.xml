@@ -6,7 +6,7 @@
   <link href="/dayuya.github.io/atom.xml" rel="self"/>
   
   <link href="https://fe405327114.github.io/dayuya.github.io/"/>
-  <updated>2018-12-03T12:26:49.429Z</updated>
+  <updated>2019-01-12T08:45:15.305Z</updated>
   <id>https://fe405327114.github.io/dayuya.github.io/</id>
   
   <author>
@@ -15,6 +15,73 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/12/05_flag.Value/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/12/05_flag.Value/</id>
+    <published>2019-01-12T08:30:26.679Z</published>
+    <updated>2019-01-12T08:45:15.305Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;go利用flag-Value解析命令行参数&quot;&gt;&lt;a href=&quot;#go利用flag-Value解析命令行参数&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/12/04_go_interface/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/12/04_go_interface/</id>
+    <published>2019-01-12T07:39:29.593Z</published>
+    <updated>2019-01-12T08:30:06.492Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;go的interface&quot;&gt;&lt;a href=&quot;#go的interface&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/12/03_go_error/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/12/03_go_error/</id>
+    <published>2019-01-12T07:10:27.915Z</published>
+    <updated>2019-01-12T08:24:26.574Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;go的error类型&quot;&gt;&lt;a href=&quot;#go的error类型&quot; class=&quot;headerlink&quot; title=&quot;go的error类型&quot;&gt;&lt;/a&gt;go的error类型&lt;/h4&gt;&lt;p&gt;go语言的error是一个interface&lt;/p&gt;
+&lt;figure
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>02.k8s</title>
@@ -45,7 +112,7 @@
     <link href="https://fe405327114.github.io/dayuya.github.io/2018/11/29/01_git/"/>
     <id>https://fe405327114.github.io/dayuya.github.io/2018/11/29/01_git/</id>
     <published>2018-11-29T06:54:56.000Z</published>
-    <updated>2018-12-03T12:14:37.159Z</updated>
+    <updated>2019-01-12T07:18:12.112Z</updated>
     
     <summary type="html">
     
@@ -54,9 +121,9 @@
         
         
           &lt;p&gt;1.git  pull 或者 git clone 从远程分支拉取项目。&lt;/p&gt;
-&lt;p&gt;2.git checkout -b 新分支,在新分支里开发代码&lt;/p&gt;
-&lt;p&gt;3.git checkout master，开发完成后，回到主分支&lt;/p&gt;
-&lt;p&gt;4.git pull
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;如果远程已经有对应的分支&lt;/p&gt;
+&lt;p&gt;git checkout -b 新分支 origin/远程分支
         
       
     
