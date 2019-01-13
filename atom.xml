@@ -6,7 +6,7 @@
   <link href="/dayuya.github.io/atom.xml" rel="self"/>
   
   <link href="https://fe405327114.github.io/dayuya.github.io/"/>
-  <updated>2019-01-13T08:12:37.517Z</updated>
+  <updated>2019-01-13T09:44:52.135Z</updated>
   <id>https://fe405327114.github.io/dayuya.github.io/</id>
   
   <author>
@@ -17,11 +17,61 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>09.go_json</title>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/13/09.go_json/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/13/09.go_json/</id>
+    <published>2019-01-13T09:07:41.000Z</published>
+    <updated>2019-01-13T09:44:52.135Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;JSON用来编码go里面的map-key为string-和结构体&quot;&gt;&lt;a href=&quot;#JSON用来编码go里面的map-key为string-和结构体&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="json" scheme="https://fe405327114.github.io/dayuya.github.io/tags/json/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>08.go_sync.Once</title>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/13/08.go_sync_Once/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/13/08.go_sync_Once/</id>
+    <published>2019-01-13T08:35:07.000Z</published>
+    <updated>2019-01-13T08:43:33.714Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;sync.Once能确保实例化对象Do方法在多线程环境只运行一次,内部通过互斥锁实现&lt;/p&gt;
+&lt;p&gt;源码:&lt;/p&gt;
+&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+    
+      <category term="go;once" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go-once/"/>
+    
+  </entry>
+  
+  <entry>
     <title>07.go_bytes.Buffer</title>
     <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/13/07.go_bytes.Buffer/"/>
     <id>https://fe405327114.github.io/dayuya.github.io/2019/01/13/07.go_bytes.Buffer/</id>
     <published>2019-01-13T07:39:14.000Z</published>
-    <updated>2019-01-13T08:12:37.517Z</updated>
+    <updated>2019-01-13T08:35:14.076Z</updated>
     
     <summary type="html">
     
