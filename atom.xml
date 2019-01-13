@@ -6,7 +6,7 @@
   <link href="/dayuya.github.io/atom.xml" rel="self"/>
   
   <link href="https://fe405327114.github.io/dayuya.github.io/"/>
-  <updated>2019-01-13T14:07:31.105Z</updated>
+  <updated>2019-01-13T14:24:48.738Z</updated>
   <id>https://fe405327114.github.io/dayuya.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/13/10.go_sync_Pool/"/>
     <id>https://fe405327114.github.io/dayuya.github.io/2019/01/13/10.go_sync_Pool/</id>
     <published>2019-01-13T13:54:15.000Z</published>
-    <updated>2019-01-13T14:07:31.105Z</updated>
+    <updated>2019-01-13T14:24:48.738Z</updated>
     
     <summary type="html">
     
@@ -36,7 +36,7 @@
     </summary>
     
     
-      <category term="go;pool" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go-pool/"/>
+      <category term="go" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go/"/>
     
   </entry>
   
@@ -45,7 +45,7 @@
     <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/13/09.go_json/"/>
     <id>https://fe405327114.github.io/dayuya.github.io/2019/01/13/09.go_json/</id>
     <published>2019-01-13T09:07:41.000Z</published>
-    <updated>2019-01-13T09:51:13.523Z</updated>
+    <updated>2019-01-13T14:24:54.325Z</updated>
     
     <summary type="html">
     
@@ -60,7 +60,7 @@
     </summary>
     
     
-      <category term="go;json" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go-json/"/>
+      <category term="go" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go/"/>
     
   </entry>
   
@@ -69,7 +69,7 @@
     <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/13/08.go_sync_Once/"/>
     <id>https://fe405327114.github.io/dayuya.github.io/2019/01/13/08.go_sync_Once/</id>
     <published>2019-01-13T08:35:07.000Z</published>
-    <updated>2019-01-13T08:43:33.714Z</updated>
+    <updated>2019-01-13T14:24:59.222Z</updated>
     
     <summary type="html">
     
@@ -86,7 +86,7 @@
     </summary>
     
     
-      <category term="go;once" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go-once/"/>
+      <category term="go" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go/"/>
     
   </entry>
   
@@ -95,7 +95,7 @@
     <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/13/07.go_bytes.Buffer/"/>
     <id>https://fe405327114.github.io/dayuya.github.io/2019/01/13/07.go_bytes.Buffer/</id>
     <published>2019-01-13T07:39:14.000Z</published>
-    <updated>2019-01-13T08:35:14.076Z</updated>
+    <updated>2019-01-13T14:25:04.345Z</updated>
     
     <summary type="html">
     
@@ -110,7 +110,7 @@
     </summary>
     
     
-      <category term="go;buffer" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go-buffer/"/>
+      <category term="go" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go/"/>
     
   </entry>
   
@@ -119,7 +119,7 @@
     <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/13/06.go_sort_Interface/"/>
     <id>https://fe405327114.github.io/dayuya.github.io/2019/01/13/06.go_sort_Interface/</id>
     <published>2019-01-13T05:45:24.000Z</published>
-    <updated>2019-01-13T08:12:32.443Z</updated>
+    <updated>2019-01-13T14:25:08.475Z</updated>
     
     <summary type="html">
     
@@ -134,7 +134,7 @@
     </summary>
     
     
-      <category term="go;sort" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go-sort/"/>
+      <category term="go" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go/"/>
     
   </entry>
   
@@ -143,7 +143,7 @@
     <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/12/05.go_flag.Value/"/>
     <id>https://fe405327114.github.io/dayuya.github.io/2019/01/12/05.go_flag.Value/</id>
     <published>2019-01-12T09:50:10.000Z</published>
-    <updated>2019-01-13T08:12:25.442Z</updated>
+    <updated>2019-01-13T14:25:13.416Z</updated>
     
     <summary type="html">
     
@@ -158,7 +158,7 @@
     </summary>
     
     
-      <category term="go;flag" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go-flag/"/>
+      <category term="go" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go/"/>
     
   </entry>
   
@@ -167,7 +167,7 @@
     <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/12/04.go_interface/"/>
     <id>https://fe405327114.github.io/dayuya.github.io/2019/01/12/04.go_interface/</id>
     <published>2019-01-12T09:49:36.000Z</published>
-    <updated>2019-01-13T08:12:19.826Z</updated>
+    <updated>2019-01-13T14:25:20.903Z</updated>
     
     <summary type="html">
     
@@ -182,7 +182,7 @@
     </summary>
     
     
-      <category term="go;interface" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go-interface/"/>
+      <category term="go" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go/"/>
     
   </entry>
   
@@ -191,7 +191,7 @@
     <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/12/03.go_error/"/>
     <id>https://fe405327114.github.io/dayuya.github.io/2019/01/12/03.go_error/</id>
     <published>2019-01-12T09:48:42.000Z</published>
-    <updated>2019-01-13T10:14:58.573Z</updated>
+    <updated>2019-01-13T14:25:25.635Z</updated>
     
     <summary type="html">
     
@@ -207,7 +207,7 @@
     </summary>
     
     
-      <category term="go;error" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go-error/"/>
+      <category term="go" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go/"/>
     
   </entry>
   
