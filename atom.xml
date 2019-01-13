@@ -6,7 +6,7 @@
   <link href="/dayuya.github.io/atom.xml" rel="self"/>
   
   <link href="https://fe405327114.github.io/dayuya.github.io/"/>
-  <updated>2019-01-12T10:03:38.016Z</updated>
+  <updated>2019-01-13T07:54:21.581Z</updated>
   <id>https://fe405327114.github.io/dayuya.github.io/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>07.go_bytes.Buffer</title>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/13/07.go_bytes.Buffer/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/13/07.go_bytes.Buffer/</id>
+    <published>2019-01-13T07:39:14.000Z</published>
+    <updated>2019-01-13T07:54:21.581Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h5 id=&quot;利用go的bytes-Buffer实现字符串输出的格式拼接&quot;&gt;&lt;a href=&quot;#利用go的bytes-Buffer实现字符串输出的格式拼接&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="buffer" scheme="https://fe405327114.github.io/dayuya.github.io/tags/buffer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>06.go_sort.Interface</title>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/13/06.go_sort_Interface/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/13/06.go_sort_Interface/</id>
+    <published>2019-01-13T05:45:24.000Z</published>
+    <updated>2019-01-13T07:18:56.975Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;使用sort-Interface来排序&quot;&gt;&lt;a href=&quot;#使用sort-Interface来排序&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="sort" scheme="https://fe405327114.github.io/dayuya.github.io/tags/sort/"/>
+    
+  </entry>
   
   <entry>
     <title>05.go_flag.Value</title>
