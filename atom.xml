@@ -6,7 +6,7 @@
   <link href="/dayuya.github.io/atom.xml" rel="self"/>
   
   <link href="https://fe405327114.github.io/dayuya.github.io/"/>
-  <updated>2019-01-13T09:44:52.135Z</updated>
+  <updated>2019-01-13T09:51:13.523Z</updated>
   <id>https://fe405327114.github.io/dayuya.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/13/09.go_json/"/>
     <id>https://fe405327114.github.io/dayuya.github.io/2019/01/13/09.go_json/</id>
     <published>2019-01-13T09:07:41.000Z</published>
-    <updated>2019-01-13T09:44:52.135Z</updated>
+    <updated>2019-01-13T09:51:13.523Z</updated>
     
     <summary type="html">
     
@@ -36,7 +36,7 @@
     </summary>
     
     
-      <category term="json" scheme="https://fe405327114.github.io/dayuya.github.io/tags/json/"/>
+      <category term="go;json" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go-json/"/>
     
   </entry>
   
