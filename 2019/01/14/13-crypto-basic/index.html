@@ -1,12 +1,210 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Zhang Jiangfeng"><title>crypto_basic · dayuya's blog</title><meta name="description" content="[TOC]
-#常用密码技术
-##1 密码
-1.1 发送者、接收者和窃听者
-请想象一个Alice向Bob发送电子邮件的场景。在这个场景中，发出邮件的Alice称为 发送者（sender），而收到邮件的Bob则称为 接收者（receiver）。
-在讲解发送者、接收者的概念时，用邮件这个例子会比较便于理解"><meta name="keywords" content=""><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/dayuya.github.io/css/bootstrap.min.css"><link rel="stylesheet" href="/dayuya.github.io/css/font-awesome.min.css"><link rel="stylesheet" href="/dayuya.github.io/css/style.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div id="stage" class="container"><div class="row"><div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible"><div class="vertical-text site-title"><h3 tabindex="-1" class="site-title-small"><a href="/dayuya.github.io/" class="a-title">Tech blog</a></h3><h1 tabindex="-1" class="site-title-large"><a href="/dayuya.github.io/" class="a-title">大鱼呀</a></h1><!--h6(onclick="triggerSiteNav()") Trigger--></div><br class="visible-lg visible-md visible-sm"><div id="site-nav" class="site-title-links"><ul><li><a href="/dayuya.github.io/">Home</a></li><li><a href="/dayuya.github.io/archives">Archive</a></li><li><a href="/dayuya.github.io/tags">Tags</a></li><li class="soc"><a href="https://fe405327114.github.io/dayuya.github.io/atom.xml" target="_blank" rel="noopener noreferrer"><i class="fa fa-rss">&nbsp;</i></a></li></ul><div class="visible-lg visible-md visible-sm site-nav-footer"><br class="site-nav-footer-br"><footer><p>&copy;&nbsp;2019&nbsp;<a target="_blank" href="https://fe405327114.github.io/dayuya.github.io" rel="noopener noreferrer">Zhang Jiangfeng</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div><div id="main-container" class="col-sm-9 col-xs-12 main-container invisible"><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post-container"><p class="post-title"><a>crypto_basic</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2019-01-14</span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a href="/dayuya.github.io/tags/crypto/" title="crypto" class="a-tag">crypto</a><span>&nbsp;</span></span></p><p class="post-abstract"></p><p>[TOC]</p>
-<p>#常用密码技术</p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Zhang Jiangfeng"><title>crypto_basic · dayuya's blog</title><meta name="description" content="1.1 发送者、接收者和窃听者
+1.2 加密和解密
+1.3 秘钥
+1.3.1 密码算法
+1.3.2 秘钥
+
+
+1.4 凯撒密码
+1.4.1 凯撒密码的加密
+1.4.2 凯撒密码的解密
+
+
+1.5 密码信息安全常识与威胁
+1.5.1 密码信息安全常识
+不要使用保密的密码算法
+
+
+1.5.2 密码信息威"><meta name="keywords" content=""><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/dayuya.github.io/css/bootstrap.min.css"><link rel="stylesheet" href="/dayuya.github.io/css/font-awesome.min.css"><link rel="stylesheet" href="/dayuya.github.io/css/style.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div id="stage" class="container"><div class="row"><div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible"><div class="vertical-text site-title"><h3 tabindex="-1" class="site-title-small"><a href="/dayuya.github.io/" class="a-title">Tech blog</a></h3><h1 tabindex="-1" class="site-title-large"><a href="/dayuya.github.io/" class="a-title">大鱼呀</a></h1><!--h6(onclick="triggerSiteNav()") Trigger--></div><br class="visible-lg visible-md visible-sm"><div id="site-nav" class="site-title-links"><ul><li><a href="/dayuya.github.io/">Home</a></li><li><a href="/dayuya.github.io/archives">Archive</a></li><li><a href="/dayuya.github.io/tags">Tags</a></li><li class="soc"><a href="https://fe405327114.github.io/dayuya.github.io/atom.xml" target="_blank" rel="noopener noreferrer"><i class="fa fa-rss">&nbsp;</i></a></li></ul><div class="visible-lg visible-md visible-sm site-nav-footer"><br class="site-nav-footer-br"><footer><p>&copy;&nbsp;2019&nbsp;<a target="_blank" href="https://fe405327114.github.io/dayuya.github.io" rel="noopener noreferrer">Zhang Jiangfeng</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div><div id="main-container" class="col-sm-9 col-xs-12 main-container invisible"><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post-container"><p class="post-title"><a>crypto_basic</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2019-01-14</span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a href="/dayuya.github.io/tags/crypto/" title="crypto" class="a-tag">crypto</a><span>&nbsp;</span></span></p><p class="post-abstract"><!-- toc -->
+<ul>
+<li><a href="#11-发送者-接收者和窃听者">1.1 发送者、接收者和窃听者</a></li>
+<li><a href="#12-加密和解密">1.2 加密和解密</a></li>
+<li><a href="#13-秘钥">1.3 秘钥</a><ul>
+<li><a href="#131-密码算法">1.3.1 密码算法</a></li>
+<li><a href="#132-秘钥">1.3.2 秘钥</a></li>
+</ul>
+</li>
+<li><a href="#14-凯撒密码">1.4 凯撒密码</a><ul>
+<li><a href="#141-凯撒密码的加密">1.4.1 凯撒密码的加密</a></li>
+<li><a href="#142-凯撒密码的解密">1.4.2 凯撒密码的解密</a></li>
+</ul>
+</li>
+<li><a href="#15-密码信息安全常识与威胁">1.5 密码信息安全常识与威胁</a><ul>
+<li><a href="#151-密码信息安全常识">1.5.1 密码信息安全常识</a><ul>
+<li><a href="#不要使用保密的密码算法">不要使用保密的密码算法</a></li>
+</ul>
+</li>
+<li><a href="#152-密码信息威胁">1.5.2 密码信息威胁</a></li>
+</ul>
+<ul>
+<li><a href="#2-对称加密">2. 对称加密</a></li>
+</ul>
+</li>
+<li><a href="#21-编码">2.1 编码</a></li>
+<li><a href="#22-des">2.2 DES</a><ul>
+<li><a href="#221-什么是des">2.2.1 什么是DES</a></li>
+<li><a href="#222-加密和解密">2.2.2 加密和解密</a></li>
+<li><a href="#223-go中对des的操作">2.2.3 Go中对DES的操作</a><ul>
+<li><a href="#加解密实现思路">加解密实现思路</a></li>
+<li><a href="#加解密的代码实现">加解密的代码实现</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#23-三重des">2.3 三重DES</a><ul>
+<li><a href="#231-三重des的加密">2.3.1 三重DES的加密</a></li>
+<li><a href="#232-go中对3des的操作">2.3.2 Go中对3DES的操作</a><ul>
+<li><a href="#加解密实现思路-1">加解密实现思路</a></li>
+<li><a href="#加解密的代码实现-1">加解密的代码实现</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#24-aes">2.4 AES</a><ul>
+<li><a href="#242-aes的加密和解密">2.4.2 AES的加密和解密</a></li>
+<li><a href="#242-go中对aes的使用">2.4.2 Go中对AES的使用</a><ul>
+<li><a href="#加解密实现思路-2">加解密实现思路</a></li>
+<li><a href="#加解密的代码实现-2">加解密的代码实现</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#25-应选择哪种对称加密">2.5 应选择哪种对称加密</a><ul>
+<li><a href="#本章小结">本章小结</a></li>
+</ul>
+<ul>
+<li><a href="#3-分组密码的模式">3. 分组密码的模式</a></li>
+</ul>
+</li>
+<li><a href="#31-分组密码">3.1 分组密码</a></li>
+<li><a href="#32-模式">3.2 模式</a><ul>
+<li><a href="#明文分组和密文分组">明文分组和密文分组</a></li>
+</ul>
+</li>
+<li><a href="#33-ecb-模式">3.3 ECB 模式</a></li>
+<li><a href="#33-cbc模式">3.3 CBC模式</a><ul>
+<li><a href="#xor">XOR</a></li>
+<li><a href="#cbc模式">CBC模式</a></li>
+<li><a href="#初始化向量">初始化向量</a></li>
+</ul>
+</li>
+<li><a href="#34-cfb-模式">3.4 CFB 模式</a><ul>
+<li><a href="#初始化向量-1">初始化向量</a></li>
+<li><a href="#cfb模式与流密码">CFB模式与流密码</a></li>
+</ul>
+</li>
+<li><a href="#35-ofb-模式">3.5 OFB 模式</a><ul>
+<li><a href="#初始化向量-2">初始化向量</a></li>
+<li><a href="#cfb模式和ofb模式对比">CFB模式和OFB模式对比</a></li>
+</ul>
+</li>
+<li><a href="#36-ctr-模式">3.6 CTR 模式</a><ul>
+<li><a href="#计数器的生成方法">计数器的生成方法</a></li>
+<li><a href="#ofb模式与ctr模式对比">OFB模式与CTR模式对比</a></li>
+<li><a href="#ctr模式的特点">CTR模式的特点</a></li>
+</ul>
+</li>
+<li><a href="#37-总结">3.7 总结</a><ul>
+<li><a href="#4-非对称加密">4. 非对称加密</a></li>
+</ul>
+</li>
+<li><a href="#41-非对称加密通信流程">4.1 非对称加密通信流程</a></li>
+<li><a href="#42-rsa">4.2 RSA</a><ul>
+<li><a href="#421-rsa加密">4.2.1 RSA加密</a></li>
+<li><a href="#422-rsa解密">4.2.2 RSA解密</a></li>
+<li><a href="#423-go中生成公钥和私钥">4.2.3 Go中生成公钥和私钥</a></li>
+<li><a href="#424-go中使用rsa">4.2.4 Go中使用RSA</a></li>
+</ul>
+</li>
+<li><a href="#43-ecc椭圆曲线">4.3 ECC椭圆曲线</a></li>
+<li><a href="#44-非对称加密解惑">4.4 非对称加密解惑</a><ul>
+<li><a href="#5-单向散列函数">5. 单向散列函数</a></li>
+</ul>
+</li>
+<li><a href="#51-什么是单向散列函数">5.1 什么是单向散列函数</a></li>
+<li><a href="#52-关于术语">5.2 关于术语</a></li>
+<li><a href="#53-单向散列函数的性质">5.3 单向散列函数的性质</a></li>
+<li><a href="#54-单向散列函数的实际应用">5.4 单向散列函数的实际应用</a><ul>
+<li><a href="#541-检测软件是否被篡改">5.4.1 检测软件是否被篡改</a></li>
+<li><a href="#542-消息认证码">5.4.2 消息认证码</a></li>
+<li><a href="#543-数字签名">5.4.3 数字签名</a></li>
+<li><a href="#546-伪随机数生成器">5.4.6 伪随机数生成器</a></li>
+<li><a href="#547-一次性口令">5.4.7 一次性口令</a></li>
+</ul>
+</li>
+<li><a href="#55-常用的单向散列函数">5.5 常用的单向散列函数</a><ul>
+<li><a href="#551-md4-md5">5.5.1 MD4、MD5</a></li>
+<li><a href="#553-sha-1-sha-224-sha-256-sha-384-sha-512">5.5.3 SHA-1、SHA-224、SHA-256、SHA-384、SHA-512</a></li>
+</ul>
+<ul>
+<li><a href="#6-消息认证码">6. 消息认证码</a></li>
+</ul>
+</li>
+<li><a href="#61-什么是消息认证码">6.1 什么是消息认证码</a></li>
+<li><a href="#62-消息认证码的使用步骤">6.2 消息认证码的使用步骤</a></li>
+<li><a href="#63-hmac">6.3 HMAC</a><ul>
+<li><a href="#631-hmac介绍">6.3.1 HMAC介绍</a></li>
+<li><a href="#632-go中对hmac的使用">6.3.2 Go中对HMAC的使用</a></li>
+</ul>
+</li>
+<li><a href="#63-消息认证码的密钥配送问题">6.3 消息认证码的密钥配送问题</a></li>
+<li><a href="#64-消息认证码无法解决的问题">6.4 消息认证码无法解决的问题</a><ul>
+<li><a href="#641-对第三方证明">6.4.1 对第三方证明</a></li>
+</ul>
+</li>
+<li><a href="#65-总结">6.5 总结</a><ul>
+<li><a href="#7-数字签名">7. 数字签名</a></li>
+</ul>
+</li>
+<li><a href="#71-从消息认证到数字签名">7.1 从消息认证到数字签名</a></li>
+<li><a href="#72-签名的生成和验证">7.2 签名的生成和验证</a></li>
+<li><a href="#73-非对称加密和数字签名">7.3 非对称加密和数字签名</a></li>
+<li><a href="#73-数字签名的方法">7.3 数字签名的方法</a></li>
+<li><a href="#74-通过rsa实现数字签名">7.4 通过RSA实现数字签名</a><ul>
+<li><a href="#741-生成数字签名">7.4.1 生成数字签名</a></li>
+<li><a href="#742-验证数字签名">7.4.2 验证数字签名</a></li>
+</ul>
+</li>
+<li><a href="#75-使用椭圆曲线实现数字签名">7.5 使用椭圆曲线实现数字签名</a></li>
+<li><a href="#76-数字签名无法解决的问题">7.6 数字签名无法解决的问题</a><ul>
+<li><a href="#8-证书">8. 证书</a></li>
+</ul>
+</li>
+<li><a href="#81-证书的应用场景">8.1 证书的应用场景</a></li>
+<li><a href="#82-证书标准规范x509">8.2 证书标准规范X.509</a><ul>
+<li><a href="#821-证书规范">8.2.1 证书规范</a></li>
+<li><a href="#822-证书格式">8.2.2 证书格式</a></li>
+<li><a href="#823-ca证书">8.2.3 CA证书</a></li>
+</ul>
+</li>
+<li><a href="#83-公钥基础设施pki">8.3 公钥基础设施（PKI）</a><ul>
+<li><a href="#831-什么是公钥基础设施">8.3.1 什么是公钥基础设施</a></li>
+<li><a href="#832-pki的组成要素">8.3.2 PKI的组成要素</a><ul>
+<li><a href="#用户">用户</a></li>
+<li><a href="#认证机构ca">认证机构（CA）</a></li>
+<li><a href="#仓库">仓库</a></li>
+</ul>
+</li>
+<li><a href="#833-各种各样的pki">8.3.3 各种各样的PKI</a></li>
+</ul>
+<ul>
+<li><a href="#9-ssltls">9. SSL/TLS</a></li>
+</ul>
+</li>
+<li><a href="#91-客户端与服务器">9.1 客户端与服务器</a></li>
+<li><a href="#92-用ssltls承载http">9.2 用SSL/TLS承载HTTP</a></li>
+<li><a href="#93-https">9.3 https</a></li>
+<li><a href="#931-http和https">9.3.1 http和https</a></li>
+<li><a href="#932-https优缺点">9.3.2 https优缺点</a><ul>
+<li><a href="#参考资料">参考资料</a></li>
+</ul>
+</li>
+<li><a href="#pkcs15个标准">PKCS15个标准</a></li>
+</ul>
+<!-- tocstop -->
+</p><p>#常用密码技术</p>
 <p>##1 密码</p>
-<h3 id="1-1-发送者、接收者和窃听者"><a href="#1-1-发送者、接收者和窃听者" class="headerlink" title="1.1 发送者、接收者和窃听者"></a>1.1 发送者、接收者和窃听者</h3><blockquote>
+<h3><span id="11-发送者-接收者和窃听者">1.1 发送者、接收者和窃听者</span></h3><blockquote>
 <p>请想象一个Alice向Bob发送电子邮件的场景。在这个场景中，发出邮件的Alice称为 <strong>发送者（sender）</strong>，而收到邮件的Bob则称为 <strong>接收者（receiver）</strong>。</p>
 <p>在讲解发送者、接收者的概念时，用邮件这个例子会比较便于理解，但实际上发送者和接收者这两个术语的使用范围并不仅仅局限于邮件。当某个人向另一个人发送信息时，发出信息的人称为发送者，而收到信息的人称为接收者。另外，被发送的信息有时也统称为 <strong>消息（message）</strong>。 </p>
 </blockquote>
@@ -26,7 +224,7 @@
 <p>窃听者Eve并不一定是人类，有可能是安装在通信设备上的某种窃听器，也可能是安装在邮件软件和邮件服务器上的某些程序。</p>
 <p>尽管邮件内容原本应该只有发送者和接收者两个人知道，但如果不采取相应的对策，就存在被第三方知道的风险。</p>
 </blockquote>
-<h3 id="1-2-加密和解密"><a href="#1-2-加密和解密" class="headerlink" title="1.2 加密和解密"></a>1.2 加密和解密</h3><blockquote>
+<h3><span id="12-加密和解密">1.2 加密和解密</span></h3><blockquote>
 <p>Alice不想让别人看到邮件的内容，于是她决定将邮件进行<strong>加密（encrypt）</strong>后再发送出去。</p>
 <p>加密之前的消息称为<strong>明文（plaintext）</strong>，加密之后的消息称为<strong>密文（cipher-text）</strong>。</p>
 <p>我们看到明文可以理解其中的含义，而看到密文则无法理解其中的含义。</p>
@@ -54,10 +252,10 @@
 </blockquote>
 </li>
 </ul>
-<h3 id="1-3-秘钥"><a href="#1-3-秘钥" class="headerlink" title="1.3 秘钥"></a>1.3 秘钥</h3><h4 id="1-3-1-密码算法"><a href="#1-3-1-密码算法" class="headerlink" title="1.3.1 密码算法"></a>1.3.1 密码算法</h4><blockquote>
+<h3><span id="13-秘钥">1.3 秘钥</span></h3><h4><span id="131-密码算法">1.3.1 密码算法</span></h4><blockquote>
 <p>用于解决复杂问题的步骤，通常称为<strong>算法（algorithm）</strong>。从明文生成密文的步骤，也就是加密的步骤，称为“加密算法”，而解密的步骤则称为“解密算法”。加密、解密的算法合在一起统称为<strong>密码算法</strong>。</p>
 </blockquote>
-<h4 id="1-3-2-秘钥"><a href="#1-3-2-秘钥" class="headerlink" title="1.3.2 秘钥"></a>1.3.2 秘钥</h4><blockquote>
+<h4><span id="132-秘钥">1.3.2 秘钥</span></h4><blockquote>
 <p>密码算法中需要<strong>密钥（key）</strong>。现实世界中的“钥’’，是像 :key: 这样的形状微妙而复杂的小金属片。然而，密码算法中的密钥，则是像203554728568477650354673080689430768这样的一串非常大的数字。</p>
 </blockquote>
 <ul>
@@ -69,14 +267,14 @@
 <p>无论是在加密时还是在解密时，都需要知道密钥。</p>
 <p>正如保险柜的钥匙可以保护保险柜中存放的贵重物品一样，密码中的密钥可以保护你的重要数据。即使保险箱再坚固，如果钥匙被盗, 里面的贵重物品也会被盗。同样地我们也必须注意不要让密码的密钥被他人窃取。</p>
 </blockquote>
-<h3 id="1-4-凯撒密码"><a href="#1-4-凯撒密码" class="headerlink" title="1.4 凯撒密码"></a>1.4 凯撒密码</h3><blockquote>
+<h3><span id="14-凯撒密码">1.4 凯撒密码</span></h3><blockquote>
 <p>恺撒密码（Caesar cipher）是一种相传尤利乌斯·恺撒曾使用过的密码。恺撒于公元前100年左右诞生于古罗马，是一位著名的军事统帅。</p>
 <p><font color="red">恺撤密码是通过将明文中所使用的字母表按照一定的字数“平移”来进行加密的</font>。比如在日语（例如平假名）或者汉语（例如汉语拼音）或者英文字母表中都可以用同样的思路来实现恺撒密码。</p>
 <p>为了讲解方便，我们用小写字母（a，b，c，…）来表小明文，用大写字母（A，B，C，…）来表示密文。</p>
 <p>现在我们将字母表平移3个字母，于是，明文中的a在加密后就变成了与其相隔3个字母的D，以此类推。b变成E，c变成F，d变成G……v变成Y，w变成Z，而x则会回到字母表的开头而变成A，相应地，y变成B，z变成C。通过下图我们可以很容易地理解“平移”的具体工作方式。</p>
 </blockquote>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538792314838.png" alt="1538792314838"></p>
-<h4 id="1-4-1-凯撒密码的加密"><a href="#1-4-1-凯撒密码的加密" class="headerlink" title="1.4.1 凯撒密码的加密"></a>1.4.1 凯撒密码的加密</h4><blockquote>
+<h4><span id="141-凯撒密码的加密">1.4.1 凯撒密码的加密</span></h4><blockquote>
 <p>这里，我们假设要保密的信息为<strong>monkey d luffy</strong>这个男孩的名字。我们暂且不管这个名字到底代表一位真实的男性，还是只是一种暗号，只考虑将它在保密的状态下发送给接收者。</p>
 <p>此时，明文包含下列12个字母：<strong>monkey d luffy</strong>, 接下来我们对明文中的字母逐一加密:</p>
 </blockquote>
@@ -87,7 +285,7 @@
 <p>恺撒密码中，将字母表中的字母平移这个操作就是密码的算法，而平移的字母数量则相当于密钥。在上面的例子中，密钥为3（如下图）。</p>
 </blockquote>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538795708168.png" alt="1538795708168"></p>
-<h4 id="1-4-2-凯撒密码的解密"><a href="#1-4-2-凯撒密码的解密" class="headerlink" title="1.4.2 凯撒密码的解密"></a>1.4.2 凯撒密码的解密</h4><blockquote>
+<h4><span id="142-凯撒密码的解密">1.4.2 凯撒密码的解密</span></h4><blockquote>
 <p>现在，假设接收者已经收到了密文PRQNHB G OXIIB，由于密文本身是看不懂的，因此必须将它解密成明文。</p>
 <p>恺撒密码的解密过程是使用与加密时相同的密钥进行反向的平移操作。用刚才的例子来说，只要反向平移3个字母就可以解密了。</p>
 </blockquote>
@@ -97,7 +295,7 @@
 <p>在这个场景中， 秘钥3必须由发送者和接收者事先约定好。</p>
 </blockquote>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538796488394.png" alt="1538796488394"></p>
-<h3 id="1-5-密码信息安全常识与威胁"><a href="#1-5-密码信息安全常识与威胁" class="headerlink" title="1.5 密码信息安全常识与威胁"></a>1.5 密码信息安全常识与威胁</h3><h4 id="1-5-1-密码信息安全常识"><a href="#1-5-1-密码信息安全常识" class="headerlink" title="1.5.1 密码信息安全常识"></a>1.5.1 密码信息安全常识</h4><blockquote>
+<h3><span id="15-密码信息安全常识与威胁">1.5 密码信息安全常识与威胁</span></h3><h4><span id="151-密码信息安全常识">1.5.1 密码信息安全常识</span></h4><blockquote>
 <p>在继续下面的内容之前，我们先来介绍一些关于密码的常识。刚刚开始学习密码的人常常会对以下这几条感到不可思议，因为它们有悖于我们的一般性常识。</p>
 </blockquote>
 <ul>
@@ -106,7 +304,7 @@
 <li>任何密码总有一天都会被破解</li>
 <li>密码只是信息安全的一部分</li>
 </ul>
-<h5 id="不要使用保密的密码算法"><a href="#不要使用保密的密码算法" class="headerlink" title="不要使用保密的密码算法"></a>不要使用保密的密码算法</h5><blockquote>
+<h5><span id="不要使用保密的密码算法">不要使用保密的密码算法</span></h5><blockquote>
 <p>很多企业都有下面这样的想法：</p>
 <p>“由公司自己开发一种密码算法，并将这种算法保密，这样就能保证安全。然而，这样的想法却是大错特错，使用保密的密码算法是无法获得高安全性的。我们不应该制作或使用任何保密的密码算法，而是应该使用那些已经公开的、被公认为强度较高的密码算法。</p>
 <p>这样做的原因主要有以下两点：</p>
@@ -147,13 +345,13 @@
 <p>上面提到的攻击手段，都与密码的强度毫无关系。要保证良好的安全性，就需要理解“系统”这一概念本身的性质复杂的系统就像一根由无数个环节相连组成的链条，如果用力拉，链条就会从其中最脆弱的环节处断开。因此，系统的强度取决于其中最脆弱的环节的强度。</p>
 <p>最脆弱的环节并不是密码，而是人类自己。</p>
 </blockquote>
-<h4 id="1-5-2-密码信息威胁"><a href="#1-5-2-密码信息威胁" class="headerlink" title="1.5.2 密码信息威胁"></a>1.5.2 密码信息威胁</h4><blockquote>
+<h4><span id="152-密码信息威胁">1.5.2 密码信息威胁</span></h4><blockquote>
 <p>我们将信息安全所面临的威胁与用来用对这些威胁的密码技术直接的关系用一张图标来表示出来。</p>
 </blockquote>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538814978185.png" alt="1538814978185"></p>
-<h2 id="2-对称加密"><a href="#2-对称加密" class="headerlink" title="2.  对称加密"></a>2.  对称加密</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"对称加密: 也称为对称密码, 是指在加密和解码时使用同一秘钥的加密方式"</span></span><br></pre></td></tr></table></figure>
+<h2><span id="2-对称加密">2.  对称加密</span></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"对称加密: 也称为对称密码, 是指在加密和解码时使用同一秘钥的加密方式"</span></span><br></pre></td></tr></table></figure>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538729092431.png" alt="1538729092431"></p>
-<h3 id="2-1-编码"><a href="#2-1-编码" class="headerlink" title="2.1 编码"></a>2.1 编码</h3><blockquote>
+<h3><span id="21-编码">2.1 编码</span></h3><blockquote>
 <p>现代的密码都是建立在计算机的基础之上的，这是因为现代的密码所处理的数据量非常大，而且密码算法也非常复杂，不借助计算机的力量就无法完成加密和解密的操作。</p>
 <p>计算机的操作对象并不是文字，而是由0和1排列而成的<strong>比特序列</strong>。无论是文字、图像、声音、视频还是程序，在计算机中都是用比特序列来表示的。执行加密操作的程序，就是将表示明文的比特序列转换为表示密文的比特序列。</p>
 <p>将现实世界中的东西映射为比特序列的操作称为<strong>编码（encoding）</strong>。例如midnight（深夜）这个词，我们可以对其中的每个字母逐一进行编码，这种编码规则叫作<strong>ASCII</strong>。</p>
@@ -163,7 +361,7 @@
 <p>注意这里的m –&gt; 01101101这一转换并不是加密而是编码。尽管在人类看来0和1的序列跟密码没什么两样，但计算机却可以“看懂”这些比特序列，并很快地反应出其所对应的字符 <strong>midnight</strong></p>
 </blockquote>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538729355964.png" alt="1538729355964"></p>
-<h3 id="2-2-DES"><a href="#2-2-DES" class="headerlink" title="2.2 DES"></a>2.2 DES</h3><h4 id="2-2-1-什么是DES"><a href="#2-2-1-什么是DES" class="headerlink" title="2.2.1 什么是DES"></a>2.2.1 什么是DES</h4><blockquote>
+<h3><span id="22-des">2.2 DES</span></h3><h4><span id="221-什么是des">2.2.1 什么是DES</span></h4><blockquote>
 <p><strong>DES（Data Encryption Standard）</strong>是1977年美国联邦信息处理标准（FIPS）中所采用的一种对称密码（FIPS46.3）。DES一直以来被美国以及其他国家的政府和银行等广泛使用。然而，随着计算机的进步，现在DES已经能够被暴力破解，强度大不如前了。</p>
 <p>RSA公司举办过破泽DES密钥的比赛（DESChallenge），我们可以看一看RSA公司官方公布的比赛结果：</p>
 <ul>
@@ -174,7 +372,7 @@
 </ul>
 <p>由于DES的密文可以在短时间内被破译，因此除了用它来解密以前的密文以外，现在我们不应该再使用DES了。</p>
 </blockquote>
-<h4 id="2-2-2-加密和解密"><a href="#2-2-2-加密和解密" class="headerlink" title="2.2.2 加密和解密"></a>2.2.2 加密和解密</h4><blockquote>
+<h4><span id="222-加密和解密">2.2.2 加密和解密</span></h4><blockquote>
 <p>DES是一种将64比特的明文加密成64比特的密文的对称密码算法，==它的密钥长度是56比特==。尽管<font color="red">从规格上来说，DES的密钥长度是64比特，但由于每隔7比特会设置一个用于错误检查的比特，因此实质上其密钥长度是56比特</font>。</p>
 <p><font color="red">DES是以64比特的明文（比特序列）为一个单位来进行加密的</font>，<strong>这个64比特的单位称为分组</strong>。一般来说，以分组为单位进行处理的密码算法称为<strong>分组密码（blockcipher）</strong>，DES就是分组密码的一种。</p>
 <p>DES每次只能加密64比特的数据，如果要加密的明文比较长，就需要对DES加密进行迭代（反复），而迭代的具体方式就称为模式（mode）。</p>
@@ -184,7 +382,7 @@
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538729419926.png" alt="1538729419926"></p>
 </li>
 </ul>
-<h4 id="2-2-3-Go中对DES的操作"><a href="#2-2-3-Go中对DES的操作" class="headerlink" title="2.2.3 Go中对DES的操作"></a>2.2.3 Go中对DES的操作</h4><h5 id="加解密实现思路"><a href="#加解密实现思路" class="headerlink" title="加解密实现思路"></a>加解密实现思路</h5><ul>
+<h4><span id="223-go中对des的操作">2.2.3 Go中对DES的操作</span></h4><h5><span id="加解密实现思路">加解密实现思路</span></h5><ul>
 <li><p><strong>加密 - CBC分组模式</strong></p>
 <blockquote>
 <ol>
@@ -213,7 +411,7 @@
 </blockquote>
 </li>
 </ul>
-<h5 id="加解密的代码实现"><a href="#加解密的代码实现" class="headerlink" title="加解密的代码实现"></a>加解密的代码实现</h5><p>在Go中使用DES需要导入的包:</p>
+<h5><span id="加解密的代码实现">加解密的代码实现</span></h5><p>在Go中使用DES需要导入的包:</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"crypto/des"</span></span><br><span class="line">	<span class="string">"crypto/cipher"</span></span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"bytes"</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <p>DES加密代码: </p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src -&gt; 要加密的明文</span></span><br><span class="line"><span class="comment">// key -&gt; 秘钥, 大小为: 8byte</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">DesEncrypt_CBC</span><span class="params">(src, key []<span class="keyword">byte</span>)</span> []<span class="title">byte</span></span>&#123;</span><br><span class="line">	<span class="comment">// 1. 创建并返回一个使用DES算法的cipher.Block接口</span></span><br><span class="line">	block, err := des.NewCipher(key)</span><br><span class="line">	<span class="comment">// 2. 判断是否创建成功</span></span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span>&#123;</span><br><span class="line">		<span class="built_in">panic</span>(err)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 3. 对最后一个明文分组进行数据填充</span></span><br><span class="line">	src = PKCS5Padding(src, block.BlockSize())</span><br><span class="line">	<span class="comment">// 4. 创建一个密码分组为链接模式的, 底层使用DES加密的BlockMode接口</span></span><br><span class="line">	<span class="comment">//    参数iv的长度, 必须等于b的块尺寸</span></span><br><span class="line">	tmp := []<span class="keyword">byte</span>(<span class="string">"helloAAA"</span>)</span><br><span class="line">	blackMode := cipher.NewCBCEncrypter(block, tmp)</span><br><span class="line">	<span class="comment">// 5. 加密连续的数据块</span></span><br><span class="line">	dst := <span class="built_in">make</span>([]<span class="keyword">byte</span>, <span class="built_in">len</span>(src))</span><br><span class="line">	blackMode.CryptBlocks(dst, src)</span><br><span class="line"></span><br><span class="line">	fmt.Println(<span class="string">"加密之后的数据: "</span>, dst)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 6. 将加密数据返回</span></span><br><span class="line">	<span class="keyword">return</span> dst</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -241,11 +439,11 @@
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">对称加密加密需要对数据进行分组, 保证每个分组的数据长度相等, 如果最后一个分组长度不够, 需要进行填充</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">PKCS5Padding</span><span class="params">(ciphertext []<span class="keyword">byte</span>, blockSize <span class="keyword">int</span>)</span> []<span class="title">byte</span></span></span><br><span class="line"><span class="function">    - 参数 <span class="title">ciphertext</span>: 需要加密的原始数据</span></span><br><span class="line"><span class="function">    - 参数 <span class="title">blockSize</span>: 每个分组的长度, 跟使用的加密算法有关系</span></span><br><span class="line"><span class="function">		* <span class="title">des</span>：64<span class="title">bit</span>， 8<span class="title">byte</span></span></span><br><span class="line"><span class="function">		* 3<span class="title">des</span>：64<span class="title">bit</span>， 8<span class="title">byte</span></span></span><br><span class="line"><span class="function">		* <span class="title">aes</span>： 128<span class="title">bit</span>， 16<span class="title">byte</span></span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h3 id="2-3-三重DES"><a href="#2-3-三重DES" class="headerlink" title="2.3 三重DES"></a>2.3 三重DES</h3><blockquote>
+<h3><span id="23-三重des">2.3 三重DES</span></h3><blockquote>
 <p>现在DES已经可以在现实的时间内被暴力破解，因此我们需要一种用来替代DES的分组密码，三重DES就是出于这个目的被开发出来的。</p>
 <p><strong>三重DES（triple-DES）是为了增加DES的强度，==将DES重复3次所得到的一种密码算法==，通常缩写为3DES</strong>。</p>
 </blockquote>
-<h4 id="2-3-1-三重DES的加密"><a href="#2-3-1-三重DES的加密" class="headerlink" title="2.3.1 三重DES的加密"></a>2.3.1 三重DES的加密</h4><blockquote>
+<h4><span id="231-三重des的加密">2.3.1 三重DES的加密</span></h4><blockquote>
 <p>三重DES的加解密机制如图所示：</p>
 </blockquote>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538883542015.png" alt="1538883542015"></p>
@@ -260,7 +458,7 @@
 <blockquote>
 <p>尽管三重DES目前还被银行等机构使用，但其处理速度不高，而且在安全性方面也逐渐显现出了一些问题。</p>
 </blockquote>
-<h4 id="2-3-2-Go中对3DES的操作"><a href="#2-3-2-Go中对3DES的操作" class="headerlink" title="2.3.2 Go中对3DES的操作"></a>2.3.2 Go中对3DES的操作</h4><h5 id="加解密实现思路-1"><a href="#加解密实现思路-1" class="headerlink" title="加解密实现思路"></a>加解密实现思路</h5><ul>
+<h4><span id="232-go中对3des的操作">2.3.2 Go中对3DES的操作</span></h4><h5><span id="加解密实现思路">加解密实现思路</span></h5><ul>
 <li><p><strong>加密 - CBC分组模式</strong></p>
 <blockquote>
 <ol>
@@ -289,7 +487,7 @@
 </blockquote>
 </li>
 </ul>
-<h5 id="加解密的代码实现-1"><a href="#加解密的代码实现-1" class="headerlink" title="加解密的代码实现"></a>加解密的代码实现</h5><p>3DES加密代码</p>
+<h5><span id="加解密的代码实现">加解密的代码实现</span></h5><p>3DES加密代码</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 3DES加密</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TripleDESEncrypt</span><span class="params">(src, key []<span class="keyword">byte</span>)</span> []<span class="title">byte</span></span> &#123;</span><br><span class="line">	<span class="comment">// 1. 创建并返回一个使用3DES算法的cipher.Block接口</span></span><br><span class="line">	block, err := des.NewTripleDESCipher(key)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span>&#123;</span><br><span class="line">		<span class="built_in">panic</span>(err)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 2. 对最后一组明文进行填充</span></span><br><span class="line">	src = PKCS5Padding(src, block.BlockSize())</span><br><span class="line">	<span class="comment">// 3. 创建一个密码分组为链接模式, 底层使用3DES加密的BlockMode模型</span></span><br><span class="line">	blockMode := cipher.NewCBCEncrypter(block, key[:<span class="number">8</span>])</span><br><span class="line">	<span class="comment">// 4. 加密数据</span></span><br><span class="line">	dst := src</span><br><span class="line">	blockMode.CryptBlocks(dst, src)</span><br><span class="line">	<span class="keyword">return</span> dst</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>3DES解密代码</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 3DES解密</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TripleDESDecrypt</span><span class="params">(src, key []<span class="keyword">byte</span>)</span> []<span class="title">byte</span></span> &#123;</span><br><span class="line">	<span class="comment">// 1. 创建3DES算法的Block接口对象</span></span><br><span class="line">	block, err := des.NewTripleDESCipher(key)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span>&#123;</span><br><span class="line">		<span class="built_in">panic</span>(err)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 2. 创建密码分组为链接模式, 底层使用3DES解密的BlockMode模型</span></span><br><span class="line">	blockMode := cipher.NewCBCDecrypter(block, key[:<span class="number">8</span>])</span><br><span class="line">	<span class="comment">// 3. 解密</span></span><br><span class="line">	dst := src</span><br><span class="line">	blockMode.CryptBlocks(dst, src)</span><br><span class="line">	<span class="comment">// 4. 去掉尾部填充的数据</span></span><br><span class="line">	dst = PKCS5UnPadding(dst)</span><br><span class="line">	<span class="keyword">return</span> dst</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -308,12 +506,12 @@
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">函数对应的包: <span class="keyword">import</span> <span class="string">"crypto/cipher"</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewCBCDecrypter</span><span class="params">(b Block, iv []<span class="keyword">byte</span>)</span> <span class="title">BlockMode</span></span></span><br><span class="line"><span class="function">    - 参数 <span class="title">b</span>: 使用<span class="title">des</span>.<span class="title">NewTripleDESCipher</span> 函数创建出的<span class="title">Block</span>接口对象</span></span><br><span class="line"><span class="function">    - 参数 <span class="title">iv</span>: 事先准备好的一个长度为一个分组长度的比特序列, 每个分组为64<span class="title">bit</span>, 即8<span class="title">byte</span>, </span></span><br><span class="line"><span class="function">               该序列的值需要和<span class="title">NewCBCEncrypter</span>函数的第二个参数<span class="title">iv</span>值相同</span></span><br><span class="line"><span class="function">    - 返回值: 得到的<span class="title">BlockMode</span>接口对象</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h3 id="2-4-AES"><a href="#2-4-AES" class="headerlink" title="2.4 AES"></a>2.4 AES</h3><blockquote>
+<h3><span id="24-aes">2.4 AES</span></h3><blockquote>
 <p>AES（Advanced Encryption Standard）是取代其前任标准（DES）而成为新标准的一种对称密码算法。全世界的企业和密码学家提交了多个对称密码算法作为AES的候选，最终在2000年从这些候选算法中选出了一种名为==<strong>Rijndael</strong>==的对称密码算法，并将其确定为了AES。</p>
 <p>Rijndael是由比利时密码学家Joan Daemen和Vincent Rijmen设汁的分组密码算法，今后会有越来越多的密码软件支持这种算法。</p>
 <p><strong>==Rijndael的分组长度为128比特==</strong>，密钥长度可以以32比特为单位在128比特到256比特的范围内进行选择（不过==<strong>在AES的规格中，密钥长度只有128、192和256比特三种</strong>==）。</p>
 </blockquote>
-<h4 id="2-4-2-AES的加密和解密"><a href="#2-4-2-AES的加密和解密" class="headerlink" title="2.4.2 AES的加密和解密"></a>2.4.2 AES的加密和解密</h4><blockquote>
+<h4><span id="242-aes的加密和解密">2.4.2 AES的加密和解密</span></h4><blockquote>
 <p>和DES—样，AES算法也是由多个轮所构成的，下图展示了每一轮的大致计算步骤。DES使用Feistel网络作为其基本结构，而AES没有使用Feistel网络，而是使用了SPN Rijndael的输人分组为128比特，也就是16字节。首先，需要逐个字节地对16字节的输入数据进行SubBytes处理。所谓SubBytes,就是以每个字节的值（0～255中的任意值）为索引，从一张拥有256个值的替换表（S-Box）中查找出对应值的处理，也是说，将一个1字节的值替换成另一个1字节的值。</p>
 <p>SubBytes之后需要进行ShiftRows处理，即将SubBytes的输出以字节为单位进行打乱处理。从下图的线我们可以看出，这种打乱处理是有规律的。</p>
 <p>ShiftRows之后需要进行MixCo1umns处理，即对一个4字节的值进行比特运算，将其变为另外一个4字节值。</p>
@@ -341,7 +539,7 @@
 
 <font color="red">InvMixColumns    –    逆列混淆</font>
 </blockquote>
-<h4 id="2-4-2-Go中对AES的使用"><a href="#2-4-2-Go中对AES的使用" class="headerlink" title="2.4.2 Go中对AES的使用"></a>2.4.2 Go中对AES的使用</h4><h5 id="加解密实现思路-2"><a href="#加解密实现思路-2" class="headerlink" title="加解密实现思路"></a>加解密实现思路</h5><ul>
+<h4><span id="242-go中对aes的使用">2.4.2 Go中对AES的使用</span></h4><h5><span id="加解密实现思路">加解密实现思路</span></h5><ul>
 <li><p><strong>加密 - CBC分组模式</strong></p>
 <blockquote>
 <ol>
@@ -370,7 +568,7 @@
 </blockquote>
 </li>
 </ul>
-<h5 id="加解密的代码实现-2"><a href="#加解密的代码实现-2" class="headerlink" title="加解密的代码实现"></a>加解密的代码实现</h5><p>AES加密代码</p>
+<h5><span id="加解密的代码实现">加解密的代码实现</span></h5><p>AES加密代码</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// AES加密</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">AESEncrypt</span><span class="params">(src, key []<span class="keyword">byte</span>)</span> []<span class="title">byte</span></span>&#123;</span><br><span class="line">	<span class="comment">// 1. 创建一个使用AES加密的块对象</span></span><br><span class="line">	block, err := aes.NewCipher(key)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span>&#123;</span><br><span class="line">		<span class="built_in">panic</span>(err)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 2. 最后一个分组进行数据填充</span></span><br><span class="line">	src = PKCS5Padding(src, block.BlockSize())</span><br><span class="line">	<span class="comment">// 3. 创建一个分组为链接模式, 底层使用AES加密的块模型对象</span></span><br><span class="line">	blockMode := cipher.NewCBCEncrypter(block, key[:block.BlockSize()])</span><br><span class="line">	<span class="comment">// 4. 加密</span></span><br><span class="line">	dst := src</span><br><span class="line">	blockMode.CryptBlocks(dst, src)</span><br><span class="line">	<span class="keyword">return</span> dst</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>AES解密</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// AES解密</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">AESDecrypt</span><span class="params">(src, key []<span class="keyword">byte</span>)</span> []<span class="title">byte</span></span>&#123;</span><br><span class="line">	<span class="comment">// 1. 创建一个使用AES解密的块对象</span></span><br><span class="line">	block, err := aes.NewCipher(key)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span>&#123;</span><br><span class="line">		<span class="built_in">panic</span>(err)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 2. 创建分组为链接模式, 底层使用AES的解密模型对象</span></span><br><span class="line">	blockMode := cipher.NewCBCDecrypter(block, key[:block.BlockSize()])</span><br><span class="line">	<span class="comment">// 3. 解密</span></span><br><span class="line">	dst := src</span><br><span class="line">	blockMode.CryptBlocks(dst, src)</span><br><span class="line">	<span class="comment">// 4. 去掉尾部填充的字</span></span><br><span class="line">	dst = PKCS5UnPadding(dst)</span><br><span class="line">	<span class="keyword">return</span> dst</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -389,7 +587,7 @@
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">函数对应的包: <span class="keyword">import</span> <span class="string">"crypto/cipher"</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewCBCDecrypter</span><span class="params">(b Block, iv []<span class="keyword">byte</span>)</span> <span class="title">BlockMode</span></span></span><br><span class="line"><span class="function">    - 参数 <span class="title">b</span>: 使用<span class="title">des</span>.<span class="title">NewCipher</span>函数创建出的<span class="title">Block</span>接口对象</span></span><br><span class="line"><span class="function">    - 参数 <span class="title">iv</span>: 事先准备好的一个长度为一个分组长度的比特序列, 每个分组为128<span class="title">bit</span>, 即16<span class="title">byte</span>, </span></span><br><span class="line"><span class="function">               该序列的值需要和<span class="title">NewCBCEncrypter</span>函数的第二个参数<span class="title">iv</span>值相同</span></span><br><span class="line"><span class="function">    - 返回值: 得到的<span class="title">BlockMode</span>接口对象</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h3 id="2-5-应选择哪种对称加密"><a href="#2-5-应选择哪种对称加密" class="headerlink" title="2.5 应选择哪种对称加密"></a>2.5 应选择哪种对称加密</h3><blockquote>
+<h3><span id="25-应选择哪种对称加密">2.5 应选择哪种对称加密</span></h3><blockquote>
 <p>前面我们介绍了DES、三重DES和AES等对称密码，那么我们到底应该使用哪一种对称密码算法呢？</p>
 <ol>
 <li><strong>今后最好不要将DES用于新的用途，因为随着计算机技术的进步，现在用暴力破解法已经能够在现实的时间内完成对DES的破译。但是，在某些情况下也需要保持与旧版本软件的兼容性。</strong></li>
@@ -398,25 +596,25 @@
 </ol>
 <p>一般来说，我们不应该使用任何自制的密码算法，而是应该使用AES。因为AES在其选定过程中，经过了全世界密码学家所进行的高品质的验证工作，而对于自制的密码算法则很难进行这样的验证。 </p>
 </blockquote>
-<h4 id="本章小结"><a href="#本章小结" class="headerlink" title="本章小结"></a>本章小结</h4><blockquote>
+<h4><span id="本章小结">本章小结</span></h4><blockquote>
 <p>本章中我们介绍了对称密码，以及DES、三重DES、AES和其他一些密码算法。</p>
 <p>使用一种密钥空间巨大，且在算法上没有弱点的对称密码，就可以通过密文来确保明文的机密性。巨大的密钥空间能够抵御暴力破解，算法上没有弱点可以抵御其他类型的攻击。</p>
 <p>然而，用对称密码进行通信时，还会出现密钥的配送问题，即如何将密钥安全地发送给接收者。为了解决密钥配送问题，我们需要非对称加密技术。非对称加密，我们将在第四章进行讲解。</p>
 <p>本章所介绍的几乎所有的密码算法，都只能将一个固定长度的分组进行加密当需要加密的明文长度超过分组长度时，就需要对密码算法进行迭代下一章我们将探讨对分组密码进行迭代的方法。</p>
 </blockquote>
-<h2 id="3-分组密码的模式"><a href="#3-分组密码的模式" class="headerlink" title="3. 分组密码的模式"></a>3. 分组密码的模式</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"分组密码的模式 -- 分组密码是如何迭代的"</span></span><br></pre></td></tr></table></figure>
+<h2><span id="3-分组密码的模式">3. 分组密码的模式</span></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"分组密码的模式 -- 分组密码是如何迭代的"</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>本章中我们将探讨一下分组密码的模式</p>
 <p>我们在上一章中介绍的DES和AES都属于分组密码，它们只能加密固定长度的明文。如果需要加密任意长度的明文，就需要对分组密码进行迭代，而分组密码的迭代方法就称为分组密码的“模式”。</p>
 <p>分组密码有很多种模式，如果模式的选择不恰当，就无法保证机密性。例如，如果使用ECB模式，明文中的一些规律就可以通过密文被识别出来。</p>
 <p>分组密码的主要模式（ECB、CBC、CFB、OFB、CTR），最后再来考察一下到底应该使用哪一种模式。</p>
 </blockquote>
-<h3 id="3-1-分组密码"><a href="#3-1-分组密码" class="headerlink" title="3.1 分组密码"></a>3.1 分组密码</h3><blockquote>
+<h3><span id="31-分组密码">3.1 分组密码</span></h3><blockquote>
 <p><strong>分组密码（blockcipher）</strong>是每次只能处理特定长度的一块数据的一类密码算法，这里的一块”就称为分组（block）。此外，一个分组的比特数就称为分组长度（blocklength）。</p>
 <p>例如，<strong>DES和三重DES的分组长度都是64比特</strong>。这些密码算法一次只能加密64比特的明文．并生成64比特的密文。</p>
 <p><strong>AES的分组长度可以从128比特、192比特和256比特中进行选择。当选择128比特的分组长度时，AES一次可加密128比特的明文，并生成128比特的密文。</strong></p>
 </blockquote>
-<h3 id="3-2-模式"><a href="#3-2-模式" class="headerlink" title="3.2 模式"></a>3.2 模式</h3><blockquote>
+<h3><span id="32-模式">3.2 模式</span></h3><blockquote>
 <p><strong>分组密码算法只能加密固定长度的分组，但是我们需要加密的明文长度可能会超过分组密码的分组长度，这时就需要对分组密码算法进行迭代，以便将一段很长的明文全部加密。而迭代的方法就称为分组密码的模式（mode）</strong>。</p>
 <p>话说到这里，很多读者可能会说：“如果明文很长的话，将明文分割成若干个分组再逐个加密不就好了吗？”事实上可没有那么简单。将明文分割成多个分组并逐个加密的方法称为ECB模式，这种模式具有很大的弱点（稍后讲解）。对密码不是很了解的程序员在编写加密软件时经常会使用ECB模式，但这样做会在不经意间产生安全漏洞，<strong>因此大家要记住千万不能使用ECB模式</strong>。</p>
 <p>模式有很多种类，分组密码的主要模式有以下5种：</p>
@@ -428,7 +626,7 @@
 <li><strong>CTR模式</strong>：CounTeR mode（计数器模式）</li>
 </ul>
 </blockquote>
-<h4 id="明文分组和密文分组"><a href="#明文分组和密文分组" class="headerlink" title="明文分组和密文分组"></a>明文分组和密文分组</h4><blockquote>
+<h4><span id="明文分组和密文分组">明文分组和密文分组</span></h4><blockquote>
 <p>在介绍模式之前，我们先来学习两个术语。</p>
 <p><strong>明文分组: </strong>是指分组密码算法中作为加密对象的明文。明文分组的长度与分组密码算法的分组长度是相等的。</p>
 <p><strong>密文分组: </strong>是指使用分组密码算法将明文分组加密之后所生成的密文。</p>
@@ -437,7 +635,7 @@
 <blockquote>
 <p><strong>为了避免图示变得复杂，以后我们将“用分组密码算法加密”简写为“加密”，并省略对密钥的描述。</strong></p>
 </blockquote>
-<h3 id="3-3-ECB-模式"><a href="#3-3-ECB-模式" class="headerlink" title="3.3 ECB 模式"></a>3.3 ECB 模式</h3><blockquote>
+<h3><span id="33-ecb-模式">3.3 ECB 模式</span></h3><blockquote>
 <p>ECB(Electronic Code Book, 电子密码本)模式是最简单的加密模式，<font color="red">明文消息被分成固定大小的块（分组），并且每个块被单独加密。</font>  每个块的加密和解密都是独立的，且使用相同的方法进行加密，所以可以进行并行计算，但是这种方法一旦有一个块被破解，使用相同的方法可以解密所有的明文数据，<font color="red">安全性比较差。  适用于数据较少的情形，加密前需要把明文数据填充到块大小的整倍数。</font></p>
 </blockquote>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538726659781.png" alt="1538726659781"></p>
@@ -447,7 +645,7 @@
 <p>使用ECB模式加密时，相同的明文分组会被转换为相同的密文分组，也就是说，我们可以将其理解为是一个巨大的“明文分组–&gt;密文分组”的对应表，因此ECB模式也称为电子密码本模式<strong>当最后一个明文分组的内容小于分组长度时，需要用一特定的数据进行填充（padding），让值一个分组长度等于分组长度</strong>。</p>
 <p>ECB模式是所有模式中最简单的一种。ECB模式中，明文分组与密文分组是一一对应的关系，因此，如果明文中存在多个相同的明文分组，则这些明文分组最终都将被转换为相同的密文分组。这样一来，只要观察一下密文，就可以知道明文中存在怎样的重复组合，并可以以此为线索来破译密码，因此ECB模式是存在一定风险的。</p>
 </blockquote>
-<h3 id="3-3-CBC模式"><a href="#3-3-CBC模式" class="headerlink" title="3.3 CBC模式"></a>3.3 CBC模式</h3><h4 id="XOR"><a href="#XOR" class="headerlink" title="XOR"></a>XOR</h4><blockquote>
+<h3><span id="33-cbc模式">3.3 CBC模式</span></h3><h4><span id="xor">XOR</span></h4><blockquote>
 <p>为了让大家理解比特序列运算的概念，我们来介绍一下XOR运算。XOR的全称是exclusive or，在中文里叫作异或。尽管名字看起来很复杂，但这种运算本身一点都不难。</p>
 <p>1个比特（bit）的位运算规则如下：</p>
 </blockquote>
@@ -487,7 +685,7 @@
 <p>实际上，只要选择一个合适的B，仅仅使用XOR就可以实现一个高强度的密码。</p>
 <p>对同一个比特序列进行两次XOR之后就会回到最初的状态。</p>
 </blockquote>
-<h4 id="CBC模式"><a href="#CBC模式" class="headerlink" title="CBC模式"></a>CBC模式</h4><blockquote>
+<h4><span id="cbc模式">CBC模式</span></h4><blockquote>
 <p>CBC(Cipher Block Chaining, 密码块链)<font color="red">模式中每一个分组要先和前一个分组加密后的数据进行XOR异或操作，然后再进行加密</font>。  这样每个密文块依赖该块之前的所有明文块，为了保持每条消息都具有唯一性，<font color="red">第一个数据块进行加密之前需要用初始化向量IV进行异或操作</font>。  <font color="blue">CBC模式是一种最常用的加密模式，它主要缺点是加密是连续的，不能并行处理，并且与ECB一样消息块必须填充到块大小的整倍数。</font></p>
 </blockquote>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538842682058.png" alt="1538842682058"></p>
@@ -497,12 +695,12 @@
 <p>如果将一个分组的加密过程分离出来，我们就可以很容易地比较出ECB模式和CBC模式的区别 。ECB模式只进行了加密，而CBC模式则在加密之前进行了一次XOR。</p>
 </blockquote>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538727153393.png" alt="1538727153393"></p>
-<h4 id="初始化向量"><a href="#初始化向量" class="headerlink" title="初始化向量"></a>初始化向量</h4><blockquote>
+<h4><span id="初始化向量">初始化向量</span></h4><blockquote>
 <p><strong>当加密第一个明文分组时，由于不存在“前一个密文分组”，因此<font color="red">需要事先准备一个长度为一个分组的比特序列来代替“前一个密文分组</font>“，这个比特序列称为初始化向量（initialization vector）</strong></p>
 <p>通常缩写为 IV 一般来说，每次加密时都会随机产生一个不同的比特序列来作为初始化向量。</p>
 </blockquote>
 <p>明文分组在加密之前一定会与“前一个密文分组”进行 XOR 运算，因此即便明文分组1和2的值是相等的，密文分组1和2的值也不一定是相等的。这样一来，ECB模式的缺陷在CBC模式中就不存在了。</p>
-<h3 id="3-4-CFB-模式"><a href="#3-4-CFB-模式" class="headerlink" title="3.4 CFB 模式"></a>3.4 CFB 模式</h3><blockquote>
+<h3><span id="34-cfb-模式">3.4 CFB 模式</span></h3><blockquote>
 <p>CFB模式的全称是Cipher FeedBack模式（密文反馈模式）。在CFB模式中，<font color="red">前一个分组的密文加密后和当前分组的明文XOR异或操作生成当前分组的密文</font>。</p>
 <p>所谓反馈，这里指的就是返回输人端的意思，即前一个密文分组会被送回到密码算法的输入端。</p>
 <p>CFB模式的解密和CBC模式的加密在流程上其实是非常相似的。 </p>
@@ -517,26 +715,26 @@
 <p>我们将CBC模式与CFB模式对比一下，就可以看出其中的差异了（如下图）。在CBC模式中，明文分组和密文分组之间有XOR和密码算法两个步骤，而在CFB模式中，明文分组和密文分组之间则只有XOR。</p>
 </blockquote>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538708985849.png" alt="1538708985849"></p>
-<h4 id="初始化向量-1"><a href="#初始化向量-1" class="headerlink" title="初始化向量"></a>初始化向量</h4><blockquote>
+<h4><span id="初始化向量">初始化向量</span></h4><blockquote>
 <p><font color="red">在生成第一个密文分组时，由于不存在前一个输出的数据，因此需要使用初始化向量（IV）来代替</font>，这一点和CBC模式是相同的。一般来说，我们需要在每次加密时生成一个不同的随机比特序列用作初始化向量。</p>
 </blockquote>
-<h4 id="CFB模式与流密码"><a href="#CFB模式与流密码" class="headerlink" title="CFB模式与流密码"></a>CFB模式与流密码</h4><blockquote>
+<h4><span id="cfb模式与流密码">CFB模式与流密码</span></h4><blockquote>
 <p>CFB模式是通过将“明文分组”与“密码算法的输出”进行XOR运算来生成“密文分组”的。</p>
 <p>在CFB模式中，密码算法的输出相当于一个随机比特序列。由于密码算法的输出是通过计算得到的，并不是真正的随机数，因此CFB模式不可能具各理论上不可破译的性质。</p>
 <p><font color="red">CFB模式中由密算法所生成的比特序列称为密钥流（key stream）</font>。在CFB模式中，密码算法就相当于用来生成密钥流的伪随机数生成器，而初始化向量相当于伪随机数生成器的“种子“。</p>
 <p>在CFB模式中，<font color="red">明文数据可以被逐比特加密</font>，因此我们<font color="red">可以将CFB模式看做是一种使用分组密码来实现流密码的方式</font>。</p>
 </blockquote>
-<h3 id="3-5-OFB-模式"><a href="#3-5-OFB-模式" class="headerlink" title="3.5 OFB 模式"></a>3.5 OFB 模式</h3><blockquote>
+<h3><span id="35-ofb-模式">3.5 OFB 模式</span></h3><blockquote>
 <p>OFB式的全称是Output-Feedback模式（输出反馈模式）。在OFB模式中，密码算法的输出会反馈到密码算法的输入中， 即上一个分组密码算法的输出是当前分组密码算法的输入（下图）。</p>
 <p>OFB模式并不是通过密码算法对明文直接进行加密的，而是通过将 “明文分组” 和 “密码算法的输出” 进行XOR来产生 “密文分组” 的，在这一点上OFB模式和CFB模式非常相似。</p>
 </blockquote>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538728323577.png" alt="1538728323577"></p>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538842879039.png" alt="1538842879039"></p>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538842890856.png" alt="1538842890856"></p>
-<h4 id="初始化向量-2"><a href="#初始化向量-2" class="headerlink" title="初始化向量"></a>初始化向量</h4><blockquote>
+<h4><span id="初始化向量">初始化向量</span></h4><blockquote>
 <p>和CBC模式、CFB模式一样，OFB模式中也需要使用初始化向量（IV）。一般来说，我们需要在每次加密时生成一个不同的随机比特序列用作初始化向量。</p>
 </blockquote>
-<h4 id="CFB模式和OFB模式对比"><a href="#CFB模式和OFB模式对比" class="headerlink" title="CFB模式和OFB模式对比"></a>CFB模式和OFB模式对比</h4><blockquote>
+<h4><span id="cfb模式和ofb模式对比">CFB模式和OFB模式对比</span></h4><blockquote>
 <p>OFB模式和CFB模式的区别仅仅在于密码算法的输入。</p>
 <p>CFB式中，密码算法的输人是前一个密文分组，也就是将密文分组反馈到密算法中，因此就有了“密文反馈模式”这个名字。</p>
 <p>相对地，OFB模式中，密码算法的输入则是密码算法的前一个输出，也就是将输出反馈给密码算法，因此就有了“输出反馈模式”这个名字。</p>
@@ -547,7 +745,7 @@
 <p>由于CFB模式中是对密文分组进行反馈的，因此必须从第一个明文分组开始按顺序进行加密，也就是说无法跳过明文分组1而先对明文分组2进行加密。</p>
 <p>相对地，在OFB模式中，XOR所需要的比特序列（密钥流）可以事先通过密码算法生成，和明文分组无关。只要提前准备好所需的密钥流，则在实际从明文生成密文的过程中，就完全不需要动用密码算法了。只要将明文与密钥流进行XOR就可以了。和AES等密码算法相比，XOR运算的速度是非常快的。这就意味着只要提前准备好密钥流就可以快速完成加密。换个角度来看，生成密钥流的操作和进行XOR运算的操作是可以并行的。</p>
 </blockquote>
-<h3 id="3-6-CTR-模式"><a href="#3-6-CTR-模式" class="headerlink" title="3.6 CTR 模式"></a>3.6 CTR 模式</h3><blockquote>
+<h3><span id="36-ctr-模式">3.6 CTR 模式</span></h3><blockquote>
 <p>CTR模式的全称是CounTeR模式（计数器模式）。<font color="red">CTR摸式是一种通过将逐次累加的计数器进行加密来生成密钥流的流密码</font>（下图）。</p>
 <p>CTR模式中，每个分组对应一个逐次累加的计数器，并通过对计数器进行加密来生成密钥流。也就是说，最终的密文分组是通过将计数器加密得到的比特序列，与明文分组进行XOR而得到的。</p>
 </blockquote>
@@ -555,7 +753,7 @@
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538842916510.png" alt="1538842916510"></p>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538711715415.png" alt="1538711715415"></p>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538842931133.png" alt="1538842931133"></p>
-<h4 id="计数器的生成方法"><a href="#计数器的生成方法" class="headerlink" title="计数器的生成方法"></a>计数器的生成方法</h4><blockquote>
+<h4><span id="计数器的生成方法">计数器的生成方法</span></h4><blockquote>
 <p>每次加密时都会生成一个不同的值（nonce）来作为计数器的初始值。当分组长度为128比特（16字节）时，计数器的初始值可能是像下面这样的形式。</p>
 </blockquote>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538711880638.png" alt="1538711880638"></p>
@@ -566,20 +764,20 @@
 <blockquote>
 <p>按照上述生成方法，可以保证计数器的值每次都不同。由于计数器的值每次都不同，因此每个分组中将计数器进行加密所得到的密钥流也是不同的。也是说，这种方法就是用分组密码来模拟生成随机的比特序列。</p>
 </blockquote>
-<h4 id="OFB模式与CTR模式对比"><a href="#OFB模式与CTR模式对比" class="headerlink" title="OFB模式与CTR模式对比"></a>OFB模式与CTR模式对比</h4><blockquote>
+<h4><span id="ofb模式与ctr模式对比">OFB模式与CTR模式对比</span></h4><blockquote>
 <p>CTR模式和OFB模式一样，都属于流密码。如果我们将单个分组的加密过程拿出来，那么OFB模式和CTR模式之间的差异还是很容易理解的（下图）。OFB模式是将加密的输出反愦到输入，而CTR模式则是将计数器的值用作输入。</p>
 </blockquote>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538712242324.png" alt="1538712242324"></p>
-<h4 id="CTR模式的特点"><a href="#CTR模式的特点" class="headerlink" title="CTR模式的特点"></a>CTR模式的特点</h4><blockquote>
+<h4><span id="ctr模式的特点">CTR模式的特点</span></h4><blockquote>
 <p>CTR模式的加密和解密使用了完全相同的结构，因此在程序实现上比较容易。这一特点和同为流密码的OFB模式是一样的。</p>
 <p>此外，CTR模式中可以以任意顺序对分组进行加密和解密，因此在加密和解密时需要用到的“计数器”的值可以由nonce和分组序号直接计算出来。这一性质是OFB模式所不具备的。</p>
 <p>能够以任意顺序处理分组，就意味着能够实现并行计算。在支持并行计算的系统中，CTR模式的速度是非常快的。</p>
 </blockquote>
-<h3 id="3-7-总结"><a href="#3-7-总结" class="headerlink" title="3.7 总结"></a>3.7 总结</h3><blockquote>
+<h3><span id="37-总结">3.7 总结</span></h3><blockquote>
 <p>我们已经介绍了ECB、CBC、CFB、OFB和CTR模式，下面我们对这些模式的特点做一下整理。</p>
 </blockquote>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538712917291.png" alt="1538712917291"></p>
-<h2 id="4-非对称加密"><a href="#4-非对称加密" class="headerlink" title="4. 非对称加密"></a>4. 非对称加密</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"非对称加密也叫公钥密码: 使用公钥加密, 使用私钥解密"</span></span><br></pre></td></tr></table></figure>
+<h2><span id="4-非对称加密">4. 非对称加密</span></h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"非对称加密也叫公钥密码: 使用公钥加密, 使用私钥解密"</span></span><br></pre></td></tr></table></figure>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538732295130.png" alt="1538732295130"></p>
 <blockquote>
 <p>在对称密码中，由于加密和解密的密钥是相同的，因此必须向接收者配送密钥。用于解密的密钥必须被配送给接收者，这一问题称为密钥配送问题。如果使用非对称加密也可以称为公钥密码，则无需向接收者配送用于解密的密钥，这样就解决了密钥配送问题。可以说非对称加密是密码学历史上最伟大的发明。</p>
@@ -598,7 +796,7 @@
 <p>公钥和私钥是一一对应的，一对公钥和私钥统称为<strong>密钥对（keypair）</strong>。由公钥进行加密的密文，必须使用与该公钥配对的私钥才能够解密。密钥对中的两个密钥之间具有非常密切的关系(数学上的关系)一一因此公钥和私钥是不能分别单独生成的。</p>
 <p>公钥密码的使用者需要生成一个包括公钥和私钥的密钥对，其中公钥会被发送给别人，而私钥则仅供自己使用。稍后我们将具体尝试生成一个密钥对。</p>
 </blockquote>
-<h3 id="4-1-非对称加密通信流程"><a href="#4-1-非对称加密通信流程" class="headerlink" title="4.1 非对称加密通信流程"></a>4.1 非对称加密通信流程</h3><blockquote>
+<h3><span id="41-非对称加密通信流程">4.1 非对称加密通信流程</span></h3><blockquote>
 <p>下面我们来看一看使用公钥密码的通信流程。和以前一样、我们还是假设Alice要给Bob发送一条消息，Alice是发送者，Bob是接收者，而这一次窃听者Eve依然能够窃所到他们之间的通信内容。</p>
 <p>在公非对称加密通信中，通信过程是由接收者Bob来启动的。</p>
 <ol>
@@ -635,13 +833,13 @@
 <blockquote>
 <p>窃听者Eve可能拥有Bob的公钥，但是Bob的公钥只是加密密钥，而不是解密密钥，因此窃听者Eve就无法完成解密操作。</p>
 </blockquote>
-<h3 id="4-2-RSA"><a href="#4-2-RSA" class="headerlink" title="4.2 RSA"></a>4.2 RSA</h3><blockquote>
+<h3><span id="42-rsa">4.2 RSA</span></h3><blockquote>
 <p>非对称加密的密钥分为加密密钥和解密密钥，但这到底是怎样做到的呢？本节中我们来讲解现在使用最广泛的公钥密码算法一一RSA。</p>
 <p>RSA是一种非对称加密算法，它的名字是由它的三位开发者，即RonRivest、AdiShamir和LeonardAdleman 的姓氏的首字母组成的（Rivest-Shamir-Leonard）。</p>
 <p>RSA可以被用于非对称加密和数字签名，关于数字签名我们将在后面章节进行讲解。</p>
 <p>1983年，RSA公司为RSA算法在美国取得了专利，但现在该专利已经过期。</p>
 </blockquote>
-<h4 id="4-2-1-RSA加密"><a href="#4-2-1-RSA加密" class="headerlink" title="4.2.1 RSA加密"></a>4.2.1 RSA加密</h4><blockquote>
+<h4><span id="421-rsa加密">4.2.1 RSA加密</span></h4><blockquote>
 <p>下面我们终于可以讲一讲非对称加密的代表—RSA的加密过程了。在RSA中，明文、密钥和密文都是数字。RSA的加密过程可以用下列公式来表达，如下。</p>
 </blockquote>
 <p>$$<br>密文=明文 ^ E  mod     N（RSA加密）<br>$$</p>
@@ -654,7 +852,7 @@
 <p>有一个很容易引起误解的地方需要大家注意一一E和N这两个数并不是密钥对（公钥和私钥的密钥对）。E和N两个数才组成了一个公钥，因此我们一般会写成 “公钥是(E，N)” 或者 “公钥是{E, N}” 这样的形式，将E和N用括号括起来。</p>
 <p>现在大家应该已经知道，==<strong>RSA的加密就是 “求E次方的modN”</strong>==，接下来我们来看看RSA的解密。</p>
 </blockquote>
-<h4 id="4-2-2-RSA解密"><a href="#4-2-2-RSA解密" class="headerlink" title="4.2.2 RSA解密"></a>4.2.2 RSA解密</h4><blockquote>
+<h4><span id="422-rsa解密">4.2.2 RSA解密</span></h4><blockquote>
 <p>RSA的解密和加密一样简单，可以用下面的公式来表达：</p>
 </blockquote>
 <p>$$<br>明文=密文^DmodN（RSA解密）<br>$$</p>
@@ -669,7 +867,7 @@
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538732904820.png" alt="1538732904820"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">**RSA的加密和解密**</span><br></pre></td></tr></table></figure>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538732995510.png" alt="1538732995510"></p>
-<h4 id="4-2-3-Go中生成公钥和私钥"><a href="#4-2-3-Go中生成公钥和私钥" class="headerlink" title="4.2.3 Go中生成公钥和私钥"></a>4.2.3 Go中生成公钥和私钥</h4><p>需要引入的包</p>
+<h4><span id="423-go中生成公钥和私钥">4.2.3 Go中生成公钥和私钥</span></h4><p>需要引入的包</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"crypto/rsa"</span></span><br><span class="line">	<span class="string">"crypto/rand"</span></span><br><span class="line">	<span class="string">"crypto/x509"</span></span><br><span class="line">	<span class="string">"encoding/pem"</span></span><br><span class="line">	<span class="string">"os"</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <p>生成私钥操作流程概述</p>
 <blockquote>
@@ -721,7 +919,7 @@
 <p>​</p>
 </li>
 </ol>
-<h4 id="4-2-4-Go中使用RSA"><a href="#4-2-4-Go中使用RSA" class="headerlink" title="4.2.4 Go中使用RSA"></a>4.2.4 Go中使用RSA</h4><ol>
+<h4><span id="424-go中使用rsa">4.2.4 Go中使用RSA</span></h4><ol>
 <li><p>操作步骤</p>
 <ul>
 <li><p>公钥加密</p>
@@ -779,7 +977,7 @@
 </ul>
 </li>
 </ol>
-<h3 id="4-3-ECC椭圆曲线"><a href="#4-3-ECC椭圆曲线" class="headerlink" title="4.3 ECC椭圆曲线"></a>4.3 ECC椭圆曲线</h3><blockquote>
+<h3><span id="43-ecc椭圆曲线">4.3 ECC椭圆曲线</span></h3><blockquote>
 <ol>
 <li><p>概念</p>
 <p>椭圆曲线密码学（英语：Elliptic curve cryptography，缩写为 ECC），一种建立公开密钥加密的算法，基于椭圆曲线数学。椭圆曲线在密码学中的使用是在1985年由Neal Koblitz和Victor Miller分别独立提出的。</p>
@@ -799,7 +997,7 @@
 </li>
 </ol>
 </blockquote>
-<h3 id="4-4-非对称加密解惑"><a href="#4-4-非对称加密解惑" class="headerlink" title="4.4 非对称加密解惑"></a>4.4 非对称加密解惑</h3><ul>
+<h3><span id="44-非对称加密解惑">4.4 非对称加密解惑</span></h3><ul>
 <li><p><strong>非对称加密比对称加密机密性更高吗?</strong></p>
 <blockquote>
 <p>这个问题无法回答, 以为机密性高低是根据秘钥长度而变化的</p>
@@ -819,14 +1017,14 @@
 </blockquote>
 </li>
 </ul>
-<h2 id="5-单向散列函数"><a href="#5-单向散列函数" class="headerlink" title="5. 单向散列函数"></a>5. 单向散列函数</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"单向散列函数 --- 获取消息的指纹"</span></span><br></pre></td></tr></table></figure>
+<h2><span id="5-单向散列函数">5. 单向散列函数</span></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"单向散列函数 --- 获取消息的指纹"</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>在刑事侦查中，侦查员会用到指纹。通过将某个特定人物的指纹与犯罪现场遗留的指纹进行对比，就能够知道该人物与案件是否存在关联。</p>
 <p>针对计算机所处理的消息，有时候我们也需要用到“指纹”。当需要比较两条消息是否一致时，我们不必直接对比消息本身的内容，只要对比它们的“指纹”就可以了。</p>
 <p>本章中，我们将学习单向散列函数的相关知识。使用单向散列函数就可以获取消息的“指纹”，通过对比 “指纹”，就能够知道两条消息是否一致。</p>
 <p>下面，我们会先简单介绍一下单向散列函数，并给大家展示具体的例子。然后我们将详细介绍现在使用非常广泛的SHA-I单向散列函数。</p>
 </blockquote>
-<h3 id="5-1-什么是单向散列函数"><a href="#5-1-什么是单向散列函数" class="headerlink" title="5.1 什么是单向散列函数"></a>5.1 什么是单向散列函数</h3><blockquote>
+<h3><span id="51-什么是单向散列函数">5.1 什么是单向散列函数</span></h3><blockquote>
 <p>单向散列函数（one-wayftnction）有一个输人和一个输出，其中输人称为消息（message），输出称为散列值（hashvalue）。单向散列函数可以根据消息的内容计算出散列值，而散列值就可以被用来检查消息的完整性。</p>
 </blockquote>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538733101252.png" alt="1538733101252"></p>
@@ -835,7 +1033,7 @@
 <p>散列值的长度和消息的长度无关。无论消息是1比特，还是100MB，甚至是IOOGB，单向散列函数都会计算出固定长度的散列值。以SHA-I单向散列函数为例，它所计算出的散列值的长度永远是160比特（20字节）。</p>
 </blockquote>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538733147410.png" alt="1538733147410"></p>
-<h3 id="5-2-关于术语"><a href="#5-2-关于术语" class="headerlink" title="5.2 关于术语"></a>5.2 关于术语</h3><blockquote>
+<h3><span id="52-关于术语">5.2 关于术语</span></h3><blockquote>
 <p>单向散列函数的相关术语有很多变体，不同参考资料中所使用的术语也不同，下面我们就介绍其中的儿个。</p>
 <p>单向散列函数也称为<strong>消息摘要函数</strong>（message digest function）、<strong>哈希函数</strong>或者<strong>杂凑函数</strong>。</p>
 <p>输人单向散列函数的消息也称为<strong>原像</strong>（pre-image）。</p>
@@ -843,7 +1041,7 @@
 <p><strong>完整性</strong>也称为一致性。</p>
 <p>顺便说一句，单向散列函数中的“散列”的英文”hash一词，原意是古法语中的“斧子”，后来被引申为“剁碎的肉末”，也许是用斧子一通乱剁再搅在一起的那种感觉吧。单向散列函数的作用，实际上就是将很长的消息剁碎，然后再混合成固定长度的散列值。</p>
 </blockquote>
-<h3 id="5-3-单向散列函数的性质"><a href="#5-3-单向散列函数的性质" class="headerlink" title="5.3 单向散列函数的性质"></a>5.3 单向散列函数的性质</h3><blockquote>
+<h3><span id="53-单向散列函数的性质">5.3 单向散列函数的性质</span></h3><blockquote>
 <p>通过使用单向散列函数，即便是确认几百MB大小的文件的完整性，也只要对比很短的散列值就可以了。那么，单向散列函数必须具备怎样的性质呢？我们来整理一下。</p>
 </blockquote>
 <ul>
@@ -885,33 +1083,33 @@
 </blockquote>
 </li>
 </ul>
-<h3 id="5-4-单向散列函数的实际应用"><a href="#5-4-单向散列函数的实际应用" class="headerlink" title="5.4 单向散列函数的实际应用"></a>5.4 单向散列函数的实际应用</h3><blockquote>
+<h3><span id="54-单向散列函数的实际应用">5.4 单向散列函数的实际应用</span></h3><blockquote>
 <p>下面我们来看一下实际应用单向散列函数的例子。</p>
 </blockquote>
-<h4 id="5-4-1-检测软件是否被篡改"><a href="#5-4-1-检测软件是否被篡改" class="headerlink" title="5.4.1 检测软件是否被篡改"></a>5.4.1 检测软件是否被篡改</h4><blockquote>
+<h4><span id="541-检测软件是否被篡改">5.4.1 检测软件是否被篡改</span></h4><blockquote>
 <p>我们可以使用单向散列函数来确认自己下载的软件是否被篡改。</p>
 <p>很多软件，尤其是安全相关的软件都会把通过单向散列函数计算出的散列值公布在自己的官方网站上。用户在下载到软件之后，可以自行计算散列值，然后与官方网站上公布的散列值进行对比。通过散列值，用户可以确认自己所下载到的文件与软件作者所提供的文件是否一致。</p>
 <p>这样的方法，在可以通过多种途径得到软件的情况下非常有用。为了减轻服务器的压力，很多软件作者都会借助多个网站（镜像站点）来发布软件，在这种情况下，单向散列函数就会在检测软件是否被篡改方面发挥重要作用。</p>
 </blockquote>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538733447564.png" alt="1538733447564"></p>
-<h4 id="5-4-2-消息认证码"><a href="#5-4-2-消息认证码" class="headerlink" title="5.4.2 消息认证码"></a>5.4.2 消息认证码</h4><blockquote>
+<h4><span id="542-消息认证码">5.4.2 消息认证码</span></h4><blockquote>
 <p>使用单向散列函数可以构造消息认证码。</p>
 <p>消息认证码是将“发送者和接收者之间的共享密钥”和“消息，进行混合后计算出的散列值。使用消息认证码可以检测并防止通信过程中的错误、篡改以及伪装。</p>
 <p>消息认证码在SSL/TLS中也得到了运用，关于SSL/TLS我们将后边章节中介绍。</p>
 </blockquote>
-<h4 id="5-4-3-数字签名"><a href="#5-4-3-数字签名" class="headerlink" title="5.4.3 数字签名"></a>5.4.3 数字签名</h4><blockquote>
+<h4><span id="543-数字签名">5.4.3 数字签名</span></h4><blockquote>
 <p>在进行数字签名时也会使用单向散列函数。</p>
 <p>数字签名是现实社会中的签名（sign）和盖章这样的行为在数字世界中的实现。数字签名的处理过程非常耗时，因此一般不会对整个消息内容直接施加数字签名，而是先通过单向散列函数计算出消息的散列值，然后再对这个散列值施加数字签名。</p>
 </blockquote>
-<h4 id="5-4-6-伪随机数生成器"><a href="#5-4-6-伪随机数生成器" class="headerlink" title="5.4.6 伪随机数生成器"></a>5.4.6 伪随机数生成器</h4><blockquote>
+<h4><span id="546-伪随机数生成器">5.4.6 伪随机数生成器</span></h4><blockquote>
 <p>使用单向散列函数可以构造伪随机数生成器。</p>
 <p>密码技术中所使用的随机数需要具备“事实上不可能根据过去的随机数列预测未来的随机数列”这样的性质。为了保证不可预测性，可以利用单向散列函数的单向性。</p>
 </blockquote>
-<h4 id="5-4-7-一次性口令"><a href="#5-4-7-一次性口令" class="headerlink" title="5.4.7 一次性口令"></a>5.4.7 一次性口令</h4><blockquote>
+<h4><span id="547-一次性口令">5.4.7 一次性口令</span></h4><blockquote>
 <p>使用单向散列函数可以构造一次性口令（one-time password）。</p>
 <p>一次性口令经常被用于服务器对客户端的合法性认证。在这种方式中，通过使用单向散列函数可以保证口令只在通信链路上传送一次（one-time），因此即使窃听者窃取了口令，也无法使用。</p>
 </blockquote>
-<h3 id="5-5-常用的单向散列函数"><a href="#5-5-常用的单向散列函数" class="headerlink" title="5.5 常用的单向散列函数"></a>5.5 常用的单向散列函数</h3><h4 id="5-5-1-MD4、MD5"><a href="#5-5-1-MD4、MD5" class="headerlink" title="5.5.1 MD4、MD5"></a>5.5.1 MD4、MD5</h4><blockquote>
+<h3><span id="55-常用的单向散列函数">5.5 常用的单向散列函数</span></h3><h4><span id="551-md4-md5">5.5.1 MD4、MD5</span></h4><blockquote>
 <p>MD4是由Rivest于1990年设计的单向散列函数，能够产生128比特的散列值（RFC1186，修订版RFC1320）。不过，随着Dobbertin提出寻找MD4散列碰撞的方法，因此现在它已经不安全了。</p>
 <p>MD5是由Rwest于1991年设计的单项散列函数，能够产生128比特的散列值（RFC1321）。</p>
 <p>MD5的强抗碰撞性已经被攻破，也就是说，现在已经能够产生具备相同散列值的两条不同的消息，因此它也已经不安全了。</p>
@@ -952,7 +1150,7 @@
 </ol>
 </li>
 </ul>
-<h4 id="5-5-3-SHA-1、SHA-224、SHA-256、SHA-384、SHA-512"><a href="#5-5-3-SHA-1、SHA-224、SHA-256、SHA-384、SHA-512" class="headerlink" title="5.5.3 SHA-1、SHA-224、SHA-256、SHA-384、SHA-512"></a>5.5.3 SHA-1、SHA-224、SHA-256、SHA-384、SHA-512</h4><blockquote>
+<h4><span id="553-sha-1-sha-224-sha-256-sha-384-sha-512">5.5.3 SHA-1、SHA-224、SHA-256、SHA-384、SHA-512</span></h4><blockquote>
 <p>SHA-1是由NIST（NationalInstituteOfStandardsandTechnology，美国国家标准技术研究所）设计的一种能够产生160比特的散列值的单向散列函数。1993年被作为美国联邦信息处理标准规格（FIPS PUB 180）发布的是SHA,1995年发布的修订版FIPS PUB 180-1称为SHA-1。</p>
 <p>SHA-1的消息长度存在上限，但这个值接近于2^64^比特，是个非常巨大的数值，因此在实际应用中没有问题。</p>
 <p>SHA-256、SHA-384和SHA-512都是由NIST设计的单向散列函数，它们的散列值长度分别为256比特、384比特和512比特。这些单向散列函数合起来统称SHA-2，它们的消息长度也存在上限（SHA-256的上限接近于 2^64^ 比特，SHA-384 和 SHA-512的上限接近于 2^128^ 比特）。这些单向散列函数是于2002年和 SHA-1 一起作为 FIPS PUB 180-2发布的 SHA-1 的强抗碰撞性已于2005年被攻破, 也就是说，现在已经能够产生具备相同散列值的两条不同的消息。不过，SHA-2还尚未被攻破。</p>
@@ -1015,8 +1213,8 @@
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getSha1</span><span class="params">(src <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">	<span class="comment">// 1. 打开文件</span></span><br><span class="line">	fp, err := os.Open(src)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"文件打开失败"</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 2. 创建基于sha1算法的Hash对象</span></span><br><span class="line">	myHash := sha1.New()</span><br><span class="line">	<span class="comment">// 3. 将文件数据拷贝给哈希对象</span></span><br><span class="line">	num, err := io.Copy(myHash, fp)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"拷贝文件失败"</span></span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(<span class="string">"文件大小: "</span>, num)</span><br><span class="line">	<span class="comment">// 4. 计算文件的哈希值</span></span><br><span class="line">	tmp1 := myHash.Sum(<span class="literal">nil</span>)</span><br><span class="line">	<span class="comment">// 5. 数据格式转换</span></span><br><span class="line">    result := hex.EncodeToString(tmp1)</span><br><span class="line">	fmt.Println(<span class="string">"sha1: "</span>, result)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="6-消息认证码"><a href="#6-消息认证码" class="headerlink" title="6. 消息认证码"></a>6. 消息认证码</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"消息认证码 --- 消息被正确传送了吗?"</span></span><br></pre></td></tr></table></figure>
-<h3 id="6-1-什么是消息认证码"><a href="#6-1-什么是消息认证码" class="headerlink" title="6.1 什么是消息认证码"></a>6.1 什么是消息认证码</h3><ul>
+<h2><span id="6-消息认证码">6. 消息认证码</span></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"消息认证码 --- 消息被正确传送了吗?"</span></span><br></pre></td></tr></table></figure>
+<h3><span id="61-什么是消息认证码">6.1 什么是消息认证码</span></h3><ul>
 <li><p><strong>Alice 和 Bob 的故事</strong></p>
 <blockquote>
 <p>像以前一样，我们还是从一个Alice和Bob的故事开始讲起。不过，这一次Alice和Bob分别是两家银行，Alice银行通过网络向Bob银行发送了一条汇款请求，Bob银行收到的请求内容是：</p>
@@ -1043,7 +1241,7 @@
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538733638766.png" alt="1538733638766"></p>
 </li>
 </ul>
-<h3 id="6-2-消息认证码的使用步骤"><a href="#6-2-消息认证码的使用步骤" class="headerlink" title="6.2 消息认证码的使用步骤"></a>6.2 消息认证码的使用步骤</h3><blockquote>
+<h3><span id="62-消息认证码的使用步骤">6.2 消息认证码的使用步骤</span></h3><blockquote>
 <p>我们还是以Alice银行和Bob银行的故事为例，来讲解一下消息认证码的使用步骤: </p>
 </blockquote>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538733684992.png" alt="1538733684992"></p>
@@ -1057,7 +1255,7 @@
 <li>如果两个MAC值一致，则接收者Bob就可以断定汇款请求的确来自Alice（认证成功）；如果不一致，则可以断定消息不是来自Alice（认证失败）。</li>
 </ol>
 </blockquote>
-<h3 id="6-3-HMAC"><a href="#6-3-HMAC" class="headerlink" title="6.3 HMAC"></a>6.3 HMAC</h3><h4 id="6-3-1-HMAC介绍"><a href="#6-3-1-HMAC介绍" class="headerlink" title="6.3.1 HMAC介绍"></a>6.3.1 HMAC介绍</h4><blockquote>
+<h3><span id="63-hmac">6.3 HMAC</span></h3><h4><span id="631-hmac介绍">6.3.1 HMAC介绍</span></h4><blockquote>
 <p>HMAC是一种使用单向散列函数来构造消息认证码的方法（RFC2104），其中HMAC的H就是Hash的意思。</p>
 <p>HMAC中所使用的单向散列函数并不仅限于一种，任何高强度的单向散列函数都可以被用于HMAC,如果将来设计出新的单向散列函数，也同样可以使用。</p>
 <p>使用SHA-I、MD5、RIPEMD-160所构造的HMAC，分别称为HMAC-SHA-1、HMAC-MD5和HMAC-RlPEMD。</p>
@@ -1067,7 +1265,7 @@
 <blockquote>
 <p><strong>通过上述流程我们可以看出，最后得到的MAC值，一定是一个和输入的消息以及密钥都相关的长度固定的比特序列。</strong></p>
 </blockquote>
-<h4 id="6-3-2-Go中对HMAC的使用"><a href="#6-3-2-Go中对HMAC的使用" class="headerlink" title="6.3.2 Go中对HMAC的使用"></a>6.3.2 Go中对HMAC的使用</h4><p>需要使用的包</p>
+<h4><span id="632-go中对hmac的使用">6.3.2 Go中对HMAC的使用</span></h4><p>需要使用的包</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"crypto/hmac"</span></span><br></pre></td></tr></table></figure>
 <p>使用的函数</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">New</span><span class="params">(h <span class="keyword">func</span>()</span> <span class="title">hash</span>.<span class="title">Hash</span>, <span class="title">key</span> []<span class="title">byte</span>) <span class="title">hash</span>.<span class="title">Hash</span></span></span><br><span class="line"><span class="function"><span class="title">func</span> <span class="title">Equal</span><span class="params">(mac1, mac2 []<span class="keyword">byte</span>)</span> <span class="title">bool</span></span></span><br></pre></td></tr></table></figure>
@@ -1112,15 +1310,15 @@
 </ol>
 <p>测试代码</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">HMacTest</span><span class="params">()</span></span> &#123;</span><br><span class="line">	key := []<span class="keyword">byte</span>(<span class="string">"我是消息认证码秘钥"</span>)</span><br><span class="line">	src := []<span class="keyword">byte</span>(<span class="string">"我是消息认证码测试数据"</span>)</span><br><span class="line">	result := GenerateHMAC(src, key)</span><br><span class="line">	final := VerifyHMAC(result, src, key)</span><br><span class="line">	<span class="keyword">if</span> final &#123;</span><br><span class="line">		fmt.Println(<span class="string">"消息认证码认证成功!!!"</span>)</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">"消息认证码认证失败 ......"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="6-3-消息认证码的密钥配送问题"><a href="#6-3-消息认证码的密钥配送问题" class="headerlink" title="6.3 消息认证码的密钥配送问题"></a>6.3 消息认证码的密钥配送问题</h3><blockquote>
+<h3><span id="63-消息认证码的密钥配送问题">6.3 消息认证码的密钥配送问题</span></h3><blockquote>
 <p>在消息认证码中，需要发送者和接收者之间共享密钥，而这个密钥不能被主动攻击者Mallory获取。如果这个密钥落入Mallory手中，则Mallory也可以计算出MAC值，从而就能够自由地进行篡改和伪装攻击，这样一来消息认证码就无法发挥作用了。</p>
 <p>发送者和接收者需要共享密钥，这一点和我们介绍的对称加密很相似。实际上，对称加密的密钥配送问题在消息认证码中也同样会发生。关于秘钥的配送后边章节会介绍如何使用非对称加密的方式进行解决。</p>
 </blockquote>
-<h3 id="6-4-消息认证码无法解决的问题"><a href="#6-4-消息认证码无法解决的问题" class="headerlink" title="6.4 消息认证码无法解决的问题"></a>6.4 消息认证码无法解决的问题</h3><blockquote>
+<h3><span id="64-消息认证码无法解决的问题">6.4 消息认证码无法解决的问题</span></h3><blockquote>
 <p>假设发送者Alice要向接收者Bob发送消息，如果使用了消息认证码，接收者Bob就能够断定自己收到的消息与发送者Alice所发出的消息是一致的，这是因为消息中的MAC值只有用Alice和Bob之间共享的密钥才能够计算出来，即便主动攻击者Mallory篡改消息，或者伪装成Alice发送消息，Bob也能够识别出消息的篡改和伪装。</p>
 <p>但是，消息认证码也不能解决所有的问题，例如“对第三方证明”和“防止否认”，这两个问题就无法通过消息认证码来解决。下面我们来逐一解释一下。</p>
 </blockquote>
-<h4 id="6-4-1-对第三方证明"><a href="#6-4-1-对第三方证明" class="headerlink" title="6.4.1 对第三方证明"></a>6.4.1 对第三方证明</h4><blockquote>
+<h4><span id="641-对第三方证明">6.4.1 对第三方证明</span></h4><blockquote>
 <p>假设Bob在接收了来自Alice的消息之后，想要向第三方验证者Victor证明这条消息的确是Alice发送的，但是用消息认证码无法进行这样的证明，这是为什么呢？</p>
 <p>首先，Victor要校验MAC值，就需要知道Alice和Bob之间共享的密钥。</p>
 <p>假设Bob相信Victor, 同意将密钥告诉Victor,即便如此，Victor也无法判断这条消息是由Alice发送的，因为Victor可以认为：“即使MAC值是正确的，发送这条消息的人也不一定是Alice，还有可能是Bob。”</p>
@@ -1134,16 +1332,16 @@
 <p>Alice可以说“这条消息是Bob自己编的吧”，“说不定Bob的密钥被主动攻击者Mallory给盗取了，我的密钥可是妥善保管着呢” 等。说白了，就是Alice和Bob吵起来了。</p>
 <p>即便Bob拿MAC值来举证，Victor也无法判断Alice和Bob谁的主张才是正确的，也就是说，<strong>用消息认证码无法防止否认（nonrepudiatlon）</strong>。</p>
 </blockquote>
-<h3 id="6-5-总结"><a href="#6-5-总结" class="headerlink" title="6.5 总结"></a>6.5 总结</h3><blockquote>
+<h3><span id="65-总结">6.5 总结</span></h3><blockquote>
 <p>消息认证码是对消息进行认证并确认其完整性的技术。通过使用发送者和接收者之间共享的密钥，就可以识别出是否存在伪装和篡改行为。</p>
 <p>消息认证码可以使用单向散列函数HMAC， 对称加密也可以实现， 这里不再进行介绍。</p>
 <p>消息认证码中，由于发送者和接收者共享相同的密钥，因此会产生无法对第三方证明以及无法防止否认等问题。在下一章中，我们将介绍能够解决这些问题的数字签名。</p>
 </blockquote>
-<h2 id="7-数字签名"><a href="#7-数字签名" class="headerlink" title="7. 数字签名"></a>7. 数字签名</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"数字签名 --- 消息到底是谁写的"</span></span><br></pre></td></tr></table></figure>
+<h2><span id="7-数字签名">7. 数字签名</span></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"数字签名 --- 消息到底是谁写的"</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>本章中我们将学习数字签名的相关知识。数字签名是一种将相当于现实世界中的盖章、签字的功能在计算机世界中进行实现的技术。使用数字签名可以识别篡改和伪装，还可以防止否认。</p>
 </blockquote>
-<h3 id="7-1-从消息认证到数字签名"><a href="#7-1-从消息认证到数字签名" class="headerlink" title="7.1 从消息认证到数字签名"></a>7.1 从消息认证到数字签名</h3><ul>
+<h3><span id="71-从消息认证到数字签名">7.1 从消息认证到数字签名</span></h3><ul>
 <li><p><strong>消息认证码的局限性</strong></p>
 <blockquote>
 <p>通过使用第6章中介绍的消息认证码，我们可以识别消息是否被篡改或者发送者身份是否被伪装，也就是可以校验消息的完整性，还可以对消息进行认证。然而，比如在出具借条的场景中却无法使用消息认证码，因为消息认证码无法防止否认。</p>
@@ -1158,7 +1356,7 @@
 </blockquote>
 </li>
 </ul>
-<h3 id="7-2-签名的生成和验证"><a href="#7-2-签名的生成和验证" class="headerlink" title="7.2 签名的生成和验证"></a>7.2 签名的生成和验证</h3><blockquote>
+<h3><span id="72-签名的生成和验证">7.2 签名的生成和验证</span></h3><blockquote>
 <p>让我们来稍微整理一下。</p>
 <p>在数字签名技术中，出现了下面两种行为：</p>
 <ul>
@@ -1199,7 +1397,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="7-3-非对称加密和数字签名"><a href="#7-3-非对称加密和数字签名" class="headerlink" title="7.3 非对称加密和数字签名"></a>7.3 非对称加密和数字签名</h3><blockquote>
+<h3><span id="73-非对称加密和数字签名">7.3 非对称加密和数字签名</span></h3><blockquote>
 <p>下面我们再来详细讲一讲非对称加密与数字签名之间的关系。</p>
 <p>要实现数字签名，我们可以使用第4章中介绍的非对称加密。非对称加密包括一个由公钥和私钥组成的密钥对，其中公钥用于加密，私钥用于解密。</p>
 </blockquote>
@@ -1215,7 +1413,7 @@
 <p>由于公钥是对外公开的，因此任何人都能够用公钥进行解密，这就产生了一个很大的好处，即任何人都能够对签名进行验证。</p>
 </blockquote>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538735674794.png" alt="1538735674794"></p>
-<h3 id="7-3-数字签名的方法"><a href="#7-3-数字签名的方法" class="headerlink" title="7.3 数字签名的方法"></a>7.3 数字签名的方法</h3><blockquote>
+<h3><span id="73-数字签名的方法">7.3 数字签名的方法</span></h3><blockquote>
 <p>下面我们来具体介绍两种生成和验证数字签名的方法。</p>
 <ul>
 <li>直接对消息签名的方法</li>
@@ -1244,27 +1442,27 @@
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538734259000.png" alt="1538734259000"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">**Alice对消息的散列值签名, Bob验证签名(按时间顺序)**</span><br></pre></td></tr></table></figure>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538734363579.png" alt="1538734363579"></p>
-<h3 id="7-4-通过RSA实现数字签名"><a href="#7-4-通过RSA实现数字签名" class="headerlink" title="7.4 通过RSA实现数字签名"></a>7.4 通过RSA实现数字签名</h3><blockquote>
+<h3><span id="74-通过rsa实现数字签名">7.4 通过RSA实现数字签名</span></h3><blockquote>
 <p>前边章节已经介绍过了如何通过自己编写的go代码生成非对称加密算法RSA的公钥和私钥文件, 假设公钥文件的文件名为 <strong>public.pem</strong>，私钥文件对应的文件名为 <strong>private.pem</strong>。</p>
 </blockquote>
-<h4 id="7-4-1-生成数字签名"><a href="#7-4-1-生成数字签名" class="headerlink" title="7.4.1 生成数字签名"></a>7.4.1 生成数字签名</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SignatureRSA</span><span class="params">()</span> <span class="params">([]<span class="keyword">byte</span>, error)</span></span> &#123;</span><br><span class="line">	<span class="comment">// 1. 从秘钥文件中读生成的秘钥内容</span></span><br><span class="line">	fp, err := os.Open(<span class="string">"private.pem"</span>)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, errors.New(<span class="string">"打开私钥文件 - private.pem 失败!!!"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 2. 读文件内容</span></span><br><span class="line">	fileInfo, _ := fp.Stat()</span><br><span class="line">	all := <span class="built_in">make</span>([]<span class="keyword">byte</span>, fileInfo.Size())</span><br><span class="line">	_, err = fp.Read(all)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, errors.New(<span class="string">"读文件内容失败!!!"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(<span class="string">"文件内容: "</span>, <span class="keyword">string</span>(all))</span><br><span class="line">	<span class="comment">// 3. 关闭文件</span></span><br><span class="line">	<span class="keyword">defer</span> fp.Close()</span><br><span class="line">	<span class="comment">// 4. 将数据解析成pem格式的数据块</span></span><br><span class="line">	block, _ := pem.Decode(all)</span><br><span class="line">	<span class="comment">// 5. 解析pem数据块, 得到私钥</span></span><br><span class="line">	priv_Key, err := x509.ParsePKCS1PrivateKey(block.Bytes)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, errors.New(<span class="string">"解析私钥失败!!!"</span>)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 待签名数据</span></span><br><span class="line">	myData := []<span class="keyword">byte</span>(<span class="string">"渡远荆门外，来从楚国游。山随平野尽，江入大荒流。月下飞天境，云生结海楼。仍怜故乡水，万里送行舟。"</span>)</span><br><span class="line">	<span class="comment">// 6. 将数据通过哈希函数生成信息摘要</span></span><br><span class="line">	myHash := sha256.New()</span><br><span class="line">	myHash.Write(myData)</span><br><span class="line">	result := myHash.Sum(<span class="literal">nil</span>)</span><br><span class="line">	<span class="comment">// 7. 生成签名</span></span><br><span class="line">	mySignature, err := rsa.SignPKCS1v15(rand.Reader, priv_Key, crypto.SHA256, result)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, errors.New(<span class="string">"生成签名失败!!!"</span>)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> mySignature, <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="7-4-2-验证数字签名"><a href="#7-4-2-验证数字签名" class="headerlink" title="7.4.2 验证数字签名"></a>7.4.2 验证数字签名</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">VerifyRSA</span><span class="params">(src []<span class="keyword">byte</span>)</span> <span class="params">(error)</span></span>&#123;</span><br><span class="line">	<span class="comment">// 1. 从秘钥文件中读生成的秘钥内容</span></span><br><span class="line">	fp, err := os.Open(<span class="string">"public.pem"</span>)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> errors.New(<span class="string">"打开公钥文件 - public.pem 失败!!!"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 2. 读文件内容</span></span><br><span class="line">	fileInfo, _ := fp.Stat()</span><br><span class="line">	all := <span class="built_in">make</span>([]<span class="keyword">byte</span>, fileInfo.Size())</span><br><span class="line">	num, err := fp.Read(all)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> errors.New(<span class="string">"读文件内容失败!!!"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(<span class="string">"文件大小: "</span>, num)</span><br><span class="line">	<span class="comment">// 3. 关闭文件</span></span><br><span class="line">	<span class="keyword">defer</span> fp.Close()</span><br><span class="line">	<span class="comment">// 4. 将公钥数据解析为pem格式的数据块</span></span><br><span class="line">	block, _ := pem.Decode(all)</span><br><span class="line">	<span class="comment">// 5. 将公钥从pem数据块中提取出来</span></span><br><span class="line">	pubInterface, err := x509.ParsePKIXPublicKey(block.Bytes)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> errors.New(<span class="string">"解析公钥失败!!!"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 6. 公钥接口转换为公钥对象</span></span><br><span class="line">	pubKey := pubInterface.(*rsa.PublicKey)</span><br><span class="line">	<span class="comment">// 待认证数据</span></span><br><span class="line">	myData := []<span class="keyword">byte</span>(<span class="string">"渡远荆门外，来从楚国游。山随平野尽，江入大荒流。月下飞天境，云生结海楼。仍怜故乡水，万里送行舟。"</span>)</span><br><span class="line">	<span class="comment">// 7. 将数据通过哈希函数生成信息摘要</span></span><br><span class="line">	myHash := sha256.New()</span><br><span class="line">	myHash.Write(myData)</span><br><span class="line">	result := myHash.Sum(<span class="literal">nil</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 7. 数据认证</span></span><br><span class="line">	err = rsa.VerifyPKCS1v15(pubKey, crypto.SHA256, result, src)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> err</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	fmt.Println(<span class="string">"数字签名验证成功, 恭喜o(*￣︶￣*)o恭喜"</span>)</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="7-5-使用椭圆曲线实现数字签名"><a href="#7-5-使用椭圆曲线实现数字签名" class="headerlink" title="7.5 使用椭圆曲线实现数字签名"></a>7.5 使用椭圆曲线实现数字签名</h3><blockquote>
+<h4><span id="741-生成数字签名">7.4.1 生成数字签名</span></h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SignatureRSA</span><span class="params">()</span> <span class="params">([]<span class="keyword">byte</span>, error)</span></span> &#123;</span><br><span class="line">	<span class="comment">// 1. 从秘钥文件中读生成的秘钥内容</span></span><br><span class="line">	fp, err := os.Open(<span class="string">"private.pem"</span>)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, errors.New(<span class="string">"打开私钥文件 - private.pem 失败!!!"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 2. 读文件内容</span></span><br><span class="line">	fileInfo, _ := fp.Stat()</span><br><span class="line">	all := <span class="built_in">make</span>([]<span class="keyword">byte</span>, fileInfo.Size())</span><br><span class="line">	_, err = fp.Read(all)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, errors.New(<span class="string">"读文件内容失败!!!"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(<span class="string">"文件内容: "</span>, <span class="keyword">string</span>(all))</span><br><span class="line">	<span class="comment">// 3. 关闭文件</span></span><br><span class="line">	<span class="keyword">defer</span> fp.Close()</span><br><span class="line">	<span class="comment">// 4. 将数据解析成pem格式的数据块</span></span><br><span class="line">	block, _ := pem.Decode(all)</span><br><span class="line">	<span class="comment">// 5. 解析pem数据块, 得到私钥</span></span><br><span class="line">	priv_Key, err := x509.ParsePKCS1PrivateKey(block.Bytes)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, errors.New(<span class="string">"解析私钥失败!!!"</span>)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 待签名数据</span></span><br><span class="line">	myData := []<span class="keyword">byte</span>(<span class="string">"渡远荆门外，来从楚国游。山随平野尽，江入大荒流。月下飞天境，云生结海楼。仍怜故乡水，万里送行舟。"</span>)</span><br><span class="line">	<span class="comment">// 6. 将数据通过哈希函数生成信息摘要</span></span><br><span class="line">	myHash := sha256.New()</span><br><span class="line">	myHash.Write(myData)</span><br><span class="line">	result := myHash.Sum(<span class="literal">nil</span>)</span><br><span class="line">	<span class="comment">// 7. 生成签名</span></span><br><span class="line">	mySignature, err := rsa.SignPKCS1v15(rand.Reader, priv_Key, crypto.SHA256, result)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nil</span>, errors.New(<span class="string">"生成签名失败!!!"</span>)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> mySignature, <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4><span id="742-验证数字签名">7.4.2 验证数字签名</span></h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">VerifyRSA</span><span class="params">(src []<span class="keyword">byte</span>)</span> <span class="params">(error)</span></span>&#123;</span><br><span class="line">	<span class="comment">// 1. 从秘钥文件中读生成的秘钥内容</span></span><br><span class="line">	fp, err := os.Open(<span class="string">"public.pem"</span>)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> errors.New(<span class="string">"打开公钥文件 - public.pem 失败!!!"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 2. 读文件内容</span></span><br><span class="line">	fileInfo, _ := fp.Stat()</span><br><span class="line">	all := <span class="built_in">make</span>([]<span class="keyword">byte</span>, fileInfo.Size())</span><br><span class="line">	num, err := fp.Read(all)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> errors.New(<span class="string">"读文件内容失败!!!"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(<span class="string">"文件大小: "</span>, num)</span><br><span class="line">	<span class="comment">// 3. 关闭文件</span></span><br><span class="line">	<span class="keyword">defer</span> fp.Close()</span><br><span class="line">	<span class="comment">// 4. 将公钥数据解析为pem格式的数据块</span></span><br><span class="line">	block, _ := pem.Decode(all)</span><br><span class="line">	<span class="comment">// 5. 将公钥从pem数据块中提取出来</span></span><br><span class="line">	pubInterface, err := x509.ParsePKIXPublicKey(block.Bytes)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> errors.New(<span class="string">"解析公钥失败!!!"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 6. 公钥接口转换为公钥对象</span></span><br><span class="line">	pubKey := pubInterface.(*rsa.PublicKey)</span><br><span class="line">	<span class="comment">// 待认证数据</span></span><br><span class="line">	myData := []<span class="keyword">byte</span>(<span class="string">"渡远荆门外，来从楚国游。山随平野尽，江入大荒流。月下飞天境，云生结海楼。仍怜故乡水，万里送行舟。"</span>)</span><br><span class="line">	<span class="comment">// 7. 将数据通过哈希函数生成信息摘要</span></span><br><span class="line">	myHash := sha256.New()</span><br><span class="line">	myHash.Write(myData)</span><br><span class="line">	result := myHash.Sum(<span class="literal">nil</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 7. 数据认证</span></span><br><span class="line">	err = rsa.VerifyPKCS1v15(pubKey, crypto.SHA256, result, src)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> err</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	fmt.Println(<span class="string">"数字签名验证成功, 恭喜o(*￣︶￣*)o恭喜"</span>)</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="75-使用椭圆曲线实现数字签名">7.5 使用椭圆曲线实现数字签名</span></h3><blockquote>
 </blockquote>
-<h3 id="7-6-数字签名无法解决的问题"><a href="#7-6-数字签名无法解决的问题" class="headerlink" title="7.6 数字签名无法解决的问题"></a>7.6 数字签名无法解决的问题</h3><blockquote>
+<h3><span id="76-数字签名无法解决的问题">7.6 数字签名无法解决的问题</span></h3><blockquote>
 <p>用数字签名既可以识别出篡改和伪装，还可以防止否认。也就是说，我们同时实现了确认消息的完整性、进行认证以及否认防止。现代社会中的计算机通信从这一技术中获益匪浅。</p>
 <p>然而，<strong>要正确使用数字签名，有一个大前提，那是用于验证签名的公钥必须属于真正的发送者。</strong>即便数字签名算法再强大，如果你得到的公钥是伪造的，那么数字签名也会完全失效。</p>
 <p>现在我们发现自己陷人了一个死循环一一一数字签名是用来识别消息篡改、伪装以及否认的，但是为此我们又必须从没有被伪装的发送者得到没有被篡改的公钥才行。</p>
 <p>为了能够确认自己得到的公钥是否合法，我们需要使用证书。所谓证书，就是将公钥当作一条消息，由一个可信的第三方对其签名后所得到的公钥。</p>
 <p>当然，这样的方法只是把问题转移了而已。为了对证书上施加的数字签名进行验证，我们必定需要另一个公钥，那么如何才能构筑一个可信的数字签名链条呢？又由谁来颁发可信的证书呢？到这一步，我们就已经踏人了社会学的领域。我们需要让公钥以及数字签名技术成为一种社会性的基础设施，即公钥基础设施（Public Key Intrastructure），简称PKIO关于证书和PKI我们将在第8章中介绍。</p>
 </blockquote>
-<h2 id="8-证书"><a href="#8-证书" class="headerlink" title="8. 证书"></a>8. 证书</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"证书 -- 为公钥加上数字签名"</span></span><br></pre></td></tr></table></figure>
+<h2><span id="8-证书">8. 证书</span></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"证书 -- 为公钥加上数字签名"</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>要开车得先考驾照．驾照上面记有本人的照片、姓名、出生日期等个人信息．以及有效期、准驾车辆的类型等信息，并由公安局在上面盖章。我们只要看到驾照，就可以知道公安局认定此人具有驾驶车辆的资格。</p>
 <p>公钥证书（Public-Key Certificate，PKC)其实和驾照很相似，里面记有姓名、组织、邮箱地址等个人信息，以及属于此人的公钥，并由认证机构（Certification Authority、Certifying Authority, CA）施加数字签名。只要看到公钥证书，我们就可以知道认证机构认定该公钥的确属于此人。公钥证书也简称为证书（certificate）。</p>
 <p>可能很多人都没听说过认证机构，认证机构就是能够认定 “公钥确实属于此人”，并能够生成数字签名的个人或者组织。认证机构中有国际性组织和政府所设立的组织，也有通过提供认证服务来盈利的一般企业，此外个人也可以成立认证机构。</p>
 </blockquote>
-<h3 id="8-1-证书的应用场景"><a href="#8-1-证书的应用场景" class="headerlink" title="8.1 证书的应用场景"></a>8.1 证书的应用场景</h3><blockquote>
+<h3><span id="81-证书的应用场景">8.1 证书的应用场景</span></h3><blockquote>
 <p>下面我们来通过证书的代表性应用场景来理解证书的作用。</p>
 <p>下图展示了Alice向Bob发送密文的场景，在生成密文时所使用的Bob的公钥是通过认证机构获取的。</p>
 <p>认证机构必须是可信的，对于“可信的第三方”，下图中会使用Trent这个名字，这个词是从trust（信任）一词演变而来的。</p>
@@ -1321,13 +1519,13 @@
 </ol>
 <font color="blue" size="4">上面就是利用认证机构Trent进行公钥密码通信的流程。其中1、2、3这几个步骤仅在注册新公钥时才会进行，并不是每次通信都需要。此外，步骤 4 仅在Alice第一次用公钥密码向Bob发送消息时才需要进行，只要Alice将Bob的公钥保存在电脑中，在以后的通信中就可以直接使用了。</font>
 </blockquote>
-<h3 id="8-2-证书标准规范X-509"><a href="#8-2-证书标准规范X-509" class="headerlink" title="8.2 证书标准规范X.509"></a>8.2 证书标准规范X.509</h3><blockquote>
+<h3><span id="82-证书标准规范x509">8.2 证书标准规范X.509</span></h3><blockquote>
 <p>证书是由认证机构颁发的，使用者需要对证书进行验证，因此如果证书的格式千奇百怪那就不方便了。于是，人们制定了证书的标准规范，其中使用最广泛的是由ITU（International TelecommumcationUnion，国际电信联盟）和ISO（IntemationalOrganizationforStandardization, 国际标准化组织）制定的X.509规范。很多应用程序都支持x.509并将其作为证书生成和交换的标准规范。</p>
 <p>X.509是一种非常通用的证书格式。所有的证书都符合ITU-T X.509国际标准，因此(理论上)为一种应用创建的证书可以用于任何其他符合X.509标准的应用。X.509证书的结构是用ASN1(Abstract Syntax Notation One)进行描述数据结构，并使用ASN.1语法进行编码。 </p>
 <p>在一份证书中，必须证明公钥及其所有者的姓名是一致的。对X.509证书来说，认证者总是<a href="https://baike.baidu.com/item/CA" target="_blank" rel="noopener">CA</a>或由CA指定的人，一份X.509证书是一些标准字段的集合，这些字段包含有关用户或设备及其相应公钥的信息。X.509标准定义了证书中应该包含哪些信息，并描述了这些信息是如何编码的(即数据格式)</p>
 <p>一般来说，一个数字证书内容可能包括基本数据（版本、序列号) 、所签名对象信息（ 签名算法类型、签发者信息、有效期、被签发人、签发的公开密钥）、CA的数字签名，等等。</p>
 </blockquote>
-<h4 id="8-2-1-证书规范"><a href="#8-2-1-证书规范" class="headerlink" title="8.2.1 证书规范"></a>8.2.1 证书规范</h4><blockquote>
+<h4><span id="821-证书规范">8.2.1 证书规范</span></h4><blockquote>
 <p>前使用最广泛的标准为ITU和ISO联合制定的X.509的 v3版本规范 (RFC5280）, 其中定义了如下证书信息域：</p>
 <ul>
 <li><font color="red">版本号(Version Number）</font>：规范的版本号，目前为版本3，值为0x2；</li>
@@ -1366,7 +1564,7 @@
 </ul>
 <p>此外，证书的颁发者还需要对证书内容利用自己的私钥添加签名， 以防止别人对证书的内容进行篡改。</p>
 </blockquote>
-<h4 id="8-2-2-证书格式"><a href="#8-2-2-证书格式" class="headerlink" title="8.2.2 证书格式"></a>8.2.2 证书格式</h4><blockquote>
+<h4><span id="822-证书格式">8.2.2 证书格式</span></h4><blockquote>
 <p>X.509规范中一般推荐使用PEM(Privacy Enhanced Mail）格式来存储证书相关的文件。证书文件的文件名后缀一般为 .crt 或 .cer 。对应私钥文件的文件名后缀一般为 .key。证书请求文件的文件名后綴为 .csr 。有时候也统一用pem作为文件名后缀。</p>
 <p>PEM格式采用文本方式进行存储。一般包括首尾标记和内容块，内容块采用Base64进行编码。</p>
 <p><strong>编码格式总结:</strong></p>
@@ -1379,7 +1577,7 @@
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN CERTIFICATE-----</span><br><span class="line">MIIDyjCCArKgAwIBAgIQdZfkKrISoINLporOrZLXPTANBgkqhkiG9w0BAQsFADBn</span><br><span class="line">MSswKQYDVQQLDCJDcmVhdGVkIGJ5IGh0dHA6Ly93d3cuZmlkZGxlcjIuY29tMRUw</span><br><span class="line">EwYDVQQKDAxET19OT1RfVFJVU1QxITAfBgNVBAMMGERPX05PVF9UUlVTVF9GaWRk</span><br><span class="line">bGVyUm9vdDAeFw0xNzA0MTExNjQ4MzhaFw0yMzA0MTExNjQ4MzhaMFoxKzApBgNV</span><br><span class="line">BAsMIkNyZWF0ZWQgYnkgaHR0cDovL3d3dy5maWRkbGVyMi5jb20xFTATBgNVBAoM</span><br><span class="line">DERPX05PVF9UUlVTVDEUMBIGA1UEAwwLKi5iYWlkdS5jb20wggEiMA0GCSqGSIb3</span><br><span class="line">DQEBAQUAA4IBDwAwggEKAoIBAQDX0AM198jxwRoKgwWsd9oj5vI0and9v9SB9Chl</span><br><span class="line">gZEu6G9ZA0C7BucsBzJ2bl0Mf6qq0Iee1DfeydfEKyTmBKTafgb2DoQE3OHZjy0B</span><br><span class="line">QTJrsOdf5s636W5gJp4f7CUYYA/<span class="number">3e1</span>nxr/+AuG44Idlsi17TWodVKjsQhjzH+bK6</span><br><span class="line"><span class="number">8</span>ukQZyel1SgBeQOivzxXe0rhXzrocoeKZFmUxLkUpm+/mX1syDTdaCmQ6LT4KYYi</span><br><span class="line">soKe4f+r2tLbUzPKxtk2F1v3ZLOjiRdzCOA27e5n88zdAFrCmMB4teG/azCSAH3g</span><br><span class="line">Yb6vaAGaOnKyDLGunW51sSesWBpHceJnMfrhwxCjiv707JZtAgMBAAGjfzB9MA4G</span><br><span class="line">A1UdDwEB/wQEAwIEsDATBgNVHSUEDDAKBggrBgEFBQcDATAWBgNVHREEDzANggsq</span><br><span class="line">LmJhaWR1LmNvbTAfBgNVHSMEGDAWgBQ9UIffUQSuwWGOm+o74JffZJNadjAdBgNV</span><br><span class="line">HQ4EFgQUQh8IksZqcMVmKrIibTHLbAgLRGgwDQYJKoZIhvcNAQELBQADggEBAC5Y</span><br><span class="line">JndwXpm0W+<span class="number">9</span>SUlQhAUSE9LZh+DzcSmlCWtBk+SKBwmAegbfNSf6CgCh0VY6iIhbn</span><br><span class="line">GlszqgAOAqVMxAEDlR/YJTOlAUXFw8KICsWdvE01xtHqhk1tCK154Otci60Wu+tz</span><br><span class="line"><span class="number">1</span>t8999GPbJskecbRDGRDSA/gQGZJuL0rnmIuz3macSVn6tH7NwdoNeN68Uj3Qyt5</span><br><span class="line">orYv1IFm8t55224ga8ac1y90hK4R5HcvN71aIjMKrikgynK0E+g45QypHRIe/z0S</span><br><span class="line">/<span class="number">1</span>W/<span class="number">6</span>rqTgfN6OWc0c15hPeJbTtkntB5Fqd0sfsnKkW6jPsKQ+z/+vZ5XqzdlFupQ</span><br><span class="line"><span class="number">29</span>F14ei8ZHl9aLIHP5s=</span><br><span class="line">-----END CERTIFICATE-----</span><br></pre></td></tr></table></figure>
 <p>证书中的解析出来的内容：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">Certificate:</span><br><span class="line">    Data:</span><br><span class="line">        Version: <span class="number">3</span> (<span class="number">0x2</span>)</span><br><span class="line">        Serial Number:</span><br><span class="line">            <span class="number">10</span>:e6:fc:<span class="number">62</span>:b7:<span class="number">41</span>:<span class="number">8</span>a:d5:<span class="number">00</span>:<span class="number">5</span>e:<span class="number">45</span>:b6</span><br><span class="line">    Signature Algorithm: sha256WithRSAEncryption</span><br><span class="line">        Issuer: C=BE, O=GlobalSign nv-sa, CN=GlobalSign Organization Validation CA-SHA256-G2</span><br><span class="line">        Validity</span><br><span class="line">            Not Before: Nov <span class="number">21</span> <span class="number">08</span>:<span class="number">00</span>:<span class="number">00</span> <span class="number">2016</span> GMT</span><br><span class="line">            Not After : Nov <span class="number">22</span> <span class="number">07</span>:<span class="number">59</span>:<span class="number">59</span> <span class="number">2017</span> GMT</span><br><span class="line">        Subject: C=US, ST=California, L=San Francisco, O=Wikimedia Foundation, Inc., CN=*.wikipedia.org</span><br><span class="line">        Subject Public Key Info:</span><br><span class="line">            Public Key Algorithm: id-ecPublicKey</span><br><span class="line">                Public-Key: (<span class="number">256</span> bit)</span><br><span class="line">                pub: </span><br><span class="line">                    <span class="number">04</span>:c9:<span class="number">22</span>:<span class="number">69</span>:<span class="number">31</span>:<span class="number">8</span>a:d6:<span class="number">6</span>c:ea:da:c3:<span class="number">7f</span>:<span class="number">2</span>c:ac:a5:</span><br><span class="line">                    af:c0:<span class="number">02</span>:ea:<span class="number">81</span>:cb:<span class="number">65</span>:b9:fd:<span class="number">0</span>c:<span class="number">6d</span>:<span class="number">46</span>:<span class="number">5</span>b:c9:<span class="number">1</span>e:</span><br><span class="line">                    ed:b2:ac:<span class="number">2</span>a:<span class="number">1</span>b:<span class="number">4</span>a:ec:<span class="number">80</span>:<span class="number">7</span>b:e7:<span class="number">1</span>a:<span class="number">51</span>:e0:df:f7:</span><br><span class="line">                    c7:<span class="number">4</span>a:<span class="number">20</span>:<span class="number">7</span>b:<span class="number">91</span>:<span class="number">4</span>b:<span class="number">20</span>:<span class="number">07</span>:<span class="number">21</span>:ce:cf:<span class="number">68</span>:<span class="number">65</span>:<span class="number">8</span>c:c6:</span><br><span class="line">                    <span class="number">9d</span>:<span class="number">3</span>b:ef:d5:c1</span><br><span class="line">                ASN1 OID: prime256v1</span><br><span class="line">                NIST CURVE: P<span class="number">-256</span></span><br><span class="line">        X509v3 extensions:</span><br><span class="line">            X509v3 Key Usage: critical</span><br><span class="line">                Digital Signature, Key Agreement</span><br><span class="line">            Authority Information Access: </span><br><span class="line">                CA Issuers - URI:http:<span class="comment">//secure.globalsign.com/cacert/gsorganizationvalsha2g2r1.crt</span></span><br><span class="line">                OCSP - URI:http:<span class="comment">//ocsp2.globalsign.com/gsorganizationvalsha2g2</span></span><br><span class="line"></span><br><span class="line">            X509v3 Certificate Policies: </span><br><span class="line">                Policy: <span class="number">1.3</span><span class="number">.6</span><span class="number">.1</span><span class="number">.4</span><span class="number">.1</span><span class="number">.4146</span><span class="number">.1</span><span class="number">.20</span></span><br><span class="line">                  CPS: https:<span class="comment">//www.globalsign.com/repository/</span></span><br><span class="line">                Policy: <span class="number">2.23</span><span class="number">.140</span><span class="number">.1</span><span class="number">.2</span><span class="number">.2</span></span><br><span class="line"></span><br><span class="line">            X509v3 Basic Constraints: </span><br><span class="line">                CA:FALSE</span><br><span class="line">            X509v3 CRL Distribution Points: </span><br><span class="line"></span><br><span class="line">                Full Name:</span><br><span class="line">                  URI:http:<span class="comment">//crl.globalsign.com/gs/gsorganizationvalsha2g2.crl</span></span><br><span class="line"></span><br><span class="line">            X509v3 Subject Alternative Name: </span><br><span class="line">                DNS:*.wikipedia.org, DNS:*.m.mediawiki.org, DNS:*.m.wikibooks.org, DNS:*.m.wikidata.org, DNS:*.m.wikimedia.org, DNS:*.m.wikimediafoundation.org, DNS:*.m.wikinews.org, DNS:*.m.wikipedia.org, DNS:*.m.wikiquote.org, DNS:*.m.wikisource.org, DNS:*.m.wikiversity.org, DNS:*.m.wikivoyage.org, DNS:*.m.wiktionary.org, DNS:*.mediawiki.org, DNS:*.planet.wikimedia.org, DNS:*.wikibooks.org, DNS:*.wikidata.org, DNS:*.wikimedia.org, DNS:*.wikimediafoundation.org, DNS:*.wikinews.org, DNS:*.wikiquote.org, DNS:*.wikisource.org, DNS:*.wikiversity.org, DNS:*.wikivoyage.org, DNS:*.wiktionary.org, DNS:*.wmfusercontent.org, DNS:*.zero.wikipedia.org, DNS:mediawiki.org, DNS:w.wiki, DNS:wikibooks.org, DNS:wikidata.org, DNS:wikimedia.org, DNS:wikimediafoundation.org, DNS:wikinews.org, DNS:wikiquote.org, DNS:wikisource.org, DNS:wikiversity.org, DNS:wikivoyage.org, DNS:wiktionary.org, DNS:wmfusercontent.org, DNS:wikipedia.org</span><br><span class="line">            X509v3 Extended Key Usage: </span><br><span class="line">                TLS Web Server Authentication, TLS Web Client Authentication</span><br><span class="line">            X509v3 Subject Key Identifier: </span><br><span class="line">                <span class="number">28</span>:<span class="number">2</span>A:<span class="number">26</span>:<span class="number">2</span>A:<span class="number">57</span>:<span class="number">8</span>B:<span class="number">3</span>B:CE:B4:D6:AB:<span class="number">54</span>:EF:D7:<span class="number">38</span>:<span class="number">21</span>:<span class="number">2</span>C:<span class="number">49</span>:<span class="number">5</span>C:<span class="number">36</span></span><br><span class="line">            X509v3 Authority Key Identifier: </span><br><span class="line">                keyid:<span class="number">96</span>:DE:<span class="number">61</span>:F1:BD:<span class="number">1</span>C:<span class="number">16</span>:<span class="number">29</span>:<span class="number">53</span>:<span class="number">1</span>C:C0:CC:<span class="number">7</span>D:<span class="number">3</span>B:<span class="number">83</span>:<span class="number">00</span>:<span class="number">40</span>:E6:<span class="number">1</span>A:<span class="number">7</span>C</span><br><span class="line"></span><br><span class="line">    Signature Algorithm: sha256WithRSAEncryption</span><br><span class="line">         <span class="number">8</span>b:c3:ed:d1:<span class="number">9d</span>:<span class="number">39</span>:<span class="number">6f</span>:af:<span class="number">40</span>:<span class="number">72</span>:bd:<span class="number">1</span>e:<span class="number">18</span>:<span class="number">5</span>e:<span class="number">30</span>:<span class="number">54</span>:<span class="number">23</span>:<span class="number">35</span>:</span><br><span class="line">         ...</span><br></pre></td></tr></table></figure>
-<h4 id="8-2-3-CA证书"><a href="#8-2-3-CA证书" class="headerlink" title="8.2.3 CA证书"></a>8.2.3 CA证书</h4><blockquote>
+<h4><span id="823-ca证书">8.2.3 CA证书</span></h4><blockquote>
 <p>证书是用来证明某某东西确实是某某东西的东西（是不是像绕口令？）。通俗地说，证书就好比上文里面的公章。通过公章，可以证明对应的证件的真实性。</p>
 <p>理论上，人人都可以找个证书工具，自己做一个证书。那如何防止坏人自己制作证书出来骗人捏？请看后续 CA 的介绍。</p>
 <p>CA是Certificate Authority的缩写，也叫“证书授权中心”。</p>
@@ -1439,23 +1637,23 @@
 </blockquote>
 </li>
 </ul>
-<h3 id="8-3-公钥基础设施（PKI）"><a href="#8-3-公钥基础设施（PKI）" class="headerlink" title="8.3 公钥基础设施（PKI）"></a>8.3 公钥基础设施（PKI）</h3><blockquote>
+<h3><span id="83-公钥基础设施pki">8.3 公钥基础设施（PKI）</span></h3><blockquote>
 <p>仅制定证书的规范还不足以支持公钥的实际运用，我们还需要很多其他的规范，例如证书应该由谁来颁发，如何颁发，私钥泄露时应该如何作废证书，计算机之间的数据交换应采用怎样的格式等。这一节我们将介绍能够使公钥的运用更加有效的公钥基础设施。</p>
 </blockquote>
-<h4 id="8-3-1-什么是公钥基础设施"><a href="#8-3-1-什么是公钥基础设施" class="headerlink" title="8.3.1 什么是公钥基础设施"></a>8.3.1 什么是公钥基础设施</h4><blockquote>
+<h4><span id="831-什么是公钥基础设施">8.3.1 什么是公钥基础设施</span></h4><blockquote>
 <p>公钥基础设施（Public-Key infrastructure）是为了能够更有效地运用公钥而制定的一系列规范和规格的总称。公钥基础设施一般根据其英语缩写而简称为PKI。</p>
 <p>PKI只是一个总称，而并非指某一个单独的规范或规格。例如，RSA公司所制定的PKCS（Public-Key Cryptography Standards，公钥密码标准）系列规范也是PKI的一种，而互联网规格RFC（Requestfor Comments）中也有很多与PKI相关的文档。此外，X.509这样的规范也是PKI的一种。在开发PKI程序时所使用的由各个公司编写的API（Application Programming Interface, 应用程序编程接口）和规格设计书也可以算是PKI的相关规格。</p>
 <p>因此，根据具体所采用的规格，PKI也会有很多变种，这也是很多人难以整体理解PKI的原因之一。</p>
 <p>为了帮助大家整体理解PKI,我们来简单总结一下PKI的基本组成要素（用户、认证机构、仓库）以及认证机构所负责的工作。</p>
 </blockquote>
-<h4 id="8-3-2-PKI的组成要素"><a href="#8-3-2-PKI的组成要素" class="headerlink" title="8.3.2 PKI的组成要素"></a>8.3.2 PKI的组成要素</h4><p>PKI的组成要素主要有以下三个：</p>
+<h4><span id="832-pki的组成要素">8.3.2 PKI的组成要素</span></h4><p>PKI的组成要素主要有以下三个：</p>
 <ul>
 <li>用户 — 使用PKI的人</li>
 <li>认证机构 — 颁发证书的人</li>
 <li>仓库 — 保存证书的数据库</li>
 </ul>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538758063013.png" alt="1538758063013"></p>
-<h5 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h5><blockquote>
+<h5><span id="用户">用户</span></h5><blockquote>
 <p>用户就是像Alice、Bob这样使用PKI的人。用户包括两种：一种是希望使用PKI注册自己的公钥的人，另一种是希望使用已注册的公钥的人。我们来具体看一下这两种用户所要进行的操作。</p>
 </blockquote>
 <ul>
@@ -1477,7 +1675,7 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">==================== 小知识点 ==================== </span></span><br><span class="line"><span class="comment">浏览器如何验证SSL证书</span></span><br><span class="line"><span class="comment">1. 在IE浏览器的菜单中点击“工具 /Internet选项”，选择“内容”标签，点击“证书”按钮，然后就可以看到IE</span></span><br><span class="line"><span class="comment">   浏览器已经信任了许多“中级证书颁发机构”和“受信任的根证书颁发机 构。当我们在访问该网站时，浏览器</span></span><br><span class="line"><span class="comment">   就会自动下载该网站的SSL证书，并对证书的安全性进行检查。</span></span><br><span class="line"><span class="comment">2. 由于证书是分等级的，网站拥有者可能从根证书颁发机构领到证书，也可能从根证书的下一级（如某个国家</span></span><br><span class="line"><span class="comment">   的认证中心，或者是某个省发出的证书）领到证书。假设我们正在访问某个使用 了 SSL技术的网站，IE浏</span></span><br><span class="line"><span class="comment">   览器就会收到了一个SSL证书，如果这个证书是由根证书颁发机构签发的，IE浏览器就会按照下面的步骤来</span></span><br><span class="line"><span class="comment">   检查：浏览器使用内 置的根证书中的公钥来对收到的证书进行认证，如果一致，就表示该安全证书是由可信</span></span><br><span class="line"><span class="comment">   任的颁证机构签发的，这个网站就是安全可靠的；如果该SSL证书不是根服 务器签发的，浏览器就会自动检</span></span><br><span class="line"><span class="comment">   查上一级的发证机构，直到找到相应的根证书颁发机构，如果该根证书颁发机构是可信的，这个网站的SSL证</span></span><br><span class="line"><span class="comment">   书也是可信的。</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h5 id="认证机构（CA）"><a href="#认证机构（CA）" class="headerlink" title="认证机构（CA）"></a>认证机构（CA）</h5><blockquote>
+<h5><span id="认证机构ca">认证机构（CA）</span></h5><blockquote>
 <p>认证机构（Certification Authority，CA）是对证书进行管理的人。上面的图中我们给它起了一个名字叫作Trent。认证机构具体所进行的操作如下：</p>
 </blockquote>
 <ul>
@@ -1506,21 +1704,21 @@
 <blockquote>
 <p>认证机构的工作中，公钥注册和本人身份认证这一部分可以由注册机构（Registration Authority，RA) 来分担。这样一来，认证机构就可以将精力集中到颁发证书上，从而减轻了认证机构的负担。不过，引入注册机构也有弊端，比如说认证机构需要对注册机构本身进行认证，而且随着组成要素的增加，沟通过程也会变得复杂，容易遭受攻击的点也会增。</p>
 </blockquote>
-<h5 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h5><blockquote>
+<h5><span id="仓库">仓库</span></h5><blockquote>
 <p>仓库（repository）是一个保存证书的数据库，PKI用户在需要的时候可以从中获取证书．它的作用有点像打电话时用的电话本。在本章开头的例子中，尽管没特别提到，但Alice获取Bob的证书时，就可以使用仓库。仓库也叫作证书目录。</p>
 </blockquote>
-<h4 id="8-3-3-各种各样的PKI"><a href="#8-3-3-各种各样的PKI" class="headerlink" title="8.3.3 各种各样的PKI"></a>8.3.3 各种各样的PKI</h4><blockquote>
+<h4><span id="833-各种各样的pki">8.3.3 各种各样的PKI</span></h4><blockquote>
 <p>公钥基础设施（PKI）这个名字总会引起一些误解，比如说“面向公众的权威认证机构只有一个”，或者“全世界的公钥最终都是由一个根CA来认证的”，其实这些都是不正确的。认证机构只要对公钥进行数字签名就可以了，因此任何人都可以成为认证机构，实际上世界上已经有无数个认证机构了。</p>
 <p>国家、地方政府、医院、图书馆等公共组织和团体可以成立认证机构来实现PKI,公司也可以出于业务需要在内部实现PKI,甚至你和你的朋友也可以以实验为目的来构建PKI。</p>
 <p>在公司内部使用的情况下，认证机构的层级可以像上一节中一样和公司的组织层级一一对应，也可以不一一对应。例如，如果公司在东京、大阪、北海道和九州都成立了分公司，也可以采取各个分公司之间相互认证的结构。在认证机构的运营方面，可以购买用于构建PKI的软件产品由自己公司运营，也可以使用VeriSign等外部认证服务。具体要采取怎样的方式，取决于目的和规模，并没有一定之规。 </p>
 </blockquote>
-<h2 id="9-SSL-TLS"><a href="#9-SSL-TLS" class="headerlink" title="9. SSL/TLS"></a>9. SSL/TLS</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"SSL/TLS --- 为了更安全的通信"</span></span><br></pre></td></tr></table></figure>
+<h2><span id="9-ssltls">9. SSL/TLS</span></h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"SSL/TLS --- 为了更安全的通信"</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>本章中我们将学习SSL/TLS的相关知识。</p>
 <p>SSL/TLS是世界上应用最广泛的密码通信方法。比如说，当在网上商城中输人信用卡号时，我们的Web浏览器就会使用SSL/TLS进行密码通信。使用SSL/TLS可以对通信对象进行认证，还可以确保通信内容的机密性。</p>
 <p>SSL/TLS中综合运用了之前所学习的对称密码、消息认证码、公钥密码、数字签名、伪随机数生成器等密码技术，大家可以在阅读本章内容的同时对这些技术进行复习。严格来说，SSL（Secure Socket Layer)与TLS（Transport Layer Security）是不同的，TLS相当于是SSL的后续版本。不过，本章中所介绍的内容，大多是SSL和TLS两者兼备的，因此除具体介绍通信协议的部分以外，都统一写作SSL/TLS。</p>
 </blockquote>
-<h3 id="9-1-客户端与服务器"><a href="#9-1-客户端与服务器" class="headerlink" title="9.1 客户端与服务器"></a>9.1 客户端与服务器</h3><blockquote>
+<h3><span id="91-客户端与服务器">9.1 客户端与服务器</span></h3><blockquote>
 <p>Bob书店是Alice经常光顾的一家网店，因为在Bob书店她可以搜索到新出版的图书，还可以通过信用卡快速完成支付，购买的书还能快递到家，真的很方便。</p>
 <p>有一天，Alice 读了一本关于网络信息安全的书，书上说“互联网上传输的数据都是可以被窃听的”。Alice感到非常担心，自己在购买新书的时候输人的信用卡号会不会被窃听呢？</p>
 <p>Alice看到Bob书店的网站下面写着一行字：“在以https://开头的网页中输人的信息将通过SSL/TLS发送以确保安全”。</p>
@@ -1539,7 +1737,7 @@
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">**不使用SSL/TLS发送信用卡号的情形**</span><br></pre></td></tr></table></figure>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538754051163.png" alt="1538754051163"></p>
-<h3 id="9-2-用SSL-TLS承载HTTP"><a href="#9-2-用SSL-TLS承载HTTP" class="headerlink" title="9.2 用SSL/TLS承载HTTP"></a>9.2 用SSL/TLS承载HTTP</h3><blockquote>
+<h3><span id="92-用ssltls承载http">9.2 用SSL/TLS承载HTTP</span></h3><blockquote>
 <p>什么是SSL,什么是TLS呢？官话说SSL是安全套接层(secure sockets layer)，TLS是SSL的继任者，叫传输层安全(transport layer security)。说白点，就是在明文的上层和TCP层之间加上一层加密，这样就保证上层信息传输的安全。如HTTP协议是明文传输，加上SSL层之后，就有了雅称HTTPS。它存在的唯一目的就是保证上层通讯安全的一套机制。</p>
 <p>当Web浏览器发送信用卡号时，信用卡号的数据会作为客户端请求发送给服务器。如果通信内容被窃听者Eve所窃取，Eve就会得到信用卡号。</p>
 <p>于是，我们可以用SSL（Secure Socket Layer）或者TLS（Transport Layer Security）作为对通信进行加密的协议，然后在此之上承載HTTP（下图）。通过将两种协议进行叠加，我们就可以对HTTP的通信（请求和响应）进行加密，从而防止窃听。通过SSL/TLS进行通信时，URL不是以http://开头，而是以https://开头。</p>
@@ -1564,7 +1762,7 @@
 <p>用SSL/TLS承载HTTP、SMTP和POP3的结构如下图所示。一般的电子邮件软件都可以完成发送和接收邮件这两种操作，其实是同时扮演了SMTP客户端和POP3客户端这两种角色。</p>
 </blockquote>
 <p><img src="/dayuya.github.io/2019/01/14/13-crypto-basic/assets\1538755269669.png" alt="1538755269669"></p>
-<h3 id="9-3-https"><a href="#9-3-https" class="headerlink" title="9.3 https"></a>9.3 https</h3><h3 id="9-3-1-http和https"><a href="#9-3-1-http和https" class="headerlink" title="9.3.1 http和https"></a>9.3.1 http和https</h3><blockquote>
+<h3><span id="93-https">9.3 https</span></h3><h3><span id="931-http和https">9.3.1 http和https</span></h3><blockquote>
 <p>HTTP协议：是互联网上应用最为广泛的一种网络协议，是一个客户端和服务器端请求和应答的标准（TCP），用于从WWW服务器传输超文本到本地浏览器的传输协议，它可以使浏览器更加高效，使网络传输减少。</p>
 <p>HTTPS：是以安全为目标的HTTP通道，简单讲是HTTP的安全版，即HTTP下加入SSL/TLS层，HTTPS的安全基础是SSL/TLS，因此加密的详细内容就需要SSL/TLS。</p>
 <font color="red">HTTPS协议的主要作用可以分为两种：</font>
@@ -1582,7 +1780,7 @@
 <p>　　4、http的连接很简单，是无状态的；HTTPS协议是由SSL/TLS+HTTP协议构建的可进行加密传输、</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; 身份认证的网络协议，比http协议安全。</span><br><span class="line">&gt; </span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
-<h3 id="9-3-2-https优缺点"><a href="#9-3-2-https优缺点" class="headerlink" title="9.3.2 https优缺点"></a>9.3.2 https优缺点</h3><ul>
+<h3><span id="932-https优缺点">9.3.2 https优缺点</span></h3><ul>
 <li><p><strong>https的优点</strong></p>
 <blockquote>
 <p>尽管HTTPS并非绝对安全，掌握根证书的机构、掌握加密算法的组织同样可以进行中间人形式的攻击，但HTTPS仍是现行架构下最安全的解决方案，主要有以下几个好处：</p>
@@ -1607,7 +1805,7 @@
 </blockquote>
 </li>
 </ul>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><h3 id="PKCS15个标准"><a href="#PKCS15个标准" class="headerlink" title="PKCS15个标准"></a>PKCS15个标准</h3><blockquote>
+<h2><span id="参考资料">参考资料</span></h2><h3><span id="pkcs15个标准">PKCS15个标准</span></h3><blockquote>
 <p>PKCS 全称是 Public-Key Cryptography Standards ，是由 RSA 实验室与其它安全系统开发商为促进公钥密码的发展而制订的一系列标准。</p>
 <p>可以到官网上看看 <a href="http://www.rsa.com/rsalabs/node.asp?id=2308" target="_blank" rel="noopener">What is PKCS</a></p>
 <p><a href="http://www.rsa.com/rsalabs/node.asp?id=2308" target="_blank" rel="noopener">http://www.rsa.com/rsalabs/node.asp?id=2308</a></p>
