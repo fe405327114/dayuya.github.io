@@ -6,7 +6,7 @@
   <link href="/dayuya.github.io/atom.xml" rel="self"/>
   
   <link href="https://fe405327114.github.io/dayuya.github.io/"/>
-  <updated>2019-01-14T07:31:33.613Z</updated>
+  <updated>2019-01-14T08:01:09.345Z</updated>
   <id>https://fe405327114.github.io/dayuya.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>go_data_structure</title>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/14/15-go-data-structure/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/14/15-go-data-structure/</id>
+    <published>2019-01-14T07:56:30.000Z</published>
+    <updated>2019-01-14T08:01:09.345Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;[TOC]&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;01-稀疏数组-sparsearray&quot;&gt;&lt;a href=&quot;#01-稀疏数组-sparsearray&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="go" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go/"/>
+    
+  </entry>
   
   <entry>
     <title>Yaml</title>
