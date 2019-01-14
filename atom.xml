@@ -6,7 +6,7 @@
   <link href="/dayuya.github.io/atom.xml" rel="self"/>
   
   <link href="https://fe405327114.github.io/dayuya.github.io/"/>
-  <updated>2019-01-14T07:03:17.919Z</updated>
+  <updated>2019-01-14T07:31:33.613Z</updated>
   <id>https://fe405327114.github.io/dayuya.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Yaml</title>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/14/14-Yaml/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/14/14-Yaml/</id>
+    <published>2019-01-14T07:24:08.000Z</published>
+    <updated>2019-01-14T07:31:33.613Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;简洁的非标记语言&quot;&gt;&lt;a href=&quot;#简洁的非标记语言&quot; class=&quot;headerlink&quot; title=&quot;简洁的非标记语言&quot;&gt;&lt;/a&gt;简洁的非标记语言&lt;/h4&gt;&lt;h4 id=&quot;基本格式要求&quot;&gt;&lt;a href=&quot;#基本格式要求&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="yaml" scheme="https://fe405327114.github.io/dayuya.github.io/tags/yaml/"/>
+    
+  </entry>
   
   <entry>
     <title>crypto_basic</title>
