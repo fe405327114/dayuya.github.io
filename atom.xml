@@ -6,7 +6,7 @@
   <link href="/dayuya.github.io/atom.xml" rel="self"/>
   
   <link href="https://fe405327114.github.io/dayuya.github.io/"/>
-  <updated>2019-01-13T14:24:48.738Z</updated>
+  <updated>2019-01-14T06:26:42.497Z</updated>
   <id>https://fe405327114.github.io/dayuya.github.io/</id>
   
   <author>
@@ -17,9 +17,33 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>11.go_log</title>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/14/11-go-log/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/14/11-go-log/</id>
+    <published>2019-01-14T05:46:11.000Z</published>
+    <updated>2019-01-14T06:26:42.497Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;标准输出log日志&quot;&gt;&lt;a href=&quot;#标准输出log日志&quot; class=&quot;headerlink&quot; title=&quot;标准输出log日志&quot;&gt;&lt;/a&gt;标准输出log日志&lt;/h4&gt;&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
+        
+      
+    
+    </summary>
+    
+    
+      <category term="go" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go/"/>
+    
+  </entry>
+  
+  <entry>
     <title>10.go_sync.Pool</title>
-    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/13/10.go_sync_Pool/"/>
-    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/13/10.go_sync_Pool/</id>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/13/10-go-sync-Pool/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/13/10-go-sync-Pool/</id>
     <published>2019-01-13T13:54:15.000Z</published>
     <updated>2019-01-13T14:24:48.738Z</updated>
     
@@ -42,8 +66,8 @@
   
   <entry>
     <title>09.go_json</title>
-    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/13/09.go_json/"/>
-    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/13/09.go_json/</id>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/13/09-go-json/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/13/09-go-json/</id>
     <published>2019-01-13T09:07:41.000Z</published>
     <updated>2019-01-13T14:24:54.325Z</updated>
     
@@ -66,8 +90,8 @@
   
   <entry>
     <title>08.go_sync.Once</title>
-    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/13/08.go_sync_Once/"/>
-    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/13/08.go_sync_Once/</id>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/13/08-go-sync-Once/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/13/08-go-sync-Once/</id>
     <published>2019-01-13T08:35:07.000Z</published>
     <updated>2019-01-13T14:24:59.222Z</updated>
     
@@ -92,8 +116,8 @@
   
   <entry>
     <title>07.go_bytes.Buffer</title>
-    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/13/07.go_bytes.Buffer/"/>
-    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/13/07.go_bytes.Buffer/</id>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/13/07-go-bytes-Buffer/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/13/07-go-bytes-Buffer/</id>
     <published>2019-01-13T07:39:14.000Z</published>
     <updated>2019-01-13T14:25:04.345Z</updated>
     
@@ -116,8 +140,8 @@
   
   <entry>
     <title>06.go_sort.Interface</title>
-    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/13/06.go_sort_Interface/"/>
-    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/13/06.go_sort_Interface/</id>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/13/06-go-sort-Interface/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/13/06-go-sort-Interface/</id>
     <published>2019-01-13T05:45:24.000Z</published>
     <updated>2019-01-13T14:25:08.475Z</updated>
     
@@ -140,8 +164,8 @@
   
   <entry>
     <title>05.go_flag.Value</title>
-    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/12/05.go_flag.Value/"/>
-    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/12/05.go_flag.Value/</id>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/12/05-go-flag-Value/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/12/05-go-flag-Value/</id>
     <published>2019-01-12T09:50:10.000Z</published>
     <updated>2019-01-13T14:59:22.036Z</updated>
     
@@ -164,8 +188,8 @@
   
   <entry>
     <title>04.go_interface</title>
-    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/12/04.go_interface/"/>
-    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/12/04.go_interface/</id>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/12/04-go-interface/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/12/04-go-interface/</id>
     <published>2019-01-12T09:49:36.000Z</published>
     <updated>2019-01-13T14:25:20.903Z</updated>
     
@@ -188,8 +212,8 @@
   
   <entry>
     <title>03.go_error</title>
-    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/12/03.go_error/"/>
-    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/12/03.go_error/</id>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/12/03-go-error/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/12/03-go-error/</id>
     <published>2019-01-12T09:48:42.000Z</published>
     <updated>2019-01-13T14:25:25.635Z</updated>
     
@@ -213,10 +237,10 @@
   
   <entry>
     <title>02.k8s</title>
-    <link href="https://fe405327114.github.io/dayuya.github.io/2018/12/03/02.k8s/"/>
-    <id>https://fe405327114.github.io/dayuya.github.io/2018/12/03/02.k8s/</id>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2018/12/03/02-k8s/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2018/12/03/02-k8s/</id>
     <published>2018-12-03T12:26:03.000Z</published>
-    <updated>2019-01-13T10:12:46.943Z</updated>
+    <updated>2019-01-14T06:26:37.702Z</updated>
     
     <summary type="html">
     
@@ -237,8 +261,8 @@
   
   <entry>
     <title>01.git</title>
-    <link href="https://fe405327114.github.io/dayuya.github.io/2018/11/29/01.git/"/>
-    <id>https://fe405327114.github.io/dayuya.github.io/2018/11/29/01.git/</id>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2018/11/29/01-git/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2018/11/29/01-git/</id>
     <published>2018-11-29T06:54:56.000Z</published>
     <updated>2019-01-12T07:18:12.112Z</updated>
     
