@@ -1,0 +1,434 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Zhang Jiangfeng"><title>mysql_query · dayuya's blog</title><meta name="description" content="SQL语句的整体结构:
+select colname… from tablename
+​    where cond group by colname
+​    having cond order by …;
+
+基本的SELECT语句
+​    其语法格式为：SELECT *|{[DISTINCT]"><meta name="keywords" content=""><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/dayuya.github.io/css/bootstrap.min.css"><link rel="stylesheet" href="/dayuya.github.io/css/font-awesome.min.css"><link rel="stylesheet" href="/dayuya.github.io/css/style.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div id="stage" class="container"><div class="row"><div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible"><div class="vertical-text site-title"><h3 tabindex="-1" class="site-title-small"><a href="/dayuya.github.io/" class="a-title">Tech blog</a></h3><h1 tabindex="-1" class="site-title-large"><a href="/dayuya.github.io/" class="a-title">大鱼呀</a></h1><!--h6(onclick="triggerSiteNav()") Trigger--></div><br class="visible-lg visible-md visible-sm"><div id="site-nav" class="site-title-links"><ul><li><a href="/dayuya.github.io/">Home</a></li><li><a href="/dayuya.github.io/archives">Archive</a></li><li><a href="/dayuya.github.io/tags">Tags</a></li><li class="soc"><a href="https://fe405327114.github.io/dayuya.github.io/atom.xml" target="_blank" rel="noopener noreferrer"><i class="fa fa-rss">&nbsp;</i></a></li></ul><div class="visible-lg visible-md visible-sm site-nav-footer"><br class="site-nav-footer-br"><footer><p>&copy;&nbsp;2019&nbsp;<a target="_blank" href="https://fe405327114.github.io/dayuya.github.io" rel="noopener noreferrer">Zhang Jiangfeng</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div><div id="main-container" class="col-sm-9 col-xs-12 main-container invisible"><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post-container"><p class="post-title"><a>mysql_query</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2019-01-14</span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a href="/dayuya.github.io/tags/mysql/" title="mysql" class="a-tag">mysql</a><span>&nbsp;</span></span></p><p class="post-abstract"></p><p>SQL语句的整体结构:</p>
+<p>select colname… from tablename</p>
+<p>​    where cond group by colname</p>
+<p>​    having cond order by …;</p>
+<hr>
+<p>基本的SELECT语句</p>
+<p>​    其语法格式为：SELECT *|{[DISTINCT] column|expression [alias],…} FROM     table;</p>
+<p>​     案例:</p>
+<p>​          1 查询所有员工的所有记录</p>
+<p>​               select * from emp;</p>
+<p>​          2 查询员工号，姓名，月薪，奖金，年薪</p>
+<p>​               select empno, ename, sal, comm, sal*12 from emp;</p>
+<p>​            使用select <em> 和 select 列名的区别: 使用select </em>会先查有哪些列, 影响效率</p>
+<p>​          3 对案例2使用别名:</p>
+<p>​               select empno, ename, sal as 工资, comm 奖金, sal*12 “年 薪” from emp;</p>
+<p>​            关于别名的结论:</p>
+<p>​                      as可以省略</p>
+<p>​                      如果别名中间有空格, 需要使用””引起来</p>
+<p>​          4 查询员工号，姓名，月薪，奖金，年薪，年收入</p>
+<p>​               select empno, ename, sal, comm, sal<em>12, sal</em>12+comm from emp;</p>
+<p>​               select empno, ename, sal, comm, sal<em>12, sal</em>12+ifnull(comm, 0) “年收入”from emp;</p>
+<p>​            结论:</p>
+<p>​                 1 包含有null的表达式都是空, 如sal*12+comm</p>
+<p>​                 2 ifnull: ifnull(a, b)—&gt;若a为空, 则取b的值</p>
+<p>​          5 查看员工表不同的部门编号</p>
+<p>​               select distinct deptno from emp;</p>
+<p>​          6 查看不同部门的不同工种</p>
+<p>​               select distinct deptno, job from emp;    </p>
+<p>​            结论:distinct的作用范围??</p>
+<p>​                 distinct作用于后面所有的列.</p>
+<hr>
+<p>where条件:​        </p>
+<p>1 使用比较运算符: &gt; &gt;= &lt; &lt;= != (&lt;&gt;) between and</p>
+<p>​     案例:</p>
+<p>​          1 查询10号部门的员工信息</p>
+<p>​               select * from emp where deptno=10; </p>
+<p>​          2 查询员工名字为king的员工信息</p>
+<p>​               select * from emp where ename=’king’;</p>
+<p>​               SELECT * FROM emp WHERE ENAME=’KING’;</p>
+<p>​          3 查找薪水不等于1250员工的信息</p>
+<p>​               select * from emp where sal!=1250;</p>
+<p>​               select * from emp where sal&lt;&gt;1250;</p>
+<p>​          4 查询入职日期为1981年11月17日的员工信息</p>
+<p>​               select * from emp where hiredate=’1981-11-17’;</p>
+<p>​          5 查找工资介于1000-2000之间的员工信息</p>
+<p>​                select * from emp where sal&gt;=1000 and sal&lt;=2000;</p>
+<p>​               select * from emp where sal between 1000 and 2000;</p>
+<p>​             结论: between and是闭区间</p>
+<hr>
+<p>2 在where条件中使用逻辑运算符: or and not     </p>
+<p>​     案例:</p>
+<p>​          1 查询10号部门或者20部门的员工信息</p>
+<p>​               select * from emp where deptno=10 or deptno=20;           </p>
+<p>​          2 查询10号部门员工工资为1300的员工信息</p>
+<p>​               select * from emp where deptno=10 and sal=1300;</p>
+<p>​          3 查询工资介于1600到3000的</p>
+<p>​               select * from emp where sal between 1600 and 3000;</p>
+<p>​          结论: 关于and or 操作符的sql优化问题?</p>
+<p>​               where条件在进行逻辑表达式计算的时候,是从右往左进行的, 所以对于and来说, 要把容易出现假的放在</p>
+<p>​               最右边, 对于or来说, 要把容易出现真的表达式放在最右边.</p>
+<p>​               where a and b and c and d;</p>
+<p>​               where a or b or c or d;</p>
+<p>​          4 查询奖金为空的员工信息-null</p>
+<p>​               select * from emp where comm = null;  —查不到结果</p>
+<p>​               select * from emp where comm is  null;</p>
+<p>​          5 查询奖金不为空的员工信息</p>
+<p>​               select * from emp where comm != null; —查不到结果</p>
+<p>​               select * from emp where comm is not null;</p>
+<p>​          结论: 关于null的在where条件中使用的结论?</p>
+<p>​               若为空, 应该使用is null, 若不为空, 应该使用is not null            </p>
+<hr>
+<p>3 在where条件中使用in–in后面是一个集合             </p>
+<p>案例:</p>
+<p>​     1 查询部门号是10或者20的员工信息</p>
+<p>​          select * from emp where deptno in (10, 20);</p>
+<p>​          select * from emp where deptno=10 or deptno=20;</p>
+<p>​       思考: 可以在in的集合中使用null吗?</p>
+<p>​          select * from emp where deptno in (10, 20, null);</p>
+<p>​          select * from emp where deptno=10 or deptno=20 or deptno=null;</p>
+<p>​     2 查询不是10和20号部门的员工信息</p>
+<p>​        select * from emp where deptno not in (10, 20);</p>
+<p>​        select * from emp where deptno!=10 and deptno!=20;</p>
+<p>​        select * from emp where deptno not in (10, 20, null);</p>
+<p>​     ==select * from emp where deptno!=10 and deptno!=20 and deptno!=null;</p>
+<p>​       思考: 若not in的集合中有null会怎么样呢?</p>
+<p>​            查询不到数据, not in后面不能出现null.</p>
+<p>​            deptno in (a, b, null)—–&gt;deptno=a or deptno=b or deptno=null;</p>
+<p>​            deptno not in (a, b, null)—-&gt;deptno!=a and deptno!=b and deptno!=null;</p>
+<hr>
+<p>4 在where条件中使用like–模糊查找, 其中: ‘%’匹配任意多个字符。’_’匹配一个字符, escape指定转义字符.                  </p>
+<p>案例:</p>
+<p>​     1 查询员工首字母是S的员工信息</p>
+<p>​          select * from emp where ename like ‘S%’;</p>
+<p>​     2 查询员工编号为79开头的员工信息</p>
+<p>​          select * from emp where empno like ‘79%’;</p>
+<p>​     3 查询名字为四个字母长度的员工信息</p>
+<p>​          select * from emp where ename like ‘____’;</p>
+<p>​     插入一条记录, 用于测试转义字符</p>
+<p>​          insert into emp (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO)</p>
+<p>​          values (1000, ‘TOM_CAT’, ‘CLERK’, 9999, ‘1988-09-09’, 1200.00, null, 10);  </p>
+<p>​    4 查询员工姓名带_的员工信息</p>
+<p>​         select * from emp where ename like ‘%$_%’ escape ‘$’;</p>
+<p>​         但是不能用\作为转义字符.</p>
+<p>回顾一下where后面可以使用哪些运算符???</p>
+<p>​     比较运算符:= &gt; &gt;= &lt; &lt;= != &lt;&gt; between and</p>
+<p>​     逻辑运算符: and or not</p>
+<p>​     集合运算符: in     not in</p>
+<p>​     模糊查找:like % _ escape    </p>
+<p>​    </p>
+<hr>
+<p>排序: 使用order by关键字, 基本格式:</p>
+<p>​     select  … from … where condition order by colname|alias|expr|number(序号)</p>
+<p>​     order by有两种排序方法; 一种是升序, 一种是降序: 默认是升序的(asc), 降序为desc</p>
+<p>  a 使用列名进行排序:</p>
+<p>​     案例:</p>
+<p>​          1 员工信息按入职日期先后排序</p>
+<p>​               select * from emp order by hiredate;</p>
+<p>​               select * from emp order by hiredate asc;</p>
+<p>​          2 员工薪水按从大到小排序</p>
+<p>​               select * from emp order by sal desc;    </p>
+<p>​          3 查询员工信息按奖金逆序</p>
+<p>​               select * from emp order by comm desc;</p>
+<p>​          4 员工信息按部门升序、薪水降序排列</p>
+<p>​               select * from emp order by deptno asc, sal desc;</p>
+<p>​        根据排序结果得出结论:</p>
+<p>​                 asc和desc作用于最近的前面的一列</p>
+<p>​                 按照多个列进行排序的时候, 先按照第一列进行排序, 若第一列相同,则按照第二列排序   </p>
+<p>  b 使用序号进行排序:(并说明什么序号)</p>
+<p>​       案例:</p>
+<p>​            1 查询员工编号, 员工姓名和工资, 按照序号(工资)进行排序</p>
+<p>​                 select empno, ename, sal from emp order by 3;</p>
+<p>   c 使用别名进行排序</p>
+<p>​       案例:</p>
+<p>​            1 按员工的年收入进行排序</p>
+<p>​            select empno, ename, sal, comm, sal*12+ifnull(comm, 0) yearcomm from emp order by yearcomm;</p>
+<p>  d 使用表达式进行排序</p>
+<p>​       案例:</p>
+<p>​            1 按照员工的年薪进行排序</p>
+<p>​            select empno, ename, sal, sal<em>12 “年薪” from emp order by sal</em>12;</p>
+<p>​           </p>
+<p>关于排序的几点说明:</p>
+<p>​     1 要了解排序可以使用哪几种方式</p>
+<p>​          列名   序号   别名   表达式</p>
+<p>​     注意: order by一定是出现在select语句的最后面, 也就是对最后的查询结果进行排序.      </p>
+<hr>
+<p>条件表达式:         </p>
+<p>​     案例: 老板打算给涨工资，总裁1000，经理800，普通员工400，将涨前、涨后薪水列出</p>
+<p>​     介绍case when 的用法</p>
+<p>​     基本语法:</p>
+<p>​          case 表达式</p>
+<p>​               when 表达式的值 then</p>
+<p>​                    表达式</p>
+<p>​               when 表达式的值 then</p>
+<p>​                    表达式</p>
+<p>​               else</p>
+<p>​                    表达式</p>
+<p>​          end “别名”</p>
+<p>​         </p>
+<p>–使用case when    </p>
+<p>​     select empno,ename, sal “涨前薪水”, job,case jobwhen ‘PRESIDENT’ then sal + 1000when ‘MANAGER’ then sal + 800 else sal + 400 end “涨后薪水” from emp;</p>
+<p>​      </p>
+<hr>
+<p>分组函数和分组数据</p>
+<hr>
+<p>分组函数:也称之为组函数或者聚合函数, oracle提供的常用的分组函数有:sum, avg, count, max, min</p>
+<p>​    </p>
+<p>案例:</p>
+<p>​     1 统计员工总数</p>
+<p>​       select count(empno) from emp;</p>
+<p>​     2 统计工种总数</p>
+<p>​       select count(job) from emp;—包含重复的</p>
+<p>​       select count(distinct job) from emp;</p>
+<p>​     3 求员工的平均工资</p>
+<p>​       select avg(sal) from emp;</p>
+<p>​     4 求员工的平均奖金</p>
+<p>​          select avg(comm), sum(comm)/count(empno) from emp;</p>
+<p>​     5 求员工表中最高工资和最低工资</p>
+<p>​          select max(sal), min(sal) from emp;</p>
+<p>​    </p>
+<p>​     结论: 分组函数具有滤空功能.</p>
+<p>​    </p>
+<hr>
+<p>基本格式 : select …, count() from emp where … group by ..</p>
+<p>说明: 按照group by 后给定的表达式，将from后面的table进行分组, 针对每一组, 使用组函数。</p>
+<p>案例:</p>
+<p>​     1 统计各个部门的平均工资？</p>
+<p>​          select deptno, avg(sal) from emp group by deptno;</p>
+<p>​          注意: 统计各个部门的平均工资是: 先按照部门进行分组, 然后再组内进行统计.</p>
+<p>​                 最后的结果一定是有几个部门编号就有几个结果.</p>
+<p>​     2 统计各个部门不同工种的平均工资?</p>
+<p>​          select deptno, job, avg(sal) from emp group by deptno, job;</p>
+<p>​          结论: 请思考通过案例1和案例2得出什么样的结论?? </p>
+<p>​          select后面的列和group后面的列有什么关系?</p>
+<p>​            select a, b, c.., count(f) from table group by a, b, c</p>
+<p>​                 结论: select后面的列若没有出现在分组函数中, 则一定要出现在group by子句中.</p>
+<p>​               在group by子句中出现的列, 不要求一定出现在select后面的列中</p>
+<p>​     3 统计各个部门平均工资高于2000?</p>
+<p>​          select deptno, avg(sal) from emp group by deptno having avg(sal)&gt;2000;</p>
+<p>​          结论:对分组数据进行过滤, 不能够使用where, 应该使用having</p>
+<p>​     4 –求薪资在1200以上的员工数</p>
+<p>​          select count(empno) from emp where sal&gt;1200;</p>
+<p>​     5 –求员工人数高于4个人的部门编号和员工数</p>
+<p>​          select deptno, count(empno) from emp group by deptno having count(empno)&gt;4;</p>
+<p>​     6 求10号部门员工的平均薪水</p>
+<p>​          方法1:先过滤再分组</p>
+<p>​               select deptno, avg(sal) from emp where deptno=10 group by deptno;</p>
+<p>​          方法2:先分组再过滤</p>
+<p>​               select deptno, avg(sal) from emp group by deptno having deptno=10;</p>
+<p>​          结论:比较两种方法, 应该优先使用那种方法??</p>
+<p>​               第一种效率高, 原因是第一种方法先过滤, 然后在进行统计;</p>
+<p>​               第二种效率低, 原因是第二种方法是对整个表进行分组统计, 然后在对分组之后的数据</p>
+<p>​               进行过滤, 统计的数据量比第一种要大.</p>
+<p>​     使用分组函数统计分组数据不当的情况:</p>
+<p>​     select deptno, job, avg(sal) from emp group by deptno;</p>
+<p>​     切记: 出现在select后面的列, 若没有出现在分组函数中, 则必须</p>
+<p>​           出现在group by 子句中.</p>
+<p>​    </p>
+<p>​     注意点: 分组数据是先对表进行分组,然后再组内进行统计.</p>
+<p>​          出现在select后面的列, 若没有出现在分组函数里面, 则必须出现在group by子句当中.</p>
+<p>​         </p>
+<p>思考: 通过上述讲解, 说明where和having是什么区别?</p>
+<p>​         </p>
+<hr>
+<p>多表查询:</p>
+<p>–笛卡尔积(作用是处理多表查询)</p>
+<p>  首先看如下的查询:</p>
+<p>​       select e.<em>, d.</em> from emp e cross join dept d;</p>
+<p>​      </p>
+<p>  结论:</p>
+<ul>
+<li><p>笛卡尔积行数=A表的行数*B表的行数</p>
+</li>
+<li><p>笛卡尔积列数=A表的列数+B表的列数</p>
+</li>
+<li><p>笛卡尔积的数据集合中有一些是无效的数据, 需要进行过滤,</p>
+</li>
+<li><p>对于有2个表的的笛卡尔积, 需要一个条件, 对于n个表需要n-1个条件.</p>
+</li>
+</ul>
+<p>  注意:</p>
+<p>​       对于多表查询, 首先会生成笛卡尔积, 笛卡尔积里面会有无效的数据, 此时需要过滤筛选.    </p>
+<p>案例:</p>
+<p>内连接(也称为等值连接)</p>
+<p>  1–查询员工信息：员工号 姓名 月薪(emp)和部门名称(dept)</p>
+<p>​       select e.empno, e.ename, e.sal, d.dname from emp e, dept d where e.deptno=d.deptno;</p>
+<p>​       select e.empno, e.ename, e.sal, d.dname from emp e inner join dept d on e.deptno=d.deptno;</p>
+<p>  2–查询emp表和dept表的所有信息:</p>
+<p>​       select e.<em>, d.</em> from emp e inner join dept d on e.deptno=d.deptno;</p>
+<p>​       select e.<em>, d.</em> from emp e, dept d where e.deptno=d.deptno;</p>
+<p>​     总结:</p>
+<p>​           —–&gt;inner join</p>
+<p>​          where—–&gt;on</p>
+<p>​     注意: 不能显示40号部门的信息, 此时需要使用外连接</p>
+<p>外连接:</p>
+<p>–按部门统计员工人数, 显示如下信息： 部门号 部门名称 人数</p>
+<p>​    select e.deptno, d.dname, count(e.empno)</p>
+<p>​      from emp e, dept d</p>
+<p>​     where e.deptno = d.deptno</p>
+<p>​     group by e.deptno, d.dname;</p>
+<p>​    </p>
+<p>上述查询不能查询出40号部门的员工数, 需要使用外连接:</p>
+<ul>
+<li>右外连接:</li>
+</ul>
+<p>​       select e.<em>, d.</em> from emp e right outer join dept d on e.deptno=d.deptno;</p>
+<ul>
+<li>左外连接:</li>
+</ul>
+<p>​     select e.<em>, d.</em> from dept d left outer join emp e on e.deptno=d.deptno;</p>
+<p>​     【注意】SQL99中，外链接取值与关系表达式=号左右位置无关。取值跟from后表的书写顺序有关。</p>
+<p>​          “xxx left outer join yyy”  则为取出xxx的内容。</p>
+<p>​          “xxx right outer join yyy” 则为取出yyy的内容</p>
+<hr>
+<p>子查询</p>
+<hr>
+<p>–查询比SCOTT工资高的员工信息</p>
+<p>分析: 可以分两部查找,</p>
+<p>第一步: 查找SCOTT的工资</p>
+<p>​     select sal from emp where ename=’SCOTT’;  —&gt;3000</p>
+<p>第二步: 将上一步得到的结果作为第二部查询的条件</p>
+<p>​     select * from emp where sal&gt;3000;</p>
+<p>可以使用子查询方法将两步合成一步:</p>
+<p>​     select * from emp where sal&gt;(select sal from emp where ename=’SCOTT’);</p>
+<p>​    </p>
+<p>案例:</p>
+<p>1 查询部门名称是”SALES”的员工信息:</p>
+<p>​     select * from emp where deptno=(select deptno from dept where dname=’SALES’);</p>
+<p>2 查询10号部门员工号, 员工姓名, 部门编号, 部门名称</p>
+<p>​     select e.empno, e.ename, e.deptno,</p>
+<p>​                        (select dname from dept where deptno=10) dname</p>
+<p>​                 from emp e where e.deptno=10;</p>
+<p>3 查询部门平均工资高于30号部门平均工资的部门和平均工资</p>
+<p>   select deptno, avg(sal)</p>
+<p>​          from emp</p>
+<p>​         group by deptno</p>
+<p>​        having avg(sal) &gt; (select avg(sal) from emp where deptno = 30);        </p>
+<p>4 查询比平均工资高的员工的信息?</p>
+<p>​     select * from emp where sal&gt;(select avg(sal) from emp);   </p>
+<p>5 查询最低薪水高于30号部门最低薪水的部门及其最低薪水</p>
+<p>​     select deptno, min(sal) from emp group by deptno</p>
+<p>​           having min(sal)&gt;(select min(sal) from emp where deptno=30);</p>
+<hr>
+<p>集合运算</p>
+<p>​     union 两个集合相同的部分保留一份</p>
+<p>​     union all 两个集合相同的部分都保留</p>
+<p>​    </p>
+<p>​     select <em> from emp where deptno = 10 union select </em> from emp where deptno=20;</p>
+<p>​     select <em> from emp where deptno = 10 union select </em> from emp where deptno in(20,10);</p>
+<p>​     select <em> from emp where deptno = 10 union all select </em> from emp where deptno in(20,10);</p>
+<p>​    </p>
+<hr>
+<p>–sql语言的类型</p>
+<p>  DML data manipulation language  数据操作语言，对应增删改查</p>
+<p>  DDL  data definition language  数据定义语言 create, drop, truncate</p>
+<p>  DCL  data control language 数据控制语言 grant, revoke, commit, rollback     </p>
+<p>  –delete和truncate的区别:</p>
+<p>  相同点: delete和truncate都可以删除数据</p>
+<p>  不同点:</p>
+<p>​       1 truncate是DDL语句, 而delete是DML语句</p>
+<p>​       2 truncate删除的时候不能跟where条件,而delete可以</p>
+<p>​       3 用truncate删除以后会自动提交,不能使用rollback恢复数据;</p>
+<p>​         而使用delete删除数据之后, 只要不commit, 就可以用rollback恢复</p>
+<p>​       4 就删除数据的速度来说, 一般truncate比delete快.</p>
+<p>通过实验验证truncate和delete的效率:</p>
+<p>​     执行test.sh脚本生成sql语句文件insert.sql, 然后执行</p>
+<p>​     mysql&gt; source insert.sql   将数据全部插入到数据库中</p>
+<p>​     接下来使用delete和truncate进行删除, 并比较时间.</p>
+<p>​    </p>
+<p>​     数据总数为10000条, 若数据量大差异会比较明显.</p>
+<p>​     mysql&gt; delete from mytest;</p>
+<p>​     Query OK, 10000 rows affected (0.06 sec)</p>
+<p>​    </p>
+<p>​    </p>
+<p>​     mysql&gt; truncate table mytest;</p>
+<p>​     Query OK, 0 rows affected (0.02 sec)</p>
+<p>​     通过比较得知, truncate删除数据所用的时间较短, 效率高.</p>
+<p>​     但是, 我们不提倡使用truncate删除数据, 因为一旦删除无法恢复.</p>
+<p>​    </p>
+<hr>
+<p>​                   </p>
+<p>表的约束:</p>
+<p>​          *定义主键约束 primary key:     不允许为空，不允许重复</p>
+<p>​          *定义主键自动增长 auto_increment</p>
+<p>​          *定义唯一约束 unique</p>
+<p>​          *定义非空约束 not null</p>
+<p>​          *定义外键约束 constraint ordersid_FK foreign key(ordersid) references orders(id)</p>
+<p>​          *删除主键：alter table tablename drop primary key ;</p>
+<p>准备两个表:(下面的建表语句在执行的时候若不能正常执行, 可以尝试把tab去掉)</p>
+<p>create table class (</p>
+<p>id INT(11) primary key auto_increment,</p>
+<p>name varchar(20) unique</p>
+<p>);</p>
+<p>create table student (</p>
+<p>id INT(11) primary key auto_increment,</p>
+<p>name varchar(20) unique,</p>
+<p>passwd varchar(15) not null,</p>
+<p>classid INT(11),</p>
+<p>constraint stu_classid_FK foreign key(classid) references class(id)</p>
+<p>);</p>
+<p>向myclass表中插入两条数据:</p>
+<p>​     insert into class(name) values(‘music’);</p>
+<p>​     insert into class(name) values(‘PE’);</p>
+<p>​     insert into class(id, name) values(14, ‘art’);</p>
+<p>​     insert into class(name) values(‘culture’);</p>
+<p>​     注意: 要插入的是部分列, 一定要在class表名后面写上列名, 表示要插入哪些列</p>
+<p>​           由于class表的id是主键, 可以不用显示的插入主键的值, mysql会自动插入,而且会自动增长,确保不会重复.</p>
+<p>向student表中插入数据:    </p>
+<p>  正常插入一条记录:</p>
+<p>​     insert into student(name, passwd, classid) values(‘xiaohong’, ‘xxxxxx’, 1);</p>
+<p>​     1 测试主键的非空性</p>
+<p>​          insert into student(id, name, passwd, classid) values(null, ‘xiaowen’, ‘xxxxxx’, 1);</p>
+<p>​               注意: 若给主键插入一个null, mysql会自动插入一个有效的值, 所以mysql的主键肯定不会为空</p>
+<p>​     2 测试主键的唯一性约束</p>
+<p>​          insert into student(id, name, passwd, classid) values(1, ‘xiaoliu’, ‘xxxxxx’, 1);</p>
+<p>​          —–&gt;ERROR 1062 (23000): Duplicate entry ‘1’ for key ‘PRIMARY’</p>
+<p>​     3 测试name列的唯一性</p>
+<p>​          insert into student(name, passwd, classid) values(‘xiaohong’, ‘xxxxxx’, 2);</p>
+<p>​          —–&gt; ERROR 1062 (23000): Duplicate entry ‘xiaohong’ for key ‘name’</p>
+<p>​          insert into student(name, passwd, classid) values(null, ‘xxxxxx’, 2);</p>
+<p>​          注意: name为unique约束, 只是不能重复, 但是可以为空</p>
+<p>​     4 测试passwd的非空约束</p>
+<p>​          insert into student(name, passwd, classid) values(‘xiaohua’, null, 2);</p>
+<p>​          —–&gt; ERROR 1048 (23000): Column ‘passwd’ cannot be null</p>
+<p>​     5 测试classid的外键约束</p>
+<p>​          insert into student(name, passwd, classid) values(‘meizi’, ‘mmmm’, 10);</p>
+<p>​          —–&gt;OREIGN KEY (<code>classid</code>) REFERENCES <code>class</code> (<code>id</code>))</p>
+<p>​          在class表中没有id为10的列的值.    </p>
+<p>总结:</p>
+<p>​     关于mysql的主键约束, 在插入数据的时候可以完全不用理会主键, 因为</p>
+<p>​     主键会自动插入,而且保证不重复.    </p>
+<hr>
+<p>索引:使用是索引的目的是提高查询的效率.</p>
+<p>​     索引用于快速找出在某个列中有一特定值的行，不使用索引，</p>
+<p>​     MySQL必须从第一条记录开始读完整个表，直到找出相关的行，</p>
+<p>​     表越大，查询数据所花费的时间就越多，如果表中查询的列有一个索引，</p>
+<p>​     MySQL能够快速到达一个位置去搜索数据文件，而不必查看所有数据，</p>
+<p>​     那么将会节省很大一部分时间。</p>
+<p>​     1 如何创建?</p>
+<p>​          create index idx_emp on emp(empno);    </p>
+<p>​          create unique index idx_emp on emp(empno);    </p>
+<p>​     2 如何删除</p>
+<p>​          drop index index_name on table_name ;</p>
+<p>​          alter table table_name drop index index_name ; </p>
+<p>​     3 查询创建的索引?</p>
+<p>​          show index from table_name;</p>
+<p>​     4 注意点:</p>
+<p>​          创建索引的列最后是值的分布很广泛且重复的概率很低.    </p>
+<p>​         </p>
+<p>使用索引的实验:</p>
+<p>​     没有索引的情况下:</p>
+<p>​     1 创建一个表mytest;</p>
+<p>​     2 往表中insert n条数据</p>
+<p>​     3 执行select * from mytest where id=’88888’;</p>
+<p>​       记录一个时间</p>
+<p>​     有索引的情况下:</p>
+<p>​     给mytest创建一个索引: create index idx_mytest on mytest(id);</p>
+<p>​     执行select * from mytest where id=’88888’;</p>
+<p>​     记录时间</p>
+<p>​     最后比较这两个时间, 时间短的表明查询效率高.</p>
+<ul>
+<li><p>关于mysql创建表的类的类型可以参考手册:    </p>
+</li>
+<li><p>多表的表关系其实就是主键和外键的关系: 即一个表的某个字段的取值</p>
+</li>
+<li><p>是依赖于另一个表的主键, 比如emp表的deptno字段就是表dept的deptno字段的值.</p>
+</li>
+</ul>
+<p></p></div><div class="share"><span>Share</span>&nbsp;<span class="soc"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></span><span class="soc"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></span><span class="soc"><a href="http://twitter.com/home?status=https://fe405327114.github.io/dayuya.github.io/2019/01/14/12-mysql-query/%20dayuya's blog%20mysql_query" class="fa fa-twitter"></a></span></div><div class="pagination"><p class="clearfix"><span class="pre pagbuttons"><a role="navigation" href="/dayuya.github.io/2019/01/14/13-crypto-basic/" title="crypto_basic"><i class="fa fa-angle-double-left"></i>&nbsp;Previous post: crypto_basic</a></span><span>&nbsp;</span><span class="next pagbuttons"><a role="navigation" href="/dayuya.github.io/2019/01/14/11-go-log/" title="go_log">Next post: go_log&nbsp;<i class="fa fa-angle-double-right"></i></a></span></p></div></div></div></div><div class="visible-xs site-bottom-footer"><footer><p>&copy;&nbsp;2019&nbsp;<a target="_blank" href="https://fe405327114.github.io/dayuya.github.io" rel="noopener noreferrer">Zhang Jiangfeng</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div></div><script src="/dayuya.github.io/js/jquery-3.1.0.min.js"></script><script src="/dayuya.github.io/js/bootstrap.min.js"></script><script src="/dayuya.github.io/js/jquery-migrate-1.2.1.min.js"></script><script src="/dayuya.github.io/js/jquery.appear.js"></script><script src="/dayuya.github.io/js/google-analytics.js"></script><script src="/dayuya.github.io/js/typography.js"></script></body></html>
