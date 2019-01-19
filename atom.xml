@@ -6,7 +6,7 @@
   <link href="/dayuya.github.io/atom.xml" rel="self"/>
   
   <link href="https://fe405327114.github.io/dayuya.github.io/"/>
-  <updated>2019-01-14T08:28:13.715Z</updated>
+  <updated>2019-01-19T13:08:13.407Z</updated>
   <id>https://fe405327114.github.io/dayuya.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>go-http-setStatic</title>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/19/go-http-setStatic/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/19/go-http-setStatic/</id>
+    <published>2019-01-19T12:38:16.000Z</published>
+    <updated>2019-01-19T13:08:13.407Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h5&gt;&lt;span id=&quot;web中设置静态目录后其中的cssjs文件才可以被访问到&quot;&gt;web中设置静态目录后，其中的css/js文件才可以被访问到&lt;/span&gt;&lt;/h5&gt;&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
+        
+      
+    
+    </summary>
+    
+    
+      <category term="go" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go/"/>
+    
+  </entry>
   
   <entry>
     <title>go_data_structure</title>
@@ -56,7 +80,7 @@
       
         
         
-          &lt;h4 id=&quot;简洁的非标记语言&quot;&gt;&lt;a href=&quot;#简洁的非标记语言&quot; class=&quot;headerlink&quot; title=&quot;简洁的非标记语言&quot;&gt;&lt;/a&gt;简洁的非标记语言&lt;/h4&gt;&lt;h4 id=&quot;基本格式要求&quot;&gt;&lt;a href=&quot;#基本格式要求&quot;
+          &lt;h4&gt;&lt;span id=&quot;简洁的非标记语言&quot;&gt;简洁的非标记语言&lt;/span&gt;&lt;/h4&gt;&lt;h4&gt;&lt;span
         
       
     
@@ -135,7 +159,7 @@
       
         
         
-          &lt;h4 id=&quot;标准输出log日志&quot;&gt;&lt;a href=&quot;#标准输出log日志&quot; class=&quot;headerlink&quot; title=&quot;标准输出log日志&quot;&gt;&lt;/a&gt;标准输出log日志&lt;/h4&gt;&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
+          &lt;h4&gt;&lt;span id=&quot;标准输出log日志&quot;&gt;标准输出log日志&lt;/span&gt;&lt;/h4&gt;&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
         
       
     
@@ -159,7 +183,7 @@
       
         
         
-          &lt;h5 id=&quot;Pool用于存储那些被分配了但是没有被使用，而未来可能会使用的值，以减小垃圾回收的压力&quot;&gt;&lt;a href=&quot;#Pool用于存储那些被分配了但是没有被使用，而未来可能会使用的值，以减小垃圾回收的压力&quot; class=&quot;headerlink&quot;
+          &lt;h5&gt;&lt;span
         
       
     
@@ -183,7 +207,7 @@
       
         
         
-          &lt;h4 id=&quot;JSON用来编码go里面的map-key为string-和结构体&quot;&gt;&lt;a href=&quot;#JSON用来编码go里面的map-key为string-和结构体&quot; class=&quot;headerlink&quot;
+          &lt;h4&gt;&lt;span id=&quot;json用来编码go里面的mapkey为string和结构体&quot;&gt;JSON用来编码go里面的map(key为string)和结构体&lt;/span&gt;&lt;/h4&gt;&lt;h5&gt;&lt;span
         
       
     
@@ -233,7 +257,7 @@
       
         
         
-          &lt;h5 id=&quot;利用go的bytes-Buffer实现字符串输出的格式拼接&quot;&gt;&lt;a href=&quot;#利用go的bytes-Buffer实现字符串输出的格式拼接&quot; class=&quot;headerlink&quot;
+          &lt;h5&gt;&lt;span id=&quot;利用go的bytesbuffer实现字符串输出的格式拼接&quot;&gt;利用go的bytes.Buffer实现字符串输出的格式拼接&lt;/span&gt;&lt;/h5&gt;&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
         
       
     
@@ -257,7 +281,7 @@
       
         
         
-          &lt;h4 id=&quot;使用sort-Interface来排序&quot;&gt;&lt;a href=&quot;#使用sort-Interface来排序&quot; class=&quot;headerlink&quot;
+          &lt;h4&gt;&lt;span
         
       
     
@@ -281,7 +305,7 @@
       
         
         
-          &lt;h4 id=&quot;go利用flag-Value解析命令行参数&quot;&gt;&lt;a href=&quot;#go利用flag-Value解析命令行参数&quot; class=&quot;headerlink&quot;
+          &lt;h4&gt;&lt;span id=&quot;go利用flagvalue解析命令行参数&quot;&gt;go利用flag.Value解析命令行参数&lt;/span&gt;&lt;/h4&gt;&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
         
       
     
@@ -305,7 +329,7 @@
       
         
         
-          &lt;h4 id=&quot;go的interface&quot;&gt;&lt;a href=&quot;#go的interface&quot; class=&quot;headerlink&quot;
+          &lt;h4&gt;&lt;span
         
       
     
@@ -329,8 +353,8 @@
       
         
         
-          &lt;h4 id=&quot;go的error类型&quot;&gt;&lt;a href=&quot;#go的error类型&quot; class=&quot;headerlink&quot; title=&quot;go的error类型&quot;&gt;&lt;/a&gt;go的error类型&lt;/h4&gt;&lt;p&gt;go语言的error是一个interface&lt;/p&gt;
-&lt;figure
+          &lt;h4&gt;&lt;span id=&quot;go的error类型&quot;&gt;go的error类型&lt;/span&gt;&lt;/h4&gt;&lt;p&gt;go语言的error是一个interface&lt;/p&gt;
+&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
         
       
     
@@ -354,7 +378,7 @@
       
         
         
-          &lt;h3 id=&quot;一、kubernetes-理论部分&quot;&gt;&lt;a href=&quot;#一、kubernetes-理论部分&quot; class=&quot;headerlink&quot; title=&quot;一、kubernetes  理论部分&quot;&gt;&lt;/a&gt;一、kubernetes 
+          &lt;h3&gt;&lt;span id=&quot;一-kubernetes-理论部分&quot;&gt;一、kubernetes 
         
       
     
