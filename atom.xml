@@ -6,7 +6,7 @@
   <link href="/dayuya.github.io/atom.xml" rel="self"/>
   
   <link href="https://fe405327114.github.io/dayuya.github.io/"/>
-  <updated>2019-01-19T13:08:13.407Z</updated>
+  <updated>2019-01-20T06:25:46.195Z</updated>
   <id>https://fe405327114.github.io/dayuya.github.io/</id>
   
   <author>
@@ -17,11 +17,35 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>goroutine-err</title>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/20/goroutine-err/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/20/goroutine-err/</id>
+    <published>2019-01-20T06:12:05.000Z</published>
+    <updated>2019-01-20T06:25:46.195Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4&gt;&lt;span id=&quot;利用errgroup&quot;&gt;利用errGroup&lt;/span&gt;&lt;/h4&gt;&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+    
+      <category term="go" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go/"/>
+    
+  </entry>
+  
+  <entry>
     <title>go-http-setStatic</title>
     <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/19/go-http-setStatic/"/>
     <id>https://fe405327114.github.io/dayuya.github.io/2019/01/19/go-http-setStatic/</id>
     <published>2019-01-19T12:38:16.000Z</published>
-    <updated>2019-01-19T13:08:13.407Z</updated>
+    <updated>2019-01-19T13:09:24.882Z</updated>
     
     <summary type="html">
     
@@ -394,7 +418,7 @@
     <link href="https://fe405327114.github.io/dayuya.github.io/2018/11/29/01-git/"/>
     <id>https://fe405327114.github.io/dayuya.github.io/2018/11/29/01-git/</id>
     <published>2018-11-29T06:54:56.000Z</published>
-    <updated>2019-01-14T07:04:16.879Z</updated>
+    <updated>2019-01-20T06:29:53.640Z</updated>
     
     <summary type="html">
     
