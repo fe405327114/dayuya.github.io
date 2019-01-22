@@ -1,0 +1,90 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Zhang Jiangfeng"><title>go_template · dayuya's blog</title><meta name="description" content="模板标签1模板标签用&quot;&amp;#123;&amp;#123;&quot;和&quot;&amp;#125;&amp;#125;&quot;括起来
+注释12&amp;#123;&amp;#123;/* a comment */&amp;#125;&amp;#125;使用“&amp;#123;&amp;#123;/*”和“*/&amp;#125;&amp;#125;”来包含注释内容
+变量1&amp;#123;&amp;#123;.&amp;#125"><meta name="keywords" content=""><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/dayuya.github.io/css/bootstrap.min.css"><link rel="stylesheet" href="/dayuya.github.io/css/font-awesome.min.css"><link rel="stylesheet" href="/dayuya.github.io/css/style.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div id="stage" class="container"><div class="row"><div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible"><div class="vertical-text site-title"><h3 tabindex="-1" class="site-title-small"><a href="/dayuya.github.io/" class="a-title">Tech blog</a></h3><h1 tabindex="-1" class="site-title-large"><a href="/dayuya.github.io/" class="a-title">大鱼呀</a></h1><!--h6(onclick="triggerSiteNav()") Trigger--></div><br class="visible-lg visible-md visible-sm"><div id="site-nav" class="site-title-links"><ul><li><a href="/dayuya.github.io/">Home</a></li><li><a href="/dayuya.github.io/archives">Archive</a></li><li><a href="/dayuya.github.io/tags">Tags</a></li><li class="soc"><a href="https://fe405327114.github.io/dayuya.github.io/atom.xml" target="_blank" rel="noopener noreferrer"><i class="fa fa-rss">&nbsp;</i></a></li></ul><div class="visible-lg visible-md visible-sm site-nav-footer"><br class="site-nav-footer-br"><footer><p>&copy;&nbsp;2019&nbsp;<a target="_blank" href="https://fe405327114.github.io/dayuya.github.io" rel="noopener noreferrer">Zhang Jiangfeng</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div><div id="main-container" class="col-sm-9 col-xs-12 main-container invisible"><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post-container"><p class="post-title"><a>go_template</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2019-01-21</span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a href="/dayuya.github.io/tags/go/" title="go" class="a-tag">go</a><span>&nbsp;</span></span></p><p class="post-abstract"></p><h5><span id="模板标签">模板标签</span></h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">模板标签用<span class="string">"&#123;&#123;"</span>和<span class="string">"&#125;&#125;"</span>括起来</span><br></pre></td></tr></table></figure>
+<h5><span id="注释">注释</span></h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;<span class="comment">/* a comment */</span>&#125;&#125;</span><br><span class="line">使用“&#123;&#123;<span class="comment">/*”和“*/</span>&#125;&#125;”来包含注释内容</span><br></pre></td></tr></table></figure>
+<h5><span id="变量">变量</span></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;.&#125;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>此标签输出当前对象的值</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;.Name&#125;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>表示输出Struct或Map对象中字段或方法名称为“Name”的值</p>
+</li>
+<li><p>当“Name”是匿名字段时，可以访问其内部字段或方法,比如“Com”：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;.Name.Com&#125;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果“Com”是一个方法并返回一个Struct对象，同样也可以访问其字段或方法：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;.Student.Com.Field1&#125;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;.Method1 <span class="string">"参数值1"</span> <span class="string">"参数值2"</span>&#125;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>调用方法“Method1”，将后面的参数值依次传递给此方法，并输出其返回值。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;$student&#125;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>用于输出在模板中定义的名称为“student”的变量。当$student本身是一个Struct对象时可访问其字段：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;$student.Field1&#125;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这里一定要注意，Field名称必须大写才可以被访问到</p>
+</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;$x := <span class="string">"OK"</span>&#125;&#125; 或 &#123;&#123;$x := pipeline&#125;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在模板中定义变量：变量名称用字母和数字组成，并带上“$”前缀，采用符号“:=”进行赋值。</li>
+</ul>
+<h5><span id="管道函数">管道函数</span></h5><ul>
+<li>用法1：</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;FuncName1&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>此标签将调用名称为“FuncName1”的模板函数（等同于执行“FuncName1()”，不传递任何参数）并输出其返回值。</p>
+<ul>
+<li>用法2：</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;FuncName1 <span class="string">"参数值1"</span> <span class="string">"参数值2"</span>&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>此标签将调用“FuncName1(“参数值1”, “参数值2”)”，并输出其返回值</p>
+<ul>
+<li>用法3：</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;.Admpub|FuncName1&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>此标签将调用名称为“FuncName1”的模板函数（等同于执行“FuncName1(this.Admpub)”，将竖线“|”左边的“.Admpub”变量值作为函数参数传送）并输出其返回值。</p>
+<h5><span id="条件判断">条件判断</span></h5><ul>
+<li>用法1：</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;<span class="keyword">if</span> pipeline&#125;&#125; T1 &#123;&#123;end&#125;&#125;</span><br><span class="line"></span><br><span class="line">标签结构：&#123;&#123;<span class="keyword">if</span> ...&#125;&#125; ... &#123;&#123;end&#125;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>用法2：</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;<span class="keyword">if</span> pipeline&#125;&#125; T1 &#123;&#123;<span class="keyword">else</span>&#125;&#125; T0 &#123;&#123;end&#125;&#125;</span><br><span class="line"></span><br><span class="line">标签结构：&#123;&#123;<span class="keyword">if</span> ...&#125;&#125; ... &#123;&#123;<span class="keyword">else</span>&#125;&#125; ... &#123;&#123;end&#125;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>用法3：</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> &#123;&#123;<span class="keyword">if</span> pipeline&#125;&#125; T1 &#123;&#123;<span class="keyword">else</span> <span class="keyword">if</span> pipeline&#125;&#125; T0 &#123;&#123;end&#125;&#125;</span><br><span class="line"></span><br><span class="line">标签结构：&#123;&#123;<span class="keyword">if</span> ...&#125;&#125; ... &#123;&#123;<span class="keyword">else</span> <span class="keyword">if</span> ...&#125;&#125; ... &#123;&#123;end&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>其中if后面可以是一个条件表达式（包括管道函数表达式。pipeline即管道），也可以是一个字符窜变量或布尔值变量。当为字符窜变量时，如为空字符串则判断为false，否则判断为true。</p>
+<h5><span id="遍历">遍历</span></h5><ul>
+<li>用法1：</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;<span class="keyword">range</span> $k, $v := .Var&#125;&#125; &#123;&#123;$k&#125;&#125; =&gt; &#123;&#123;$v&#125;&#125; &#123;&#123;end&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>range…end结构内部如要使用外部的变量，比如.Var2，需要这样写：$.Var2</p>
+<p>（即：在外部变量名称前加符号“$”即可，单独的“$”意义等同于global）</p>
+<ul>
+<li>用法2：</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;<span class="keyword">range</span> .Var&#125;&#125; &#123;&#123;.&#125;&#125; &#123;&#123;end&#125;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>用法3：</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;<span class="keyword">range</span> pipeline&#125;&#125; T1 &#123;&#123;<span class="keyword">else</span>&#125;&#125; T0 &#123;&#123;end&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>当没有可遍历的值时，将执行else部分</p>
+<h5><span id="定义局部变量">定义局部变量</span></h5><ul>
+<li>用法1：</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;with pipeline&#125;&#125; T1 &#123;&#123;end&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>管道的值将赋给该标签内部的“.”。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（注：这里的“内部”一词是指被&#123;&#123;with pipeline&#125;&#125;...&#123;&#123;end&#125;&#125;包围起来的部分，即T1所在位置）</span><br></pre></td></tr></table></figure>
+<ul>
+<li>用法2：</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;with pipeline&#125;&#125; T1 &#123;&#123;<span class="keyword">else</span>&#125;&#125; T0 &#123;&#123;end&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>如果管道的值为空，“.”不受影响并且执行T0，否则，将管道的值赋给“.”并且执行T1。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">说明：&#123;&#123;end&#125;&#125;标签是<span class="keyword">if</span>、with、<span class="keyword">range</span>的结束标签。</span><br></pre></td></tr></table></figure><p></p></div><div class="share"><span>Share</span>&nbsp;<span class="soc"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></span><span class="soc"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></span><span class="soc"><a href="http://twitter.com/home?status=https://fe405327114.github.io/dayuya.github.io/2019/01/21/go-template/%20dayuya's blog%20go_template" class="fa fa-twitter"></a></span></div><div class="pagination"><p class="clearfix"><span class="pre pagbuttons"><a role="navigation" href="/dayuya.github.io/2019/01/21/go-shareResource/" title="go_shareResource"><i class="fa fa-angle-double-left"></i>&nbsp;Previous post: go_shareResource</a></span><span>&nbsp;</span><span class="next pagbuttons"><a role="navigation" href="/dayuya.github.io/2019/01/20/goroutine-err/" title="goroutine_err">Next post: goroutine_err&nbsp;<i class="fa fa-angle-double-right"></i></a></span></p></div></div></div></div><div class="visible-xs site-bottom-footer"><footer><p>&copy;&nbsp;2019&nbsp;<a target="_blank" href="https://fe405327114.github.io/dayuya.github.io" rel="noopener noreferrer">Zhang Jiangfeng</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div></div><script src="/dayuya.github.io/js/jquery-3.1.0.min.js"></script><script src="/dayuya.github.io/js/bootstrap.min.js"></script><script src="/dayuya.github.io/js/jquery-migrate-1.2.1.min.js"></script><script src="/dayuya.github.io/js/jquery.appear.js"></script><script src="/dayuya.github.io/js/google-analytics.js"></script><script src="/dayuya.github.io/js/typography.js"></script></body></html>
