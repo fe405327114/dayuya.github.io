@@ -6,7 +6,7 @@
   <link href="/dayuya.github.io/atom.xml" rel="self"/>
   
   <link href="https://fe405327114.github.io/dayuya.github.io/"/>
-  <updated>2019-01-22T09:08:52.133Z</updated>
+  <updated>2019-03-16T14:22:00.211Z</updated>
   <id>https://fe405327114.github.io/dayuya.github.io/</id>
   
   <author>
@@ -15,6 +15,47 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>go-https</title>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/03/16/go-https/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/03/16/go-https/</id>
+    <published>2019-03-16T14:20:11.000Z</published>
+    <updated>2019-03-16T14:22:00.211Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="http" scheme="https://fe405327114.github.io/dayuya.github.io/tags/http/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>cross_access</title>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/03/16/cross-access/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/03/16/cross-access/</id>
+    <published>2019-03-16T13:45:18.000Z</published>
+    <updated>2019-03-16T14:19:32.186Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;利用create-react-app脚手架创建前端项目访问后端数据时遇到跨域访问错误。&lt;/p&gt;
+&lt;h5&gt;&lt;span id=&quot;方法一后端服务器允许跨域访问&quot;&gt;方法一：后端服务器允许跨域访问&lt;/span&gt;&lt;/h5&gt;&lt;figure class=&quot;highlight
+        
+      
+    
+    </summary>
+    
+    
+      <category term="http" scheme="https://fe405327114.github.io/dayuya.github.io/tags/http/"/>
+    
+  </entry>
   
   <entry>
     <title>go_time</title>
@@ -73,7 +114,7 @@
     <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/21/go-template/"/>
     <id>https://fe405327114.github.io/dayuya.github.io/2019/01/21/go-template/</id>
     <published>2019-01-21T12:32:21.000Z</published>
-    <updated>2019-01-22T09:27:31.087Z</updated>
+    <updated>2019-01-22T09:31:03.343Z</updated>
     
     <summary type="html">
     
@@ -97,7 +138,7 @@
     <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/20/goroutine-err/"/>
     <id>https://fe405327114.github.io/dayuya.github.io/2019/01/20/goroutine-err/</id>
     <published>2019-01-20T06:12:05.000Z</published>
-    <updated>2019-01-22T09:08:59.936Z</updated>
+    <updated>2019-01-22T09:14:13.769Z</updated>
     
     <summary type="html">
     
@@ -462,57 +503,6 @@
     
     
       <category term="go" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>k8s</title>
-    <link href="https://fe405327114.github.io/dayuya.github.io/2018/12/03/02-k8s/"/>
-    <id>https://fe405327114.github.io/dayuya.github.io/2018/12/03/02-k8s/</id>
-    <published>2018-12-03T12:26:03.000Z</published>
-    <updated>2019-01-14T07:04:08.528Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3&gt;&lt;span id=&quot;一-kubernetes-理论部分&quot;&gt;一、kubernetes 
-        
-      
-    
-    </summary>
-    
-    
-      <category term="k8s" scheme="https://fe405327114.github.io/dayuya.github.io/tags/k8s/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>git</title>
-    <link href="https://fe405327114.github.io/dayuya.github.io/2018/11/29/01-git/"/>
-    <id>https://fe405327114.github.io/dayuya.github.io/2018/11/29/01-git/</id>
-    <published>2018-11-29T06:54:56.000Z</published>
-    <updated>2019-01-20T06:29:53.640Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;1.git  pull 或者 git clone 从远程分支拉取项目。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;如果远程已经有对应的分支&lt;/p&gt;
-&lt;p&gt;git checkout -b 新分支 origin/远程分支
-        
-      
-    
-    </summary>
-    
-    
-      <category term="git" scheme="https://fe405327114.github.io/dayuya.github.io/tags/git/"/>
     
   </entry>
   
