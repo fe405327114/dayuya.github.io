@@ -6,7 +6,7 @@
   <link href="/dayuya.github.io/atom.xml" rel="self"/>
   
   <link href="https://fe405327114.github.io/dayuya.github.io/"/>
-  <updated>2019-03-24T13:01:40.655Z</updated>
+  <updated>2019-03-26T12:55:50.505Z</updated>
   <id>https://fe405327114.github.io/dayuya.github.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>go_waitgroup_demo</title>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/03/26/go-waitgroup-demo/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/03/26/go-waitgroup-demo/</id>
+    <published>2019-03-26T12:20:05.000Z</published>
+    <updated>2019-03-26T12:55:50.505Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h5&gt;&lt;span id=&quot;异步执行任务&quot;&gt;异步执行任务&lt;/span&gt;&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;创建用于存储结果的map&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
+        
+      
+    
+    </summary>
+    
+    
+      <category term="go" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go/"/>
+    
+  </entry>
+  
+  <entry>
     <title>react_cookie</title>
     <link href="https://fe405327114.github.io/dayuya.github.io/2019/03/24/react-cookie/"/>
     <id>https://fe405327114.github.io/dayuya.github.io/2019/03/24/react-cookie/</id>
     <published>2019-03-24T12:45:18.000Z</published>
-    <updated>2019-03-24T13:01:40.655Z</updated>
+    <updated>2019-03-24T13:04:29.371Z</updated>
     
     <summary type="html">
     
@@ -481,30 +508,6 @@
         
         
           &lt;h5&gt;&lt;span id=&quot;利用go的bytesbuffer实现字符串输出的格式拼接&quot;&gt;利用go的bytes.Buffer实现字符串输出的格式拼接&lt;/span&gt;&lt;/h5&gt;&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
-        
-      
-    
-    </summary>
-    
-    
-      <category term="go" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>go_sort.Interface</title>
-    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/13/06-go-sort-Interface/"/>
-    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/13/06-go-sort-Interface/</id>
-    <published>2019-01-13T05:45:24.000Z</published>
-    <updated>2019-01-14T07:03:51.279Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h4&gt;&lt;span
         
       
     
