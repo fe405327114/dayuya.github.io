@@ -6,7 +6,7 @@
   <link href="/dayuya.github.io/atom.xml" rel="self"/>
   
   <link href="https://fe405327114.github.io/dayuya.github.io/"/>
-  <updated>2019-03-26T12:55:50.505Z</updated>
+  <updated>2019-03-28T12:14:04.660Z</updated>
   <id>https://fe405327114.github.io/dayuya.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>js_tips</title>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/03/28/js-tips/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/03/28/js-tips/</id>
+    <published>2019-03-28T11:38:37.000Z</published>
+    <updated>2019-03-28T12:14:04.660Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;ul&gt;
+&lt;li&gt;&lt;h5&gt;&lt;span id=&quot;js-download链接&quot;&gt;js-download链接&lt;/span&gt;&lt;/h5&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
+        
+      
+    
+    </summary>
+    
+    
+      <category term="js" scheme="https://fe405327114.github.io/dayuya.github.io/tags/js/"/>
+    
+  </entry>
   
   <entry>
     <title>go_waitgroup_demo</title>
@@ -484,30 +511,6 @@
           &lt;p&gt;sync.Once能确保实例化对象Do方法在多线程环境只运行一次,内部通过互斥锁实现&lt;/p&gt;
 &lt;p&gt;源码:&lt;/p&gt;
 &lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
-        
-      
-    
-    </summary>
-    
-    
-      <category term="go" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>go_bytes.Buffer</title>
-    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/13/07-go-bytes-Buffer/"/>
-    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/13/07-go-bytes-Buffer/</id>
-    <published>2019-01-13T07:39:14.000Z</published>
-    <updated>2019-01-14T07:03:47.229Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h5&gt;&lt;span id=&quot;利用go的bytesbuffer实现字符串输出的格式拼接&quot;&gt;利用go的bytes.Buffer实现字符串输出的格式拼接&lt;/span&gt;&lt;/h5&gt;&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
         
       
     
