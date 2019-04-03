@@ -6,7 +6,7 @@
   <link href="/dayuya.github.io/atom.xml" rel="self"/>
   
   <link href="https://fe405327114.github.io/dayuya.github.io/"/>
-  <updated>2019-03-30T09:04:13.399Z</updated>
+  <updated>2019-04-03T14:01:54.775Z</updated>
   <id>https://fe405327114.github.io/dayuya.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>go_http</title>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/04/03/go-http/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/04/03/go-http/</id>
+    <published>2019-04-03T13:50:25.000Z</published>
+    <updated>2019-04-03T14:01:54.775Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;ul&gt;
+&lt;li&gt;&lt;h5&gt;&lt;span id=&quot;httpget和httppost&quot;&gt;http.Get和http.Post&lt;/span&gt;&lt;/h5&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
+        
+      
+    
+    </summary>
+    
+    
+      <category term="http" scheme="https://fe405327114.github.io/dayuya.github.io/tags/http/"/>
+    
+  </entry>
   
   <entry>
     <title>js_tips</title>
@@ -485,32 +512,6 @@
         
         
           &lt;h4&gt;&lt;span id=&quot;json用来编码go里面的mapkey为string和结构体&quot;&gt;JSON用来编码go里面的map(key为string)和结构体&lt;/span&gt;&lt;/h4&gt;&lt;h5&gt;&lt;span
-        
-      
-    
-    </summary>
-    
-    
-      <category term="go" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>go_sync.Once</title>
-    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/13/08-go-sync-Once/"/>
-    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/13/08-go-sync-Once/</id>
-    <published>2019-01-13T08:35:07.000Z</published>
-    <updated>2019-01-14T07:03:42.720Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;sync.Once能确保实例化对象Do方法在多线程环境只运行一次,内部通过互斥锁实现&lt;/p&gt;
-&lt;p&gt;源码:&lt;/p&gt;
-&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
         
       
     
