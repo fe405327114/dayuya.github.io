@@ -6,7 +6,7 @@
   <link href="/dayuya.github.io/atom.xml" rel="self"/>
   
   <link href="https://fe405327114.github.io/dayuya.github.io/"/>
-  <updated>2019-04-03T14:01:54.775Z</updated>
+  <updated>2019-04-04T13:25:01.260Z</updated>
   <id>https://fe405327114.github.io/dayuya.github.io/</id>
   
   <author>
@@ -17,11 +17,62 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>mysql_lock</title>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/04/04/mysql-lock/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/04/04/mysql-lock/</id>
+    <published>2019-04-04T08:59:40.000Z</published>
+    <updated>2019-04-04T13:25:01.260Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;ul&gt;
+&lt;li&gt;&lt;h4&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+    
+      <category term="mysql" scheme="https://fe405327114.github.io/dayuya.github.io/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>go_wookpool</title>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/04/04/go-wookpool/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/04/04/go-wookpool/</id>
+    <published>2019-04-04T07:51:48.000Z</published>
+    <updated>2019-04-04T13:24:52.078Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;原理：创建一个工作池（协程池），来限定最大goroutine数目。每次来新的job时，从工作池里取出一个可用的worker来执行job。可每分钟处理百万级qps。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;定义一个job的接口,
+        
+      
+    
+    </summary>
+    
+    
+      <category term="go" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go/"/>
+    
+  </entry>
+  
+  <entry>
     <title>go_http</title>
     <link href="https://fe405327114.github.io/dayuya.github.io/2019/04/03/go-http/"/>
     <id>https://fe405327114.github.io/dayuya.github.io/2019/04/03/go-http/</id>
     <published>2019-04-03T13:50:25.000Z</published>
-    <updated>2019-04-03T14:01:54.775Z</updated>
+    <updated>2019-04-04T12:50:07.000Z</updated>
     
     <summary type="html">
     
@@ -464,54 +515,6 @@
         
         
           &lt;h4&gt;&lt;span id=&quot;标准输出log日志&quot;&gt;标准输出log日志&lt;/span&gt;&lt;/h4&gt;&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
-        
-      
-    
-    </summary>
-    
-    
-      <category term="go" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>go_sync.Pool</title>
-    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/13/10-go-sync-Pool/"/>
-    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/13/10-go-sync-Pool/</id>
-    <published>2019-01-13T13:54:15.000Z</published>
-    <updated>2019-01-14T07:03:32.485Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h5&gt;&lt;span
-        
-      
-    
-    </summary>
-    
-    
-      <category term="go" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>go_json</title>
-    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/13/09-go-json/"/>
-    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/13/09-go-json/</id>
-    <published>2019-01-13T09:07:41.000Z</published>
-    <updated>2019-01-14T07:03:38.167Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h4&gt;&lt;span id=&quot;json用来编码go里面的mapkey为string和结构体&quot;&gt;JSON用来编码go里面的map(key为string)和结构体&lt;/span&gt;&lt;/h4&gt;&lt;h5&gt;&lt;span
         
       
     
