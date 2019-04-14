@@ -6,7 +6,7 @@
   <link href="/dayuya.github.io/atom.xml" rel="self"/>
   
   <link href="https://fe405327114.github.io/dayuya.github.io/"/>
-  <updated>2019-04-04T13:25:01.260Z</updated>
+  <updated>2019-04-14T08:38:02.713Z</updated>
   <id>https://fe405327114.github.io/dayuya.github.io/</id>
   
   <author>
@@ -17,11 +17,62 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>mysql_tips</title>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/04/14/mysql-tips/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/04/14/mysql-tips/</id>
+    <published>2019-04-14T08:35:12.000Z</published>
+    <updated>2019-04-14T08:38:02.713Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;mysql中timestamp数据类型是一个比较特殊的数据类型，他可以自动在你不使用程序更新情况下，插入或者修改记录会自动更新timestamp的值.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ON UPDATE CURRENT_TIMESTAMP 
+        
+      
+    
+    </summary>
+    
+    
+      <category term="mysql" scheme="https://fe405327114.github.io/dayuya.github.io/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>react_tabs</title>
+    <link href="https://fe405327114.github.io/dayuya.github.io/2019/04/14/react-tabs/"/>
+    <id>https://fe405327114.github.io/dayuya.github.io/2019/04/14/react-tabs/</id>
+    <published>2019-04-14T07:53:12.000Z</published>
+    <updated>2019-04-14T09:56:05.712Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;工作场景中遇到需要利用react的tabs动态加载某个路由内容的场景，在实践中未发现antd官方的demo。后利用router和tabs进行结合从而做了实现。&lt;/p&gt;
+&lt;p&gt;关于标签的add,remove方法参考官方示例即可。antd
+        
+      
+    
+    </summary>
+    
+    
+      <category term="react" scheme="https://fe405327114.github.io/dayuya.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
     <title>mysql_lock</title>
     <link href="https://fe405327114.github.io/dayuya.github.io/2019/04/04/mysql-lock/"/>
     <id>https://fe405327114.github.io/dayuya.github.io/2019/04/04/mysql-lock/</id>
     <published>2019-04-04T08:59:40.000Z</published>
-    <updated>2019-04-04T13:25:01.260Z</updated>
+    <updated>2019-04-04T14:22:12.194Z</updated>
     
     <summary type="html">
     
@@ -99,7 +150,7 @@
     <link href="https://fe405327114.github.io/dayuya.github.io/2019/03/28/js-tips/"/>
     <id>https://fe405327114.github.io/dayuya.github.io/2019/03/28/js-tips/</id>
     <published>2019-03-28T11:38:37.000Z</published>
-    <updated>2019-03-30T09:04:13.399Z</updated>
+    <updated>2019-04-14T09:48:41.768Z</updated>
     
     <summary type="html">
     
@@ -177,7 +228,7 @@
     <link href="https://fe405327114.github.io/dayuya.github.io/2019/03/24/react-fetch/"/>
     <id>https://fe405327114.github.io/dayuya.github.io/2019/03/24/react-fetch/</id>
     <published>2019-03-24T12:17:19.000Z</published>
-    <updated>2019-03-24T12:47:23.350Z</updated>
+    <updated>2019-04-14T09:47:09.315Z</updated>
     
     <summary type="html">
     
@@ -471,57 +522,6 @@
     
     
       <category term="crypto" scheme="https://fe405327114.github.io/dayuya.github.io/tags/crypto/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mysql_query</title>
-    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/14/12-mysql-query/"/>
-    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/14/12-mysql-query/</id>
-    <published>2019-01-14T06:35:56.000Z</published>
-    <updated>2019-01-14T07:03:23.869Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;SQL语句的整体结构:&lt;/p&gt;
-&lt;p&gt;select colname… from tablename&lt;/p&gt;
-&lt;p&gt;​    where cond group by colname&lt;/p&gt;
-&lt;p&gt;​    having cond order by
-        
-      
-    
-    </summary>
-    
-    
-      <category term="mysql" scheme="https://fe405327114.github.io/dayuya.github.io/tags/mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>go_log</title>
-    <link href="https://fe405327114.github.io/dayuya.github.io/2019/01/14/11-go-log/"/>
-    <id>https://fe405327114.github.io/dayuya.github.io/2019/01/14/11-go-log/</id>
-    <published>2019-01-14T05:46:11.000Z</published>
-    <updated>2019-01-14T07:03:28.414Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h4&gt;&lt;span id=&quot;标准输出log日志&quot;&gt;标准输出log日志&lt;/span&gt;&lt;/h4&gt;&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
-        
-      
-    
-    </summary>
-    
-    
-      <category term="go" scheme="https://fe405327114.github.io/dayuya.github.io/tags/go/"/>
     
   </entry>
   
